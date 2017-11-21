@@ -1,0 +1,177 @@
+{#
+ # This file is part of MedShakeEHR.
+ #
+ # Copyright (c) 2017
+ # Bertrand Boutillier <b.boutillier@gmail.com>
+ # http://www.medshake.net
+ #
+ # MedShakeEHR is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation, either version 3 of the License, or
+ # any later version.
+ #
+ # MedShakeEHR is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ #/
+
+/##
+ # Template > models4print : compte-rendu de consultation 
+ #
+ # @author fr33z00 <https://github.com/fr33z00>
+ #}
+
+{% set tag = page.courrier %}
+
+<p style="text-align : right;">New-York, le {{ tag.date|date("d/m/Y") }}</p>
+
+<h2 style="text-align : center">{% if tag.14=='Homme' %}M.{% elseif tag.14=='Femme' %}Mme{% endif %} {{ tag.3 }}  {{ tag.2 }} ({{ tag.8 }})</h2>
+
+<h2>Consultation du jour</h2>
+
+{% if tag.504 != '' %}
+  <h4>Diagnostic</h4>
+  <p>{{ tag.504 }}</p>
+{% endif %}
+
+{% if tag.498 != '' %}
+  <h4>Evolution et symptômes</h4>
+  <p>{{ tag.498 }}</p>
+{% endif %}
+
+{% set tagArr = [tag.507, tag.508, tag.509, tag.510, tag.511, tag.512, tag.513, tag.514, tag.515, tag.516, tag.517, tag.518, tag.519, tag.520, tag.521, tag.522,tag.523, tag.524, tag.525, tag.526, tag.527, tag.528, tag.529, tag.530, tag.531, tag.532, tag.533, tag.534, tag.535, tag.536, tag.537, tag.538, tag.539, tag.540, tag.541, tag.542, tag.543, tag.544, tag.545, tag.546,tag.547, tag.548, tag.549, tag.550, tag.551, tag.552, tag.553, tag.554, tag.555, tag.556, tag.579, tag.580, tag.581, tag.582, tag.571, tag.572, tag.575, tag.576, tag.573, tag.574, tag.577, tag.578] %}
+{% if "true" in tagArr %}
+  <h4>Traitement manuel</h4>
+  <p>
+    {% for i in 0..7 %}
+      {% for j in 0..1 %}
+        {% if tagArr[2*i+j] == "true" %}
+          C{{ i }}{% if j == 0 %} Lt{% else %} Rt{% endif %}<br>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% for i in 0..11 %}
+      {% for j in 0..1 %}
+        {% if tagArr[16+2*i+j] == "true" %}
+          T{{ i+1 }}{% if j == 0 %} Lt{% else %} Rt{% endif %}<br> 
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% for i in 0..4 %}
+      {% for j in 0..1 %}
+        {% if tagArr[40+2*i+j] == "true" %}
+          L{{ i+1 }}{% if j == 0 %} Lt{% else %} Rt{% endif %}<br> 
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% for i in 0..1 %}
+      {% if tagArr[50+i] == "true" %}
+        Sacral base {% if i == 0 %}ant{% else %}post{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+    {% for i in 0..1 %}
+      {% if tagArr[52+i] == "true" %}
+        Coccyx {% if i == 0 %}ant{% else %}post{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+    {% for i in 0..1 %}
+      {% if tagArr[54+i] == "true" %}
+        PI {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+    {% for i in 0..1 %}
+      {% if tagArr[56+i] == "true" %}
+        AS {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+    {% for i in 0..1 %}
+      {% if tagArr[58+i] == "true" %}
+        PI/ {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+    {% for i in 0..1 %}
+      {% if tagArr[60+i] == "true" %}
+        AS/ {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
+
+
+{% if tag.557 != '' %}
+  <h4>Traitement musculaire</h4>
+  <p>{{ tag.557 }}</p>
+{% endif %}
+
+{% if tag.558 != '' %}
+  <h4>Traitement cranien</h4>
+  <p>{{ tag.558 }}</p>
+{% endif %}
+
+{% if tag.559 != '' %}
+  <h4>Traitement AK</h4>
+  <p>{{ tag.559 }}</p>
+{% endif %}
+
+{% if tag.560 != '' %}
+  <h4>Traitement TBM</h4>
+  <p>{{ tag.560 }}</p>
+{% endif %}
+
+{% if tag.561 != '' %}
+  <h4>Traitement NET</h4>
+  <p>{{ tag.561 }}</p>
+{% endif %}
+
+{% if tag.562 != '' %}
+  <h4>Traitement Whiteson / NOT</h4>
+  <p>{{ tag.562 }}</p>
+{% endif %}
+
+{% if tag.563 != '' %}
+  <h4>Traitement Thompson</h4>
+  <p>{{ tag.563 }}</p>
+{% endif %}
+
+{% if tag.564 != '' %}
+  <h4>Traitement activator</h4>
+  <p>{{ tag.564 }}</p>
+{% endif %}
+
+{% if tag.565 != '' %}
+  <h4>Traitement Tape / Strap</h4>
+  <p>{{ tag.565 }}</p>
+{% endif %}
+
+{% if tag.566 != '' %}
+  <h4>Traitement HIO</h4>
+  <p>{{ tag.566 }}</p>
+{% endif %}
+
+{% if tag.583 != '' %}
+  <h4>Traitement Extrémités</h4>
+  <p>{{ tag.583 }}</p>
+{% endif %}
+
+
+{% set tagArr = [tag.568, tag.569, tag.570] %}
+{% if "true" in tagArr %}
+  <h4>Traitement SOT</h4>
+  <p>
+    {% for i in 0..2 %}
+      {% if tagArr[i] == "true" %}
+        Cat{% if i == 0 %}-I{% elseif i == 1 %}-II{% else %}-III{% endif %}<br>
+      {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
+
+{% if tag.567 != '' %}
+  <h4>Autres traitements</h4>
+  <p>{{ tag.567 }}</p>
+{% endif %}
+
