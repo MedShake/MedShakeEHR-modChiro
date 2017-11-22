@@ -1,5 +1,5 @@
 **Les informations ci-dessous sont une rapide introduction purement technique ! 
-Consultez [www.logiciel-cabinet-medical.fr](http://www.logiciel-cabinet-medical.fr/) pour toutes les informations sur le logiciel MedShakeEHR et son module Gynécologie Obstétrique !**
+Consultez [www.logiciel-cabinet-medical.fr](http://www.logiciel-cabinet-medical.fr/) pour toutes les informations sur le logiciel MedShakeEHR et son module Chiropraxie !**
 
 # MedShakeEHR-modChiro
 Module Chiropraxie pour MedShakeEHR
