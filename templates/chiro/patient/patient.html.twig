@@ -32,6 +32,10 @@
     {{ page['patient']['administrativeDatas']['2']['value']|e }} : dossier patient - MedShakeEHR{% endblock %}
 
 {% block head %}
+    <script>
+      {# provoquer envoie asynchrone du patient dans le DICOM si config ok #}
+      var dicomAutoSendPatient2Echo = {{ config.dicomAutoSendPatient2Echo }};
+    </script>
 
     {{ parent() }}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/tinymce/tinymce.min.js"></script>
@@ -238,6 +242,30 @@
                   </li>
                 </ul>
             </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    DICOM
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                      <a href="#" class="catchLastDicomSrData">Récupérer dernières mesures</a>
+                  </li>
+                  <li>
+                      <a href="#" class="catchOthersDicomSrData">Récupérer mesures antérieures</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                      <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/dicom/{{ page.patient.id }}/" target="_blank">Voir tous les examens du patient</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                      <a href="#" class="prepareEcho">Envoyer patient à échographe</a>
+                  </li>
+                </ul>
+            </div>
+
 
         </div>
 
