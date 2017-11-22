@@ -23,14 +23,18 @@ DELETE from prescriptions_cat;
 DELETE from printed;
 
 INSERT INTO `actes` (`id`, `cat`, `label`, `shortLabel`, `details`, `flagImportant`, `flagCmu`, `fromID`, `toID`, `creationDate`) VALUES
-(1, 1, 'Consultation chiropratique', 'Cs', 'CS:\n  pourcents: 100\n  depassement: 0', 1, 0, 1, 0, '2017-11-17 14:18:44');
+(1, 1, 'Consultation chiropratique', 'Cs', 'CS:\n  pourcents: 100\n  depassement: 0', 1, 0, 1, 0, '2017-11-17 14:18:44'),
+(2, 1, 'Consultation + échographie', 'CS+ECHO', 'CS:\n  pourcents: 100\n  depassement: 0\nECHO:\n  pourcents: 100\n  depassement: 0', 0, 0, 1, 0, '2017-11-22 13:45:54'),
+(3, 2, 'Echographie', 'Echo', 'ECHO:\n   pourcents: 100\n  depassement: 0', 0, 0, 1, 0, '2017-11-22 14:30:10');
 
 INSERT INTO `actes_base` (`id`, `code`, `label`, `type`, `tarifs1`, `tarifs2`, `fromID`, `creationDate`) VALUES
-(19, 'CS', 'Consultation', 'NGAP', 23, 23, 1, '2017-07-07 10:50:01'),
-(23, 'AG', 'Acte gratuit', 'NGAP', 0, 0, 1, '2017-07-07 10:49:30');
+(19, 'CS', 'Consultation', 'NGAP', 50, 50, 1, '2017-07-07 10:50:01'),
+(23, 'AG', 'Acte gratuit', 'NGAP', 0, 0, 1, '2017-07-07 10:49:30'),
+(25, 'ECHO', 'Echographie', 'NGAP', 30, 0, 1, '2017-11-22 13:40:04');
 
 INSERT INTO `actes_cat` (`id`, `name`, `label`, `description`, `type`, `fromID`, `creationDate`, `displayOrder`) VALUES
-(1, 'catConsult', 'Consultations', '', 'user', 1, '2017-03-26 15:42:59', 1);
+(1, 'catConsult', 'Consultations', '', 'user', 1, '2017-03-26 15:42:59', 1),
+(2, 'catExam', 'Examens', '', 'user', 1, '2017-11-22 14:28:24', 2);
 
 INSERT INTO `data_cat` (`id`, `groupe`, `name`, `label`, `description`, `type`, `fromID`, `creationDate`) VALUES
 (1, 'admin', 'identity', 'Etat civil', 'Datas relatives à l\'identité d\'une personne', 'base', 1, '2016-12-15 12:22:35'),
@@ -168,7 +172,7 @@ INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `descr
 (498, 'medical', 'chiroEvolSym', 'Evolution & symptômes', '', 'Evolution & symptômes', '', '', 'textarea', '', 'user', 35, 1, '2017-11-13 18:36:16', 3600, 1),
 (499, 'medical', 'atcdTraitements', 'Traitements', 'Médicaments / Compléments alimentaires', 'Traitements médicamenteux et alimentaires personnels', '', '', 'textarea', '', 'user', 29, 1, '2017-11-13 18:38:26', 3600, 1),
 (500, 'medical', 'accidents', 'Accidents et Traumas', 'Accidents et Traumas', 'Accidents et Traumas', '', '', 'textarea', '', 'user', 29, 3, '2017-11-03 18:49:49', 3600, 1),
-(501, 'medical', 'sports', '', 'Sports & Activités', '', '', '', 'textarea', '', 'user', 29, 4, '2017-10-27 15:40:04', 3600, 3),
+(501, 'medical', 'sports', 'Sports & Activités', 'Sports & Activités', '', '', '', 'textarea', '', 'user', 29, 4, '2017-10-27 15:40:04', 3600, 3),
 (504, 'medical', 'Diagnostic', 'Diagnostic', '', 'Diagnostic', '', '', 'text', '', 'user', 35, 1, '2017-11-17 15:06:58', 3600, 1),
 (510, 'medical', 'chiroC1R', 'C1Rt', 'C1Rt', 'C1 Rt', '', '', 'checkbox', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (509, 'medical', 'chiroC1L', 'C1Lt', 'C1Lt', 'C1 Lt', '', '', 'checkbox', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
