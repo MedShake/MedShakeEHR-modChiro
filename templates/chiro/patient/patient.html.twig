@@ -40,6 +40,8 @@
     {{ parent() }}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/tinymce/tinymce.min.js"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/tinymce/jquery.tinymce.min.js"></script>
+    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/panzoom/dist/jquery.panzoom.min.js"></script>
+    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 
     {# JS général du dossier patient #}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/patient.js"></script>
@@ -53,33 +55,6 @@
     {% endfor %}
 
     <style>
-        .chiroVArray input[type=checkbox] {box-shadow: none;} 
-        .chiroVArray :nth-child(n+2){
-          line-height: 16px;
-          text-align: right;
-          vertical-align: middle;
-        }
-        .chiroVArray p {
-          font-size: 15px;
-          height: 16px;
-          width: 100%;
-          margin: 0 0 5px;
-        }
-        .chiroVArray .form-group {
-          height: 16px;
-          width: 100%;
-          margin: 0 0 5px;
-        }
-        .chiroVArray input {height: 16px;}
-        .chiroVArray .col-md-1{padding: 0;}
-        .chiroVArray .col-md-1 :nth-child(even){background-color: #f4f4f4;}
-        .chiroVArray .col-md-1 p:nth-child(1){text-align: center;}
-        .chiroVArray .col-md-1:nth-child(n+3):nth-child(-n+4) p:nth-child(11){text-align: center;}
-        .chiroVArray .col-md-1:nth-child(11) p:nth-child(9){text-align: center;}
-        .chiroVArray .col-md-1:nth-child(12) p:nth-child(9){text-align: center;}
-        .chiroVArray :nth-child(9){text-align: right;}
-        .chiroVArray :nth-child(n+2):nth-child(-n+4) :nth-child(10){background-color: #eee;}
-        .chiroVArray :nth-child(n+10) :nth-child(8){background-color: #eee;}
 
         .chiroTArray input[type=checkbox] {box-shadow: none;} 
         .chiroTArray :nth-child(3) p{
@@ -103,108 +78,77 @@
         #newDoc{
           display: none;
         }
-        .atcd {border: solid #ddd 1px;border-radius: 6px;padding-top: 10px;margin-left: 5px;margin-right:-10px !important;}
+        .jumbotron{border-radius: 4px !important}
+        .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;margin-left: 5px;margin-right:-10px !important;}
         @media (max-width:1024px) {
           .atcd {margin-left:16px !important;margin-right:16px !important; margin-bottom:10px}
           .col-md-9 {padding-left:30px !important; padding-right: 30px !important} 
         }
+
+        path.show {fill:#f88 !important;}
+        g.show:not(.special) path:nth-child(1){fill:#f88 !important;}
+        g.special.show path:nth-child(2){fill:#f88 !important;}
+        g.spe3.show path:nth-child(3){fill:#f88 !important;}
+        g.spe17.show path:nth-child(17){fill:#f88 !important;}
+
+	svg g,path,circle,rectangle{transition: fill .2s, fill-opacity .2s, stroke-opacity .2s;}
+
+        path.selected {fill:#e44 !important;}
+        g.selected:not(.special) path:nth-child(1){fill:#e44 !important;}
+        g.special.selected path:nth-child(2){fill:#e44 !important;}
+        g.spe3.selected path:nth-child(3){fill:#e44 !important;}
+        g.spe17.selected path:nth-child(17){fill:#e44 !important;}
+
+        .articulation {fill-opacity:.5;fill:#b82b2b;stroke-linecap:round;stroke-linejoin:round;stroke-width:.37795;stroke:#c82b25}
+        .nonvisible{fill-opacity:0 !important; stroke-opacity:0 !important}
+        .nonvisible:hover{fill-opacity:0.2 !important; stroke-opacity:0.3 !important}
+        .nonvisible.show{fill-opacity:0.4 !important; stroke-opacity:1 !important}
+
+        .btn {margin-bottom:5px}
+        .btn-fullw {width:100%}
+        .btn-fullw span{width:100%;text-align:center}
+        .helper {position:absolute; border:solid 1px #ddd; border-radius:5px; text-weight:700;background-color:#fff;padding:4px;z-index:1000;}
+        .hide {display: none}
+        #svgMenuSingle input[type=checkbox]{margin:0 10px 0 0;line-height:16px;vertical-align:text-top}
+        #svgMenuMulti input[type=checkbox]{margin:0 10px 0 0;line-height:16px;vertical-align:text-top}
+
+        .tools {transition: top 0.1s}
+        .jumbotron .btn-group:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+         }
     </style>
 
 {% endblock %}
 
 {% block body %}
 
+    <div id="mousehelper" class="helper hide">
+    </div>
+    <ul id="svgMenuSingle" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
+        <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
+        <li class="divider"></li>
+    </ul>
+    <ul id="svgMenuMulti" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
+        <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
+        <li class="divider"></li>
+    </ul>
+
     <div class="container-fluid">
-<!--      <div class="col-md-6"> -->
         {% if page.patient.dossierType =="deleted" %}
         <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
         {% endif %}
         <div class="row" id="identitePatient" data-patientID="{{ page.patient.id }}">
 
-            <h1>{{ page['patient']['administrativeDatas']['3']['value']|e }}
-                {# firstname #}
-                {{ page['patient']['administrativeDatas']['2']['value']|e }}
-                {# name #}
-                {% if page['patient']['administrativeDatas']['1']['value'] %}
-                    ({{ page['patient']['administrativeDatas']['1']['value']|e }}){% endif %}
-                <small>
-                    {{ page['patient']['administrativeDatas']['8']['value']|e }}
+            {% include('inc-ajax-patientAdminData.html.twig') %}
 
-                    {# birthdate #}
-                    {% if page['patient']['administrativeDatas']['8']['age'] %}
-                    -
-                      {{ page['patient']['administrativeDatas']['8']['age']|e }}
-                      an{% if page['patient']['administrativeDatas']['8']['age'] > 0 %}s{% endif %}
-                    {% endif %}
-                    {# age #}
-                    -
-                    {# tel #}
-                    {{ page['patient']['administrativeDatas']['10']['value']|e }}
-                    {% if page['patient']['administrativeDatas']['10']['value'] and page['patient']['administrativeDatas']['7']['value'] %} / {% endif %}
-                    {{ page['patient']['administrativeDatas']['7']['value']|e }}
-                    {% if page['patient']['administrativeDatas']['10']['value'] or page['patient']['administrativeDatas']['7']['value'] %} - {% endif %}
-                    {# adresse #}
-                    {{ page['patient']['administrativeDatas']['9']['value']|e }}
-                    {{ page['patient']['administrativeDatas']['11']['value']|e }}
-                    {{ page['patient']['administrativeDatas']['13']['value']|e }}
-                    {{ page['patient']['administrativeDatas']['12']['value']|e }}
-
-                    {% if page['patient']['administrativeDatas']['21']['value'] %}
-                      <button id="voirNotesPatient" type="button" class="btn btn-default btn-xs" title="Voir les notes">
-                          <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                      </button>
-                    {% endif %}
-
-                    <a class="btn btn-default btn-xs" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/edit/{{ page.patient.id }}/" title="Édition des données administratives">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a>
-                    {% if page.correspondants is empty %}
-                    <a class="btn btn-default btn-xs" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/" title="Édition des relations">
-                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                    </a>
-                    {% endif %}
-
-                    {# email #}
-                    {% if page['patient']['administrativeDatas']['4']['value'] %}
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          {{ page['patient']['administrativeDatas']['4']['value']|e }} <span class="caret"></span>
-                        </button>
-
-                        <ul class="dropdown-menu">
-                          <li><a class="newMail" href="#" data-formtocall="baseSendMail" data-mailtype="ns">Envoyer un mail</a></li>
-                          {% if config.smtpTracking %}
-                            <li><a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/logs/historiqueMailSendToPatient/{{ page.patient.id }}/" >Historique des mails envoyés</a></li>
-                          {% endif %}
-                        </ul>
-                      </div>
-
-                    {% endif %}
-
-                    {% if page.correspondants %}
-                    <a class="btn btn-default btn-xs" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/" title="Édition des relations">
-                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                    </a>
-                    {% for v in page.correspondants %}
-                      <a class="btn btn-default btn-xs" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/{{ v.pratID }}/" title="">{% if v.titre %}{{ v.titre }} {% endif %}{{ v.prenom }} {{ v.nom }}</a>
-                    {% endfor %}
-                    {% endif %}
-
-                </small>
-            </h1>
-
-            <div id="notesPatient" class="well" style="display: none;">
-              {{ page['patient']['administrativeDatas']['21']['value']|e|nl2br }}
-            </div>
-
-<!--        </div> -->
       </div>
 
 <!--      <div class="col-md-6"style="padding-top: 58px;"> 
       </div> -->
       </div>
 
-        <div class="row" style="margin-top : 40px;">
+        <div class="row" style="margin-top : 20px;">
             <div  class="col-md-3 atcd">
               {# Formulaire dlatéral des ATCD #}
               <div id="latForm" class=" changeObserv">
@@ -333,4 +277,53 @@
         </div>
       </div>
 
+      {# modal éditer infos adminsitratives du patient #}
+      <div id="editAdmin" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title gras">Edition des informations administratives du patient</h4>
+            </div>
+            <div class="modal-body changeObserv">
+              {{ f.formbuilder(page.formEditAdmin , 'baseNewPatient' , session) }}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary modalAdminClose" data-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# modal changer la date d'une ligne d'historique #}
+      <div id="modalCreationDate" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title gras">Modifier la date affichée d'un élément de l'historique</h4>
+            </div>
+            <div class="modal-body">
+              <p>Cet élément a été enregistré en base le <span id="modalRegisterDateDisplay"></span></p>
+              <p>Il est actuellement affiché en date du <span id="modalCreationDateDisplay"></span></p>
+              <form id="formNewCreationDate" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/actions/changeObjetCreationDate/{{ page.patient.id }}/" method="post">
+                <input name="objetID" type="hidden" value="" />
+                <div class="form-group">
+                    <label for="datepickHistoValue">Modifier la date d'effet pour le</label>
+                    <div class="input-group date  col-md-6" id="datepickHisto">
+                        <input name="newCreationDate" type="text" class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+              <button type="button" class="btn btn-primary modalCreationDateClose" data-dismiss="modal">Modifier</button>
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock %}
