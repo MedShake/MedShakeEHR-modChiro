@@ -2,7 +2,7 @@
  # This file is part of MedShakeEHR.
  #
  # Copyright (c) 2017
- # Bertrand Boutillier <b.boutillier@gmail.com>
+ # fr33z00 <https://github.com/fr33z00>
  # http://www.medshake.net
  #
  # MedShakeEHR is free software: you can redistribute it and/or modify
@@ -43,64 +43,32 @@
   <p>{{ tag.498 }}</p>
 {% endif %}
 
-{% set tagArr = [tag.507, tag.508, tag.509, tag.510, tag.511, tag.512, tag.513, tag.514, tag.515, tag.516, tag.517, tag.518, tag.519, tag.520, tag.521, tag.522,tag.523, tag.524, tag.525, tag.526, tag.527, tag.528, tag.529, tag.530, tag.531, tag.532, tag.533, tag.534, tag.535, tag.536, tag.537, tag.538, tag.539, tag.540, tag.541, tag.542, tag.543, tag.544, tag.545, tag.546,tag.547, tag.548, tag.549, tag.550, tag.551, tag.552, tag.553, tag.554, tag.555, tag.556, tag.579, tag.580, tag.581, tag.582, tag.571, tag.572, tag.575, tag.576, tag.573, tag.574, tag.577, tag.578] %}
-{% if "true" in tagArr %}
-  <h4>Traitement manuel</h4>
-  <p>
-    {% for i in 0..7 %}
-      {% for j in 0..1 %}
-        {% if tagArr[2*i+j] == "true" %}
-          C{{ i }}{% if j == 0 %} Lt{% else %} Rt{% endif %}<br>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    {% for i in 0..11 %}
-      {% for j in 0..1 %}
-        {% if tagArr[16+2*i+j] == "true" %}
-          T{{ i+1 }}{% if j == 0 %} Lt{% else %} Rt{% endif %}<br> 
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    {% for i in 0..4 %}
-      {% for j in 0..1 %}
-        {% if tagArr[40+2*i+j] == "true" %}
-          L{{ i+1 }}{% if j == 0 %} Lt{% else %} Rt{% endif %}<br> 
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    {% for i in 0..1 %}
-      {% if tagArr[50+i] == "true" %}
-        Sacral base {% if i == 0 %}ant{% else %}post{% endif %}<br>
-      {% endif %}
-    {% endfor %}
-    {% for i in 0..1 %}
-      {% if tagArr[52+i] == "true" %}
-        Coccyx {% if i == 0 %}ant{% else %}post{% endif %}<br>
-      {% endif %}
-    {% endfor %}
-    {% for i in 0..1 %}
-      {% if tagArr[54+i] == "true" %}
-        PI {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
-      {% endif %}
-    {% endfor %}
-    {% for i in 0..1 %}
-      {% if tagArr[56+i] == "true" %}
-        AS {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
-      {% endif %}
-    {% endfor %}
-    {% for i in 0..1 %}
-      {% if tagArr[58+i] == "true" %}
-        PI/ {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
-      {% endif %}
-    {% endfor %}
-    {% for i in 0..1 %}
-      {% if tagArr[60+i] == "true" %}
-        AS/ {% if i == 0 %}Lt{% else %}Rt{% endif %}<br>
-      {% endif %}
-    {% endfor %}
-  </p>
-{% endif %}
+{% set nomsOs1 = ["C0","C1","C2","C3","C4","C5","C6","C7","T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12","K1 Lt","K1 Rt","K2 Lt","K2 Rt","K3 Lt","K3 Rt","K4 Lt","K4 Rt","K5 Lt","K5 Rt","K6 Lt","K6 Rt","K7 Lt","K7 Rt","K8 Lt","K8 Rt","K9 Lt","K9 Rt","K10 Lt","K10 Rt","K11 Lt","K11 Rt","K12 Lt","K12 Rt","L1","L2","L3","L4","L5","Coxxyx"] %}
+{% set nomsOs2 = ["Cuneiforme I Lt","Cuneiforme I Rt","Cuneiforme II Lt","Cuneiforme II Rt","Cuneiforme III Lt","Cuneiforme III Rt","Calcaneum Lt","Calcaneum Rt","Capitatum Lt","Capitatum Rt","Cuboide Lt","Cuboide Rt","Hamatum Lt","Hamatum Rt","Ilium Lt","Ilium Rt","Lunatum Lt","Lunatum Rt","Metacarpe I Lt","Metacarpe I Rt","Metacarpe II Lt","Metacarpe II Rt","Metacarpe III Lt","Metacarpe III Rt","Metacarpe IV Lt","Metacarpe IV Rt","Metacarpe V Lt","Metacarpe V Rt","Naviculaire Lt","Naviculaire Rt","P1 I Lt","P1 I Rt","P1 II Lt","P1 II Rt","P1 III Lt","P1 III Rt","P1 IV Lt","P1 IV Rt","P1 V Lt","P1 V Rt","P1 I Lt","P1 I Rt","P2 II Lt","P2 II Rt","P2 III Lt","P2 III Rt","P2 IV Lt","P2 IV Rt","P2 V Lt","P2 V Rt","P3 I Lt","P3 I Rt","P3 II Lt","P3 II Rt","P3 III Lt","P3 III Rt","P3 IV Lt","P3 IV Rt","P3 V Lt","P3 V Rt","p1 I Lt","p1 I Rt","p1 II Lt","p1 II Rt","p1 III Lt","p1 III Rt","p1 IV Lt","p1 IV Rt","p1 V Lt","p1 V Rt","p1 I Lt","p1 I Rt","p2 II Lt","p2 II Rt","p2 III Lt","p2 III Rt","p2 IV Lt","p2 IV Rt","p2 V Lt","p2 V Rt","Patella_Lt","Patella Rt","Pisiforme Lt","Pisiforme Rt","Sacrum","Scaphoide Lt","Scaphoide Rt","Scapula Lt","Scapula Rt","Talus Lt","Talus Rt","Tibia Lt","Tibia Rt","Trapezium Lt","Trapezium Rt","Trapezoide Lt","Trapezoide Rt","Triquetrum Lt","Triquetrum Rt","Metatarse I Lt","Metatarse I Rt","Metatarse II Lt","Metatarse II Rt","Metatarse III Lt","Metatarse III Rt","Metatarse IV Lt","Metatarse IV Rt","Metatarse V Lt","Metatarse V Rt"] %}
+{% set nomsArticulations = ["Metatarso-phalangienne Lt","Metatarso-phalangienne Rt","Tibio-fibulaire distale Lt","Tibio-fibulaire distale Rt","ATM Lt","ATM Rt","Sterno-claviculaire Lt","Sterno-claviculaire Rt","Acromio-claviculaire Lt","Acromio-claviculaire Rt","Gleno-humerale Lt","Gleno-humerale Rt","Tête radiale Lt","Tête radiale Rt","Ulna proximal Lt","Ulna proximal Rt","Femoro-acetabulaire Lt","Femoro-acetabulaire Rt","Tibio-fibulaire prox Lt","Tibio-fibulaire prox Rt","Symphyse","Styloïde radiale Lt","Styloïde radiale Rt","Ulna distal Lt","Ulna distal Rt"] %}
 
+<h4>Ajustements</h4>
+{% for i in 0..49 %}
+  {% if page['courrier'][i+507] == "true" %}
+    {{ nomsOs1[i] }}<br>
+  {% elseif page['courrier'][i+507] != "" %}
+    {{ nomsOs1[i] }}: {{ page['courrier'][i+507] }}<br>
+  {% endif %}
+{% endfor %}
+{% for i in 0..108 %}
+  {% if page['courrier'][i+584] == "true" %}
+    {{ nomsOs2[i] }}<br>
+  {% elseif page['courrier'][i+584] != "" %}
+    {{ nomsOs2[i] }}: {{ page['courrier'][i+584] }}<br>
+  {% endif %}
+{% endfor %}
+{% for i in 0..24 %}
+  {% if page['courrier'][i+693] == "true" %}
+    Articulation {{ nomsArticulations[i] }}<br>
+  {% elseif page['courrier'][i+693] != "" %}
+    Articulation {{ nomsArticulations[i] }}: {{ page['courrier'][i+693] }}<br>
+  {% endif %}
+{% endfor %}
 
 {% if tag.557 != '' %}
   <h4>Traitement musculaire</h4>
@@ -174,4 +142,3 @@
   <h4>Autres traitements</h4>
   <p>{{ tag.567 }}</p>
 {% endif %}
-

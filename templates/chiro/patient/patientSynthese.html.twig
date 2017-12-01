@@ -1,0 +1,121 @@
+{#
+ # This file is part of MedShakeEHR.
+ #
+ # Copyright (c) 2017
+ # fr33z00 <https://github.com/fr33z00>
+ # http://www.medshake.net
+ #
+ # MedShakeEHR is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation, either version 3 of the License, or
+ # any later version.
+ #
+ # MedShakeEHR is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ #/
+
+/##
+ # Template > patient : tableau de gestion synthèse
+ #
+ # @author fr33z00 <https://github.com/fr33z00>
+ #}
+
+{% import "macroForm.html.twig" as f %}
+<div class="row changeObserv" id="synthesePatient" style="">
+
+    <div class="jumbotron">
+
+        {{ f.formbuilder(page.formData_baseSynthese , page.formName_baseSynthese ) }}
+
+
+        <div class="row" style="margin: 20px 0 0 0">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dossier
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+
+                  {% for v in page.typeCs_csBase %}
+                    <li>
+                      <a class="newCS" href="#" data-parentID='0' data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</a>
+                    </li>
+                  {% endfor %}
+
+                  <li class="divider" role="separator"></li>
+                  <li>
+                      <a id="linkAddNewDoc" href="#">Ajouter un document au dossier</a>
+                  </li>
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Courriers
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">Certificats</li>
+                    {% for v in page.modelesCertif %}
+                        <li>
+                            <a class="newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
+                        </li>
+                    {% endfor %}
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Courriers</li>
+                    {% for v in page.modelesCourrier %}
+                        <li>
+                            <a class="newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Règlement
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                      <a id="linkAddNewReglement" href="#">Nouveau règlement</a>
+                  </li>
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    DICOM
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                      <a href="#" class="catchLastDicomSrData">Récupérer dernières mesures</a>
+                  </li>
+                  <li>
+                      <a href="#" class="catchOthersDicomSrData">Récupérer mesures antérieures</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                      <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/dicom/{{ page.patient.id }}/" target="_blank">Voir tous les examens du patient</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                      <a href="#" class="prepareEcho">Envoyer patient à échographe</a>
+                  </li>
+                </ul>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
