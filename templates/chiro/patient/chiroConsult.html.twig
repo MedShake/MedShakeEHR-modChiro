@@ -17,13 +17,27 @@
  #
  # You should have received a copy of the GNU General Public License
  # along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
- #/
-
-/##
- # Template > patient : tableau de gestion synthèse
  #
  # @author fr33z00 <https://github.com/fr33z00>
  #}
+<ul id="navchiro" class="nav nav-tabs" role="tablist">
+  <li class="active" role="presentation">
+    <a href="#traitement" aria-controls="traitement" role="tab" data-toggle="tab">
+      <h3 style="margin-top:0;margin-bottom:0">Traitement manuel</h3>
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#techniques" aria-controls="techniques" role="tab" data-toggle="tab">
+      <h3 style="margin-top:0;margin-bottom:0">Techniques</h3>
+    </a>
+  </li>
+</ul>
+<div id="tabchiro" class="tab-content">
+  <div id="traitement" role="tabpanel" class="tab-pane active">
+  </div>
+  <div id="techniques" role="tabpanel" class="tab-pane">
+  </div>
+</div>
 
 <div class="row">
   <div class="col-md-12">
@@ -2282,6 +2296,14 @@
 </div>
 </div>
 <script>
+
+  
+  $("#navchiro").insertBefore(".chiroVArray");
+  $("#tabchiro").insertAfter("#navchiro");
+  $(".chiroVArray").appendTo("#traitement");
+  $(".chiroTArray").appendTo("#techniques");
+  $("#formName_chiroConsult").children("div:nth-of-type(4)").appendTo("#techniques");
+
   (function() {
 
     $('[data-toggle="popover"]').popover({container: "#svgparent"});
@@ -2412,6 +2434,5 @@
         parseFloat($("#skeleton").attr("height"))/parseFloat($("#skeleton").attr("width")));
   }
   svgFit();
-
 
 </script>
