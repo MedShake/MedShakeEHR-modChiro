@@ -27,13 +27,6 @@ $(document).ready(function() {
     svgFit();
   });
 
-  $("body").on("mousedown", "#skeleton", function(){
-    this.cursor = "move";
-  });
-  $("body").on("mouseup", "#skeleton", function(){
-    this.cursor = "default";
-  });
-
   $(document).scroll(function(e){
     $(".tools").css("top", Math.min($("#svgparent").height()-$(".tools").height()+20, Math.max(0, e.pageY+60-$("#svgparent").offset().top)));
   });
@@ -81,30 +74,14 @@ $(document).ready(function() {
     var items = $(this).attr("menu").split(",");
     $menu.children().first().html(title);
     for (var i=0; i< items.length; i++)
-      $menu.append('<li><a tabindex="-1" href="javascript:void(0)" data-entry="'+title
+      $menu.append('<li><a tabindex="-1" data-entry="'+title
       + '" data-value="' +items[i]+
       '"><input type="checkbox"'+($("input[placeholder='"+title+"']").attr("value") == items[i] ? ' checked' : '')+
       '>'+items[i]+'</input></a></li>');
     return false;
   });
 
-  $("body").on("click", function(){
-      $("#svgMenuSingle").hide();
-      $("#svgMenuSingle li:nth-child(n+3)").remove();
-  });
-
   $(this).on("click", ".menuMulti", function (e) {
-    function isIn(needle, string) {
-      if (!string)
-        return -1;
-      var table = string.split(",");
-      for (var i = 0; i < table.length; i++)
-        if (table[i] == needle) {
-          return i;
-          break;
-        }
-      return -1;
-    };
     var $menu = $("#svgMenuMulti")
       .show()
       .css({left: Math.max(0, e.pageX-50), top: Math.max(0, e.pageY-50)})
@@ -126,7 +103,7 @@ $(document).ready(function() {
         var value = $entry.attr("value");
         var newValue = $selectedMenu.attr('data-value');
         var idx;
-        if ((idx=isIn(newValue, value)) >= 0)
+        if (value && (idx=value.split(",").findIndex(function(v){return v==newValue})) >= 0)
           $entry.attr("value",value.split(",").filter(function(v,i){return i!=idx}).join());
         else if (value && value != "")
           $entry.attr("value", value + "," + newValue);
@@ -136,11 +113,12 @@ $(document).ready(function() {
       });
     var title = $(this).attr("value");
     var items = $(this).attr("menu").split(",");
+    var value = $("input[placeholder='"+title+"']").attr("value");
     $menu.children().first().html(title);
     for (var i=0; i< items.length; i++)
-      $menu.append('<li><a tabindex="-1" href="javascript:void(0)" data-entry="'+title
+      $menu.append('<li><a tabindex="-1" data-entry="'+title
       + '" data-value="' +items[i]+
-      '"><input type="checkbox"'+ (isIn(items[i], $("input[placeholder='"+title+"']").attr("value"))>=0 ? ' checked' : '')+
+      '"><input type="checkbox"'+ ((value && value.split(",").findIndex(function(v){return v==items[i]}) >= 0) ? ' checked' : '')+
       '>'+items[i]+'</input></a></li>');
     return false;
   });
@@ -155,20 +133,6 @@ $(document).ready(function() {
     setChiroSelected($(this).attr("value"));
   });  
 
-  $("body").on("click", function(){
-      $("#svgMenuSingle").hide();
-      $("#svgMenuSingle li:nth-child(n+3)").remove();
-      $("#svgMenuMulti").hide();
-      $("#svgMenuMulti li:nth-child(n+3)").remove();
-  });
-
-  $("body").on("keydown", function(){
-      $("#svgMenuSingle").hide();
-      $("#svgMenuSingle li:nth-child(n+3)").remove();
-      $("#svgMenuMulti").hide();
-      $("#svgMenuMulti li:nth-child(n+3)").remove();
-  });
-
   $("body").on("mouseenter", ".os,.articulation", function(e){
       this.className.baseVal+=" show";
       $("#mousehelper").html($(this).attr("value"))
@@ -181,6 +145,5 @@ $(document).ready(function() {
   });
 
 });
-
 
 

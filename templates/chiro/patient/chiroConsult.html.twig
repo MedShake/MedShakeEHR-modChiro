@@ -2313,6 +2313,7 @@
       if (setmatrix)
         d.panzoom("setMatrix",m);
     }
+    var clickTO;
     var $panzoom = $('.panzoom').panzoom({
         cursor:"default",
         minScale: 1,
@@ -2321,13 +2322,22 @@
         $zoomIn: $(".zoomIn"),
         $zoomOut: $(".zoomOut"),
         onPan: function(){
-          $(this).css("cursor","move");
-          checkall($(this));
+          checkall($(this))
         },
         onZoom: function(){
-          checkall($(this));
+          checkall($(this))
         },
-        onEnd: function(){$("#skeleton").css("cursor","default")}
+        onStart: function(){
+          clickTO=setTimeout(function(){
+            $("#skeleton").css("cursor","move");
+            clickTO=undefined;
+          }, 100)
+        },
+        onEnd: function(){
+          $("#skeleton").css("cursor","default");
+          if (clickTO)
+            clearTimeout(clickTO)
+        }
     });
     $panzoom.parent().on('mousewheel.focal', function( e ) {
       if (e.ctrlKey==1) {
@@ -2341,7 +2351,6 @@
         });
       };
     });
-
   })();
 
   function setChiroSelected(entry){
