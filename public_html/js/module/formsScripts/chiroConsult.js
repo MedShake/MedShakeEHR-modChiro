@@ -126,11 +126,8 @@ $(document).ready(function() {
         var value = $entry.attr("value");
         var newValue = $selectedMenu.attr('data-value');
         var idx;
-        if ((idx=isIn(newValue, value)) >= 0){
-          var tab = value.split(",");
-          tab.splice(idx,1);
-          $entry.attr("value", tab.join());
-        }
+        if ((idx=isIn(newValue, value)) >= 0)
+          $entry.attr("value",value.split(",").filter(function(v,i){return i!=idx}).join());
         else if (value && value != "")
           $entry.attr("value", value + "," + newValue);
         else
