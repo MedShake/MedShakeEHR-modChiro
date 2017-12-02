@@ -19,7 +19,7 @@
  * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author fr33z00 <https://github.com/fr33z00>
- *}
+ */
 
 $(document).ready(function() {
 
@@ -96,14 +96,14 @@ $(document).ready(function() {
   $(this).on("click", ".menuMulti", function (e) {
     function isIn(needle, string) {
       if (!string)
-        return false;
+        return -1;
       var table = string.split(",");
       for (var i = 0; i < table.length; i++)
         if (table[i] == needle) {
-          return true;
+          return i;
           break;
         }
-      return false;
+      return -1;
     };
     var $menu = $("#svgMenuMulti")
       .show()
@@ -125,8 +125,12 @@ $(document).ready(function() {
         var $entry = $("input[placeholder='"+$selectedMenu.attr('data-entry')+"']");
         var value = $entry.attr("value");
         var newValue = $selectedMenu.attr('data-value');
-        if (isIn(newValue, value))
-          $entry.attr("value", value.replace(","+newValue, "").replace(newValue, ""));
+        var idx;
+        if ((idx=isIn(newValue, value)) >= 0){
+          var tab = value.split(",");
+          tab.splice(idx,1);
+          $entry.attr("value", tab.join());
+        }
         else if (value && value != "")
           $entry.attr("value", value + "," + newValue);
         else
@@ -139,7 +143,7 @@ $(document).ready(function() {
     for (var i=0; i< items.length; i++)
       $menu.append('<li><a tabindex="-1" href="javascript:void(0)" data-entry="'+title
       + '" data-value="' +items[i]+
-      '"><input type="checkbox"'+ (isIn(items[i], $("input[placeholder='"+title+"']").attr("value")) ? ' checked' : '')+
+      '"><input type="checkbox"'+ (isIn(items[i], $("input[placeholder='"+title+"']").attr("value"))>=0 ? ' checked' : '')+
       '>'+items[i]+'</input></a></li>');
     return false;
   });
