@@ -25,69 +25,69 @@ UPDATE  data_types SET name='chiroT6', placeholder='T6', label='T6', description
 UPDATE  data_types SET name='chiroT7', placeholder='T7', label='T7', description='T7' where id=521;
 UPDATE  data_types SET name='chiroT8', placeholder='T8', label='T8', description='T8' where id=522;
 UPDATE  data_types SET name='chiroT9', placeholder='T9', label='T9', description='T9' where id=523;
-UPDATE  data_types SET `name`='chiroT10' , `placeholder`='T10' , `label`='T10' , `description`= 'T10' where id=524;
-UPDATE  data_types SET `name`='chiroT11' , `placeholder`='T11' , `label`='T11' , `description`= 'T11' where id=525;
-UPDATE  data_types SET `name`='chiroT12' , `placeholder`='T12' , `label`='T12' , `description`= 'T12' where id=526;
-UPDATE  data_types SET `name`='chiroK1_Lt' , `placeholder`='K1 Lt' , `label`='K1 Lt' , `description`= 'K1 Lt' where id=527;
-UPDATE  data_types SET `name`='chiroK1_Rt' , `placeholder`='K1 Rt' , `label`='K1 Rt' , `description`= 'K1 Rt' where id=528;
-UPDATE  data_types SET `name`='chiroK2_Lt' , `placeholder`='K2 Lt' , `label`='K2 Lt' , `description`= 'K2 Lt' where id=529;
-UPDATE  data_types SET `name`='chiroK2_Rt' , `placeholder`='K2 Rt' , `label`='K2 Rt' , `description`= 'K2 Rt' where id=530;
-UPDATE  data_types SET `name`='chiroK3_Lt' , `placeholder`='K3 Lt' , `label`='K3 Lt' , `description`= 'K3 Lt' where id=531;
-UPDATE  data_types SET `name`='chiroK3_Rt' , `placeholder`='K3 Rt' , `label`='K3 Rt' , `description`= 'K3 Rt' where id=532;
-UPDATE  data_types SET `name`='chiroK4_Lt' , `placeholder`='K4 Lt' , `label`='K4 Lt' , `description`= 'K4 Lt' where id=533;
-UPDATE  data_types SET `name`='chiroK4_Rt' , `placeholder`='K4 Rt' , `label`='K4 Rt' , `description`= 'K4 Rt' where id=534;
-UPDATE  data_types SET `name`='chiroK5_Lt' , `placeholder`='K5 Lt' , `label`='K5 Lt' , `description`= 'K5 Lt' where id=535;
-UPDATE  data_types SET `name`='chiroK5_Rt' , `placeholder`='K5 Rt' , `label`='K5 Rt' , `description`= 'K5 Rt' where id=536;
-UPDATE  data_types SET `name`='chiroK6_Lt' , `placeholder`='K6 Lt' , `label`='K6 Lt' , `description`= 'K6 Lt' where id=537;
-UPDATE  data_types SET `name`='chiroK6_Rt' , `placeholder`='K6 Rt' , `label`='K6 Rt' , `description`= 'K6 Rt' where id=538;
-UPDATE  data_types SET `name`='chiroK7_Lt' , `placeholder`='K7 Lt' , `label`='K7 Lt' , `description`= 'K7 Lt' where id=539;
-UPDATE  data_types SET `name`='chiroK7_Rt' , `placeholder`='K7 Rt' , `label`='K7 Rt' , `description`= 'K7 Rt' where id=540;
-UPDATE  data_types SET `name`='chiroK8_Lt' , `placeholder`='K8 Lt' , `label`='K8 Lt' , `description`= 'K8 Lt' where id=541;
-UPDATE  data_types SET `name`='chiroK8_Rt' , `placeholder`='K8 Rt' , `label`='K8 Rt' , `description`= 'K8 Rt' where id=542;
-UPDATE  data_types SET `name`='chiroK9_Lt' , `placeholder`='K9 Lt' , `label`='K9 Lt' , `description`= 'K9 Lt' where id=543;
-UPDATE  data_types SET `name`='chiroK9_Rt' , `placeholder`='K9 Rt' , `label`='K9 Rt' , `description`= 'K9 Rt' where id=544;
-UPDATE  data_types SET `name`='chiroK10_Lt' , `placeholder`='K10 Lt', `label`='K10 Lt', `description`= 'K10 Lt' where id=545;
-UPDATE  data_types SET `name`='chiroK10_Rt' , `placeholder`='K10 Rt', `label`='K10 Rt', `description`= 'K10 Rt' where id=546;
-UPDATE  data_types SET `name`='chiroK11_Lt' , `placeholder`='K11 Lt', `label`='K11 Lt', `description`= 'K11 Lt' where id=547;
-UPDATE  data_types SET `name`='chiroK11_Rt' , `placeholder`='K11 Rt', `label`='K11 Rt', `description`= 'K11 Rt' where id=548;
-UPDATE  data_types SET `name`='chiroK12_Lt' , `placeholder`='K12 Lt', `label`='K12 Lt', `description`= 'K12 Lt' where id=549;
-UPDATE  data_types SET `name`='chiroK12_Rt' , `placeholder`='K12 Rt', `label`='K12 Rt', `description`= 'K12 Rt' where id=550;
-UPDATE  data_types SET `name`='L1' , `placeholder`='L1', `label`='L1', `description`= 'L1' where id=551;
-UPDATE  data_types SET `name`='L2' , `placeholder`='L2', `label`='L2', `description`= 'L2' where id=552;
-UPDATE  data_types SET `name`='L3', `placeholder`='L3', `label`='L3', `description`= 'L3' where id=553;
-UPDATE  data_types SET `name`='L4', `placeholder`='L4', `label`='L4', `description`= 'L4' where id=554;
-UPDATE  data_types SET `name`='L5', `placeholder`='L5', `label`='L5', `description`= 'L5' where id=555;
-UPDATE  data_types SET `name`='Coccyx', `placeholder`='Coccyx', `label`='Coccyx', `description`= 'Coccyx' where id=556;
+UPDATE  data_types SET name='chiroT10', placeholder='T10', label='T10', description= 'T10' where id=524;
+UPDATE  data_types SET name='chiroT11', placeholder='T11', label='T11', description= 'T11' where id=525;
+UPDATE  data_types SET name='chiroT12', placeholder='T12', label='T12', description= 'T12' where id=526;
+UPDATE  data_types SET name='chiroK1_Lt', placeholder='K1 Lt', label='K1 Lt', description= 'K1 Lt' where id=527;
+UPDATE  data_types SET name='chiroK1_Rt', placeholder='K1 Rt', label='K1 Rt', description= 'K1 Rt' where id=528;
+UPDATE  data_types SET name='chiroK2_Lt', placeholder='K2 Lt', label='K2 Lt', description= 'K2 Lt' where id=529;
+UPDATE  data_types SET name='chiroK2_Rt', placeholder='K2 Rt', label='K2 Rt', description= 'K2 Rt' where id=530;
+UPDATE  data_types SET name='chiroK3_Lt', placeholder='K3 Lt', label='K3 Lt', description= 'K3 Lt' where id=531;
+UPDATE  data_types SET name='chiroK3_Rt', placeholder='K3 Rt', label='K3 Rt', description= 'K3 Rt' where id=532;
+UPDATE  data_types SET name='chiroK4_Lt', placeholder='K4 Lt', label='K4 Lt', description= 'K4 Lt' where id=533;
+UPDATE  data_types SET name='chiroK4_Rt', placeholder='K4 Rt', label='K4 Rt', description= 'K4 Rt' where id=534;
+UPDATE  data_types SET name='chiroK5_Lt', placeholder='K5 Lt', label='K5 Lt', description= 'K5 Lt' where id=535;
+UPDATE  data_types SET name='chiroK5_Rt', placeholder='K5 Rt', label='K5 Rt', description= 'K5 Rt' where id=536;
+UPDATE  data_types SET name='chiroK6_Lt', placeholder='K6 Lt', label='K6 Lt', description= 'K6 Lt' where id=537;
+UPDATE  data_types SET name='chiroK6_Rt', placeholder='K6 Rt', label='K6 Rt', description= 'K6 Rt' where id=538;
+UPDATE  data_types SET name='chiroK7_Lt', placeholder='K7 Lt', label='K7 Lt', description= 'K7 Lt' where id=539;
+UPDATE  data_types SET name='chiroK7_Rt', placeholder='K7 Rt', label='K7 Rt', description= 'K7 Rt' where id=540;
+UPDATE  data_types SET name='chiroK8_Lt', placeholder='K8 Lt', label='K8 Lt', description= 'K8 Lt' where id=541;
+UPDATE  data_types SET name='chiroK8_Rt', placeholder='K8 Rt', label='K8 Rt', description= 'K8 Rt' where id=542;
+UPDATE  data_types SET name='chiroK9_Lt', placeholder='K9 Lt', label='K9 Lt', description= 'K9 Lt' where id=543;
+UPDATE  data_types SET name='chiroK9_Rt', placeholder='K9 Rt', label='K9 Rt', description= 'K9 Rt' where id=544;
+UPDATE  data_types SET name='chiroK10_Lt', placeholder='K10 Lt', label='K10 Lt', description= 'K10 Lt' where id=545;
+UPDATE  data_types SET name='chiroK10_Rt', placeholder='K10 Rt', label='K10 Rt', description= 'K10 Rt' where id=546;
+UPDATE  data_types SET name='chiroK11_Lt', placeholder='K11 Lt', label='K11 Lt', description= 'K11 Lt' where id=547;
+UPDATE  data_types SET name='chiroK11_Rt', placeholder='K11 Rt', label='K11 Rt', description= 'K11 Rt' where id=548;
+UPDATE  data_types SET name='chiroK12_Lt', placeholder='K12 Lt', label='K12 Lt', description= 'K12 Lt' where id=549;
+UPDATE  data_types SET name='chiroK12_Rt', placeholder='K12 Rt', label='K12 Rt', description= 'K12 Rt' where id=550;
+UPDATE  data_types SET name='chiroL1', placeholder='L1', label='L1', description= 'L1' where id=551;
+UPDATE  data_types SET name='chiroL2', placeholder='L2', label='L2', description= 'L2' where id=552;
+UPDATE  data_types SET name='chiroL3', placeholder='L3', label='L3', description= 'L3' where id=553;
+UPDATE  data_types SET name='chiroL4', placeholder='L4', label='L4', description= 'L4' where id=554;
+UPDATE  data_types SET name='chiroL5', placeholder='L5', label='L5', description= 'L5' where id=555;
+UPDATE  data_types SET name='Coccyx', placeholder='Coccyx', label='Coccyx', description= 'Coccyx' where id=556;
 
 INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `description`, `validationRules`, `validationErrorMsg`, `formType`, `formValues`, `type`, `cat`, `fromID`, `creationDate`, `durationLife`, `displayOrder`) VALUES
-(584, 'medical','chiroCuneiforme_I_Lt' , 'Cuneiforme I Lt', 'Cuneiforme I Lt', 'Cuneiforme I Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(585, 'medical','chiroCuneiforme_I_Rt' , 'Cuneiforme I Rt', 'Cuneiforme I Rt', 'Cuneiforme I Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(586, 'medical','chiroCuneiforme_II_Lt', 'Cuneiforme II Lt', 'Cuneiforme II Lt', 'Cuneiforme II Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(587, 'medical','chiroCuneiforme_II_Rt', 'Cuneiforme II Rt', 'Cuneiforme II Rt', 'Cuneiforme II Rt' ,'','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(588, 'medical','chiroCuneiforme_III_Lt', 'Cuneiforme III Lt', 'Cuneiforme III Lt', 'Cuneiforme III Lt' ,'','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(589, 'medical','chiroCuneiforme_III_Rt', 'Cuneiforme III Rt', 'Cuneiforme III Rt', 'Cuneiforme III Rt', '','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(590, 'medical', 'chiroalcaneum_Lt','Calcaneum Lt','Calcaneum Lt','Calcaneum Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(591, 'medical', 'chiroalcaneum_Rt','Calcaneum Rt','Calcaneum Rt','Calcaneum Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(584, 'medical','chiroCuneiforme_I_Lt', 'Cunéïforme I Lt', 'Cunéïforme I Lt', 'Cunéïforme I Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(585, 'medical','chiroCuneiforme_I_Rt', 'Cunéïforme I Rt', 'Cunéïforme I Rt', 'Cunéïforme I Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(586, 'medical','chiroCuneiforme_II_Lt', 'Cunéïforme II Lt', 'Cunéïforme II Lt', 'Cunéïforme II Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(587, 'medical','chiroCuneiforme_II_Rt', 'Cunéïforme II Rt', 'Cunéïforme II Rt', 'Cunéïforme II Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(588, 'medical','chiroCuneiforme_III_Lt', 'Cunéïforme III Lt', 'Cunéïforme III Lt', 'Cunéïforme III Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(589, 'medical','chiroCuneiforme_III_Rt', 'Cunéïforme III Rt', 'Cunéïforme III Rt', 'Cunéïforme III Rt', '','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(590, 'medical', 'chiroalcaneum_Lt','Calcanéum Lt','Calcanéum Lt','Calcanéum Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(591, 'medical', 'chiroalcaneum_Rt','Calcanéum Rt','Calcanéum Rt','Calcanéum Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (592, 'medical', 'chiroapitatum_Lt','Capitatum Lt','Capitatum Lt','Capitatum Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (593, 'medical', 'chiroapitatum_Rt','Capitatum Rt','Capitatum Rt','Capitatum Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(594, 'medical', 'chiroCuboide_Lt','Cuboide Lt','Cuboide Lt','Cuboide Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(595, 'medical', 'chiroCuboide_Rt','Cuboide Rt','Cuboide Rt','Cuboide Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(594, 'medical', 'chiroCuboide_Lt','Cuboïde Lt','Cuboïde Lt','Cuboïde Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(595, 'medical', 'chiroCuboide_Rt','Cuboïde Rt','Cuboïde Rt','Cuboïde Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (596, 'medical', 'chiroHamatum_Lt','Hamatum Lt','Hamatum Lt','Hamatum Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (597, 'medical', 'chiroHamatum_Rt','Hamatum Rt','Hamatum Rt','Hamatum Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (598, 'medical', 'chiroIlium_Lt','Ilium Lt','Ilium Lt','Ilium Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (599, 'medical', 'chiroIlium_Rt','Ilium Rt','Ilium Rt','Ilium Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (600, 'medical', 'chiroLunatum_Lt','Lunatum Lt','Lunatum Lt','Lunatum Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (601, 'medical', 'chiroLunatum_Rt','Lunatum Rt','Lunatum Rt','Lunatum Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(602, 'medical', 'chiroMetacarpe_I_Lt','Metacarpe I Lt','Metacarpe I Lt','Metacarpe I Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(603, 'medical', 'chiroMetacarpe_I_Rt','Metacarpe I Rt','Metacarpe I Rt','Metacarpe I Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(604, 'medical', 'chiroMetacarpe_II_Lt','Metacarpe II Lt','Metacarpe II Lt','Metacarpe II Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(605, 'medical', 'chiroMetacarpe_II_Rt','Metacarpe II Rt','Metacarpe II Rt','Metacarpe II Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(606, 'medical', 'chiroMetacarpe_III_Lt','Metacarpe III Lt','Metacarpe III Lt','Metacarpe III Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(607, 'medical', 'chiroMetacarpe_III_Rt','Metacarpe III Rt','Metacarpe III Rt','Metacarpe III Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(608, 'medical', 'chiroMetacarpe_IV_Lt','Metacarpe IV Lt','Metacarpe IV Lt','Metacarpe IV Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(609, 'medical', 'chiroMetacarpe_IV_Rt','Metacarpe IV Rt','Metacarpe IV Rt','Metacarpe IV Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(610, 'medical', 'chiroMetacarpe_V_Lt','Metacarpe V Lt','Metacarpe V Lt','Metacarpe V Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(611, 'medical', 'chiroMetacarpe_V_Rt','Metacarpe V Rt','Metacarpe V Rt','Metacarpe V Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(602, 'medical', 'chiroMetacarpe_I_Lt','Métacarpe I Lt','Métacarpe I Lt','Métacarpe I Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(603, 'medical', 'chiroMetacarpe_I_Rt','Métacarpe I Rt','Métacarpe I Rt','Métacarpe I Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(604, 'medical', 'chiroMetacarpe_II_Lt','Métacarpe II Lt','Métacarpe II Lt','Métacarpe II Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(605, 'medical', 'chiroMetacarpe_II_Rt','Métacarpe II Rt','Métacarpe II Rt','Métacarpe II Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(606, 'medical', 'chiroMetacarpe_III_Lt','Métacarpe III Lt','Métacarpe III Lt','Métacarpe III Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(607, 'medical', 'chiroMetacarpe_III_Rt','Métacarpe III Rt','Métacarpe III Rt','Métacarpe III Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(608, 'medical', 'chiroMetacarpe_IV_Lt','Métacarpe IV Lt','Métacarpe IV Lt','Métacarpe IV Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(609, 'medical', 'chiroMetacarpe_IV_Rt','Métacarpe IV Rt','Métacarpe IV Rt','Métacarpe IV Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(610, 'medical', 'chiroMetacarpe_V_Lt','Métacarpe V Lt','Métacarpe V Lt','Métacarpe V Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(611, 'medical', 'chiroMetacarpe_V_Rt','Métacarpe V Rt','Métacarpe V Rt','Métacarpe V Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (612, 'medical', 'chiroNaviculaire_Lt','Naviculaire Lt','Naviculaire Lt','Naviculaire Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (613, 'medical', 'chiroNaviculaire_Rt','Naviculaire Rt','Naviculaire Rt','Naviculaire Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (614, 'medical', 'chiroP1_I_Lt','P1 I Lt','P1 I Lt','P1 I Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
@@ -155,22 +155,22 @@ INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `descr
 (676, 'medical', 'chiroTibia_Rt','Tibia Rt','Tibia Rt','Tibia Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (677, 'medical', 'chiroTrapezium_Lt','Trapezium Lt','Trapezium Lt','Trapezium Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (678, 'medical', 'chiroTrapezium_Rt','Trapezium Rt','Trapezium Rt','Trapezium Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(679, 'medical', 'chiroTrapezoide_Lt','Trapezoide Lt','Trapezoide Lt','Trapezoide Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(680, 'medical', 'chiroTrapezoide_Rt','Trapezoide Rt','Trapezoide Rt','Trapezoide Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(679, 'medical', 'chiroTrapezoide_Lt','Trapézoïde Lt','Trapézoïde Lt','Trapézoïde Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(680, 'medical', 'chiroTrapezoide_Rt','Trapézoïde Rt','Trapézoïde Rt','Trapézoïde Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (681, 'medical', 'chiroTriquetrum_Lt','Triquetrum Lt','Triquetrum Lt','Triquetrum Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (682, 'medical', 'chiroTriquetrum_Rt','Triquetrum Rt','Triquetrum Rt','Triquetrum Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(683, 'medical', 'chiroMetatarse_I_Lt','Metatarse I Lt','Metatarse I Lt','Metatarse I_Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(684, 'medical', 'chiroMetatarse_I_Rt','Metatarse I Rt','Metatarse I Rt','Metatarse I_Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(685, 'medical', 'chiroMetatarse_II_Lt','Metatarse II Lt','Metatarse II Lt','Metatarse II Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(686, 'medical', 'chiroMetatarse_II_Rt','Metatarse II Rt','Metatarse II Rt','Metatarse II Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(687, 'medical', 'chiroMetatarse_III_Lt','Metatarse III Lt','Metatarse III Lt','Metatarse III Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(688, 'medical', 'chiroMetatarse_III_Rt','Metatarse III Rt','Metatarse III Rt','Metatarse III Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(689, 'medical', 'chiroMetatarse_IV_Lt','Metatarse IV Lt','Metatarse IV Lt','Metatarse IV Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(690, 'medical', 'chiroMetatarse_IV_Rt','Metatarse IV Rt','Metatarse IV Rt','Metatarse IV Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(691, 'medical', 'chiroMetatarse_V_Lt','Metatarse V Lt','Metatarse V Lt','Metatarse V Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(692, 'medical', 'chiroMetatarse_V_Rt','Metatarse V Rt','Metatarse V Rt','Metatarse V Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(693, 'medical', 'chiroMetatarso-phalangienne_Lt', 'Metatarso-phalangienne Lt', 'Metatarso-phalangienne Lt', 'Metatarso-phalangienne Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(694, 'medical', 'chiroMetatarso-phalangienne_Rt', 'Metatarso-phalangienne Rt', 'Metatarso-phalangienne Rt', 'Metatarso-phalangienne Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(683, 'medical', 'chiroMetatarse_I_Lt','Métatarse I Lt','Métatarse I Lt','Métatarse I_Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(684, 'medical', 'chiroMetatarse_I_Rt','Métatarse I Rt','Métatarse I Rt','Métatarse I_Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(685, 'medical', 'chiroMetatarse_II_Lt','Métatarse II Lt','Métatarse II Lt','Métatarse II Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(686, 'medical', 'chiroMetatarse_II_Rt','Métatarse II Rt','Métatarse II Rt','Métatarse II Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(687, 'medical', 'chiroMetatarse_III_Lt','Métatarse III Lt','Métatarse III Lt','Métatarse III Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(688, 'medical', 'chiroMetatarse_III_Rt','Métatarse III Rt','Métatarse III Rt','Métatarse III Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(689, 'medical', 'chiroMetatarse_IV_Lt','Métatarse IV Lt','Métatarse IV Lt','Métatarse IV Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(690, 'medical', 'chiroMetatarse_IV_Rt','Métatarse IV Rt','Métatarse IV Rt','Métatarse IV Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(691, 'medical', 'chiroMetatarse_V_Lt','Métatarse V Lt','Métatarse V Lt','Métatarse V Lt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(692, 'medical', 'chiroMetatarse_V_Rt','Métatarse V Rt','Métatarse V Rt','Métatarse V Rt','','', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(693, 'medical', 'chiroMetatarso-phalangienne_Lt', 'Métatarso-phalangienne Lt', 'Métatarso-phalangienne Lt', 'Métatarso-phalangienne Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(694, 'medical', 'chiroMetatarso-phalangienne_Rt', 'Métatarso-phalangienne Rt', 'Métatarso-phalangienne Rt', 'Métatarso-phalangienne Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (695, 'medical', 'chiroTibio-fibulaire_distale_Lt', 'Tibio-fibulaire distale Lt', 'Tibio-fibulaire distale Lt', 'Tibio-fibulaire distale Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (696, 'medical', 'chiroTibio-fibulaire_distale_Rt', 'Tibio-fibulaire distale Rt', 'Tibio-fibulaire distale Rt', 'Tibio-fibulaire distale Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (697, 'medical', 'chiroATM_Lt', 'ATM Lt', 'ATM Lt', 'ATM Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
@@ -179,14 +179,14 @@ INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `descr
 (700, 'medical', 'chiroSterno-claviculaire_Rt', 'Sterno-claviculaire Rt', 'Sterno-claviculaire Rt', 'Sterno-claviculaire Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (701, 'medical', 'chiroAcromio-claviculaire_Lt', 'Acromio-claviculaire Lt', 'Acromio-claviculaire Lt', 'Acromio-claviculaire Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (702, 'medical', 'chiroAcromio-claviculaire_Rt', 'Acromio-claviculaire Rt', 'Acromio-claviculaire Rt', 'Acromio-claviculaire Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(703, 'medical', 'chiroGleno-humerale_Lt', 'Gleno-humerale Lt', 'Gleno-humerale Lt', 'Gleno-humerale Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(704, 'medical', 'chiroGleno-humerale_Rt', 'Gleno-humerale Rt', 'Gleno-humerale Rt', 'Gleno-humerale Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(703, 'medical', 'chiroGleno-humerale_Lt', 'Gléno-humérale Lt', 'Gléno-humérale Lt', 'Gléno-humérale Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(704, 'medical', 'chiroGleno-humerale_Rt', 'Gléno-humérale Rt', 'Gléno-humérale Rt', 'Gléno-humérale Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (705, 'medical', 'chiroTete_radiale_Lt', 'Tête radiale Lt', 'Tête radiale Lt', 'Tête radiale Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (706, 'medical', 'chiroTete_radiale_Rt', 'Tête radiale Rt', 'Tête radiale Rt', 'Tête radiale Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (707, 'medical', 'chiroUlna_proximal_Lt', 'Ulna proximal Lt', 'Ulna proximal Lt', 'Ulna proximal Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (708, 'medical', 'chiroUlna_proximal_Rt', 'Ulna proximal Rt', 'Ulna proximal Rt', 'Ulna proximal Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(709, 'medical', 'chiroFemoro-acetabulaire_Lt', 'Femoro-acetabulaire Lt', 'Femoro-acetabulaire Lt', 'Femoro-acetabulaire Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(710, 'medical', 'chiroFemoro-acetabulaire_Rt', 'Femoro-acetabulaire Rt', 'Femoro-acetabulaire Rt', 'Femoro-acetabulaire Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(709, 'medical', 'chiroFemoro-acetabulaire_Lt', 'Fémoro-acétabulaire Lt', 'Fémoro-acétabulaire Lt', 'Fémoro-acétabulaire Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(710, 'medical', 'chiroFemoro-acetabulaire_Rt', 'Fémoro-acétabulaire Rt', 'Fémoro-acétabulaire Rt', 'Fémoro-acétabulaire Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (711, 'medical', 'chiroTibio-fibulaire_prox_Lt', 'Tibio-fibulaire prox Lt', 'Tibio-fibulaire prox Lt', 'Tibio-fibulaire prox Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (712, 'medical', 'chiroTibio-fibulaire_prox_Rt', 'Tibio-fibulaire prox Rt', 'Tibio-fibulaire prox Rt', 'Tibio-fibulaire prox Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (713, 'medical', 'chiroSymphyse', 'Symphyse', 'Symphyse', 'Symphyse', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),

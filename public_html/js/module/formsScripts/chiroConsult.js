@@ -23,10 +23,6 @@
 
 $(document).ready(function() {
 
-  $(window).on("resize", function(){
-    svgFit();
-  });
-
   $(document).scroll(function(e){
     $(".tools").css("top", Math.min($("#svgparent").height()-$(".tools").height()+20, Math.max(0, e.pageY+60-$("#svgparent").offset().top)));
   });
@@ -37,9 +33,12 @@ $(document).ready(function() {
   $("body").on("mouseup", ".showAll", function(){
     $(".selectable,.os,.articulation").each(function(idx,el){el.className.baseVal=el.className.baseVal.replace(" show", "")})
   });
+
   $("body").on("click", ".zoomFit", function(){
-    $("#skeleton").css("transform","");
-    svgFit();
+    svgFit(true);
+  });
+  $(window).on("resize", function(){
+    svgFit(true);
   });
 
   $(this).on("click", ".menuSingle", function (e) {
@@ -145,5 +144,4 @@ $(document).ready(function() {
   });
 
 });
-
 
