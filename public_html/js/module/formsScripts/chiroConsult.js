@@ -53,9 +53,9 @@ $(document).ready(function() {
       .on('click', 'a', function (e) {
         e.stopImmediatePropagation();
         var $selectedMenu = $(e.currentTarget);
-        var chk = $selectedMenu.children("input").is(":checked");
-        $selectedMenu.parent().parent().find("input").each(function(idx,el){el.removeAttribute("checked");el.checked=false});
-        $selectedMenu.children("input").get(0).checked = chk ^ (e.currentTarget==e.target);
+        var chk = $selectedMenu.children("input").prop("checked");
+        $selectedMenu.parent().parent().find("input").prop("checked", false);
+        $selectedMenu.children("input").prop("checked", chk ^ (e.currentTarget==e.target));
         //on fixe la valeur de l'entrée de formulaire
         var $entry = $("input[placeholder='"+$selectedMenu.attr('data-entry')+"']");
         var value = $selectedMenu.attr('data-value');
