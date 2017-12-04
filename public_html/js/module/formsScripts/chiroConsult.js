@@ -50,16 +50,12 @@ $(document).ready(function() {
         $menu.hide();
         $menu.children("li:nth-child(n+3)").remove();
       })
-      .on('click', 'a,input', function (e) {
+      .on('click', 'a', function (e) {
         e.stopImmediatePropagation();
-        var $selectedMenu = $(e.target).get(0).tagName.toLowerCase() == "input" ? $(e.target).parent() : $(e.target);
-        var chk = $selectedMenu.children("input").attr("checked");
-        if (chk)
-          $selectedMenu.children("input").removeAttr("checked");
-        else {
-          $selectedMenu.parent().parent().find("input").removeAttr("checked");
-          $selectedMenu.children("input").attr("checked","");
-        }
+        var $selectedMenu = $(e.currentTarget);
+        var chk = $selectedMenu.children("input").is(":checked");
+        $selectedMenu.parent().parent().find("input").each(function(idx,el){el.removeAttribute("checked");el.checked=false});
+        $selectedMenu.children("input").get(0).checked = chk ^ (e.currentTarget==e.target);
         //on fixe la valeur de l'entrée de formulaire
         var $entry = $("input[placeholder='"+$selectedMenu.attr('data-entry')+"']");
         var value = $selectedMenu.attr('data-value');
