@@ -23,7 +23,7 @@
 <ul id="navchiro" class="nav nav-tabs" role="tablist">
   <li class="active" role="presentation">
     <a href="#traitement" aria-controls="traitement" role="tab" data-toggle="tab">
-      <h3 style="margin-top:0;margin-bottom:0">Traitement manuel</h3>
+      <h3 style="margin-top:0;margin-bottom:0">Ajustements</h3>
     </a>
   </li>
   <li role="presentation">
@@ -31,11 +31,18 @@
       <h3 style="margin-top:0;margin-bottom:0">Techniques</h3>
     </a>
   </li>
+  <li role="presentation">
+    <a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">
+      <h3 style="margin-top:0;margin-bottom:0">Notes de traitement</h3>
+    </a>
+  </li>
 </ul>
 <div id="tabchiro" class="tab-content">
   <div id="traitement" role="tabpanel" class="tab-pane active">
   </div>
   <div id="techniques" role="tabpanel" class="tab-pane">
+  </div>
+  <div id="notes" role="tabpanel" class="tab-pane">
   </div>
 </div>
 
@@ -2302,6 +2309,7 @@
   $(".chiroVArray").appendTo("#traitement");
   $(".chiroTArray").appendTo("#techniques");
   $("#formName_chiroConsult").children("div:nth-of-type(4)").appendTo("#techniques");
+  $("#formName_chiroConsult").children("div:nth-of-type(4)").appendTo("#notes");
 
   (function() {
 
