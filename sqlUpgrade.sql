@@ -140,7 +140,7 @@ INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `descr
 (715, 'medical', 'chiroStyloide_radiale_Rt', 'Styloïde radiale Rt', 'Styloïde radiale Rt', 'Styloïde radiale Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (716, 'medical', 'chiroUlna_distal_Lt', 'Ulna distal Lt', 'Ulna distal Lt', 'Ulna distal Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (717, 'medical', 'chiroUlna_distal_Rt', 'Ulna distal Rt', 'Ulna distal Rt', 'Ulna distal Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(718, 'medical', 'chiroNotes', 'Notes', 'Notes', 'Notes', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
+(718, 'medical', 'chiroNotes', 'Notes', 'Notes', 'Notes', '', '', 'textarea', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (719, 'medical', 'chiroC0', 'C0', 'C0', 'C0', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (720, 'medical', 'chiroC1', 'C1', 'C1', 'C1', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (721, 'medical', 'chiroC2', 'C2', 'C2', 'C2', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
@@ -191,5 +191,4 @@ INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `descr
 (766, 'medical', 'L4', 'L4', 'L4', 'L4', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (767, 'medical', 'L5', 'L5', 'L5', 'L5', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (768, 'medical', 'Coccyx', 'Coccyx', 'Coccyx', 'Coccyx', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1);
-
 
