@@ -195,7 +195,6 @@ INSERT INTO `data_types` (`id`, `groupe`, `name`, `placeholder`, `label`, `descr
 (609, 'medical', 'chiroMetacarpe_IV_Rt', 'Métacarpe IV Rt', 'Métacarpe IV Rt', 'Métacarpe IV Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (610, 'medical', 'chiroMetacarpe_V_Lt', 'Métacarpe V Lt', 'Métacarpe V Lt', 'Métacarpe V Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (675, 'medical', 'chiroTibia_Lt', 'Tibia Lt', 'Tibia Lt', 'Tibia Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
-(583, 'medical', 'chiroExtrem', 'Extrémités', 'Extrémités', 'Extrémités', '', '', 'textarea', '', 'user', 35, 1, '2017-11-18 13:45:51', 3600, 1),
 (674, 'medical', 'chiroTalus Rt', 'Talus Rt', 'Talus Rt', 'Talus Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (640, 'medical', 'chiroP3_IV_Lt', 'P3 IV Lt', 'P3 IV Lt', 'P3 IV Lt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
 (641, 'medical', 'chiroP3_IV_Rt', 'P3 IV Rt', 'P3 IV Rt', 'P3 IV Rt', '', '', 'hidden', '', 'user', 35, 1, '2017-11-13 18:39:48', 3600, 1),
