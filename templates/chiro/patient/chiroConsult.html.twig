@@ -2323,20 +2323,22 @@
       var h = $d.height();
       var wp = $d.parent().width();
       var hp = $d.parent().height();
-      if (-m[4] > w*(m[0]+1)/2-200){
-        m[4] = -w*(m[0]+1)/2+200;
+      var limits = [w*(m[0]+1)/2-200, wp+w*(m[0]-1)/2-200, h*(m[0]+1)/2-200, hp+h*(m[0]-1)/2-200];
+
+      if (m[4] < -limits[0]){
+        m[4] = -limits[0];
         setmatrix = true;
       }
-      else if (m[4] > wp+w*(m[0]-1)/2-200){
-        m[4] = wp+w*(m[0]-1)/2-200;
+      else if (m[4] > limits[1]){
+        m[4] = limits[1];
         setmatrix = true;
       };
-      if (-m[5] > h*(m[0]+1)/2-200){
-        m[5] = -h*(m[0]+1)/2+200;
+      if (m[5] < -limits[2]){
+        m[5] = -limits[2];
         setmatrix = true;
       }
-      else if (m[5] > hp+h*(m[0]-1)/2-200){
-        m[5] = hp+h*(m[0]-1)/2-200;
+      else if (m[5] > limits[3]){
+        m[5] = limits[3];
         setmatrix = true;
       }
       if (setmatrix)
@@ -2348,14 +2350,9 @@
         cursor:"default",
         minScale: 1,
         maxScale: 4,
+        transition: $(window).width()>=1024,
         $zoomIn: $(".zoomIn"),
         $zoomOut: $(".zoomOut"),
-        onPan: function(){
-          checkall($(this))
-        },
-        onZoom: function(){
-          checkall($(this))
-        },
         onStart: function(){
           clickTO=setTimeout(function(){
             $("#skeleton").css("cursor","move");
@@ -2363,6 +2360,7 @@
           }, 100)
         },
         onEnd: function(){
+          checkall($(this));
           $("#skeleton").css("cursor","default");
           if (clickTO)
             clearTimeout(clickTO)
@@ -2373,14 +2371,12 @@
         var delta = e.delta || e.originalEvent.wheelDelta;
         var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
         e.preventDefault();
-//        $panzoom.panzoom('transition');
         $panzoom.panzoom('zoom', zoomOut, {
           minScale: 1,
           maxScale: 4,
           animate:false,
           focal: e
         });
-//        $panzoom.panzoom('transition', true);
       };
     });
   })();
@@ -2437,7 +2433,9 @@
   setChiroSelected();
 
   function svgFit(animate){
-    $("#skeleton").panzoom('setMatrix', [1, 0, 0, 1, (parseFloat($("#skeleton").parent().width()) - 20 - parseFloat($("#skeleton").width())) / 2, 10], {animate:animate});
+    var $s = $("#skeleton");
+    $s.panzoom('setMatrix', [1, 0, 0, 1, ($s.parent().width() - 20 - $s.width()) / 2, 10], {animate:animate});
+    $s.parent().height($s.height()+20);
   };
   svgFit(false);
 

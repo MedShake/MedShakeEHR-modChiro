@@ -40,7 +40,7 @@
     {{ parent() }}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/tinymce/tinymce.min.js"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/tinymce/jquery.tinymce.min.js"></script>
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/panzoom/dist/jquery.panzoom.min.js"></script>
+    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/panzoom/dist/jquery.panzoom.js"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 
     {# JS général du dossier patient #}
@@ -56,7 +56,14 @@
 
     <style>
 
-        .chiroTArray input[type=checkbox] {box-shadow: none;}
+       @media screen and (orientation:portrait) {
+         #landscape{display: none;}
+        }
+       @media screen and (orientation:landscape) {
+         #portrait{display: none;}
+        }
+
+        .chiroTArray input[type=checkbox] {box-shadow: none;} 
         .chiroTArray :nth-child(3) p{
           margin: 0 0 8px;
           font-size: 14px;
@@ -82,7 +89,7 @@
         .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;margin-left: 5px;margin-right:-10px !important;}
         @media (max-width:1024px) {
           .atcd {margin-left:16px !important;margin-right:16px !important; margin-bottom:10px}
-          .col-md-9 {padding-left:30px !important; padding-right: 30px !important}
+          .col-md-9 {padding-left:30px !important; padding-right: 30px !important} 
         }
 
         path.show {fill:#f88 !important;}
@@ -124,6 +131,10 @@
 
 {% block body %}
 
+    <div id="portrait" class="container" style="padding-top: 40px;">
+      <div class="jumbotron" role="alert"><p>Placez votre écran en mode paysage !</p></div>
+    </div>
+
     <div id="mousehelper" class="helper hide">
     </div>
     <ul id="svgMenuSingle" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
@@ -134,8 +145,8 @@
         <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
         <li class="divider"></li>
     </ul>
-
-    <div class="container-fluid">
+    <div id="landscape">
+     <div class="container-fluid">
         {% if page.patient.dossierType =="deleted" %}
         <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
         {% endif %}
@@ -143,9 +154,9 @@
 
             {% include('inc-ajax-patientAdminData.html.twig') %}
 
-      </div>
+        </div>
 
-<!--      <div class="col-md-6"style="padding-top: 58px;">
+<!--      <div class="col-md-6"style="padding-top: 58px;"> 
       </div> -->
       </div>
 
@@ -222,6 +233,7 @@
             </div>
           </div>
 
+      </div>
     </div>
 
     {# modal changer nom consultation ou doc #}
