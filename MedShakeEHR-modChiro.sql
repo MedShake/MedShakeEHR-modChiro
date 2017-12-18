@@ -6,21 +6,11 @@ SET time_zone = "+00:00";
 DELETE from actes;
 DELETE from actes_base;
 DELETE from actes_cat;
-DELETE from agenda;
-DELETE from agenda_changelog;
 DELETE from data_cat;
 DELETE from data_types;
-DELETE from dicomTags;
 DELETE from forms;
 DELETE from forms_cat;
 DELETE from form_basic_types;
-DELETE from hprim;
-DELETE from inbox;
-DELETE from objets_data;
-DELETE from people;
-DELETE from prescriptions;
-DELETE from prescriptions_cat;
-DELETE from printed;
 
 INSERT INTO `actes` (`id`, `cat`, `label`, `shortLabel`, `details`, `flagImportant`, `flagCmu`, `fromID`, `toID`, `creationDate`) VALUES
 (1, 1, 'Consultation chiropratique', 'Cs', 'CS:\n  pourcents: 100\n  depassement: 0', 1, 0, 1, 0, '2017-11-17 14:18:44'),
