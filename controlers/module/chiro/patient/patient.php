@@ -40,5 +40,5 @@ $form_baseSynthese->setFormIDbyName($p['page']['formName_baseSynthese']='baseSyn
 $form_baseSynthese->getPrevaluesForPatient($match['params']['patient']);
 $p['page']['formData_baseSynthese']=$form_baseSynthese->getForm();
 
-$typeCs_csBase = new msData;
-$p['page']['typeCs_csBase']=$typeCs_csBase->getDataTypesFromCatName('csBase', array('id','label', 'formValues'));
+$typeCs_csChiro = new msData;
+$p['page']['typeCs_csChiro']=$typeCs_csChiro->getDataTypesFromCatName('csChiro', array('id','label', 'formValues'));
