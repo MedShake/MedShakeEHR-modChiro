@@ -23,13 +23,16 @@
  # Template > patient : dossier patient
  #
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
- # @edited fr33z00 <https://github.com/fr33z00>
+ # @contrib fr33z00 <https://github.com/fr33z00>
  #}
 
 {% extends "page.html.twig" %}
 {% import "macroForm.html.twig" as f %}
 {% block title %}{{ page['patient']['administrativeDatas']['3']['value']|e }}
-    {{ page['patient']['administrativeDatas']['2']['value']|e }} : dossier patient - MedShakeEHR{% endblock %}
+    {% if page['patient']['administrativeDatas']['2']['value'] %}{{ page['patient']['administrativeDatas']['2']['value']|e }}
+    {% else %}{{ page['patient']['administrativeDatas']['1']['value']|e }}{% endif %}
+    : dossier patient - MedShakeEHR
+{% endblock %}
 
 {% block head %}
     <script>
@@ -47,7 +50,7 @@
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/patient.js"></script>
 
     {# JS commun au formulaire de consultation du module #}
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/common.js"></script>
+    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/commonBase.js"></script>
 
     {# JS spécifiques des formulaires présents à l'affichage initial de la page #}
     {% for i in page.listeForms %}
@@ -322,7 +325,7 @@
               <form id="formNewCreationDate" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/actions/changeObjetCreationDate/{{ page.patient.id }}/" method="post">
                 <input name="objetID" type="hidden" value="" />
                 <div class="form-group">
-                    <label for="datepickHistoValue">Modifier la date d'effet pour le</label>
+                    <label for="datepickHisto">Modifier la date d'effet pour le</label>
                     <div class="input-group date  col-md-6" id="datepickHisto">
                         <input name="newCreationDate" type="text" class="form-control" />
                         <span class="input-group-addon">
