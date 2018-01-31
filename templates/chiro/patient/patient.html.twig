@@ -38,6 +38,14 @@
     <script>
       {# provoquer envoie asynchrone du patient dans le DICOM si config ok #}
       var dicomAutoSendPatient2Echo = {{ config.dicomAutoSendPatient2Echo }};
+      var champsReglement = {
+        tarif: "input[name='chiroRegleTarifCejour']",
+        depacement: "input[name='regleDepaCejour']",
+        situation: "select[name='regleSituationPatient']",
+        facture: "input[name='regleFacture']",
+        tiers: "input[name='regleTiersPayeur']",
+        id_tiers: "label[for='id_regleTiersPayeur_id']"
+      };
     </script>
 
     {{ parent() }}

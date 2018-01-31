@@ -25,9 +25,8 @@
  # @author fr33z00 <https://github.com/fr33z00>
  #}
 
-            <h1>{{ page['patient']['administrativeDatas']['3']['value']|e }}
-                {# firstname #}
-                {{ page['patient']['administrativeDatas']['2']['value']|e }}
+            <h1>{# firstname #}
+                {{ page['patient']['administrativeDatas']['3']['value']|e }}
                 {# lastname & birthname #}
                 {% if page['patient']['administrativeDatas']['1']['value'] and page['patient']['administrativeDatas']['2']['value'] %}
 	            {{ page['patient']['administrativeDatas']['2']['value']|e }} (né{% if page['patient']['administrativeDatas']['14']['value'] =='F' %}e{% endif %} {{ page['patient']['administrativeDatas']['1']['value']|e }})
