@@ -65,13 +65,16 @@
       <h2>Paramètres courants</h2>
       <ul class="list-group">
         <li class="list-group-item">
-          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actes/">Actes et tarifs</a>
+          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actes-cat/">Actes et tarifs</a>
         </li>
         <li class="list-group-item">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/agenda/">Agendas</a>
         </li>
         <li class="list-group-item">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/apicrypt-clefs/">Clefs Apicrypt</a>
+        </li>
+        <li class="list-group-item">
+          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/cron/">Tâches planifiées</a>
         </li>
       </ul>
 
@@ -82,7 +85,7 @@
       <h2>Formulaires et modèles</h2>
       <ul class="list-group">
         <li class="list-group-item">
-          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/forms/">Edition des formulaires</a>
+          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/forms/cat/">Edition des formulaires</a>
         </li>
         <li class="list-group-item">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/templates-pdf/">Gestion des modèles de rapports</a>
@@ -145,7 +148,7 @@
         </li>
         <li class="list-group-item">
           Données de session
-          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/cleanSession/" class="btn btn-primary role="button" target="_blank">Supprimer</a>
+          <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/cleanSession/" class="btn btn-default btn-xs" role="button" target="_blank">Supprimer</a>
         </li>
       </ul>
 
