@@ -27,217 +27,103 @@
 
 {% set tag = page.courrier %}
 
-<p style="text-align : right;">New-York, le {{ tag.date|date("d/m/Y") }}</p>
+<p style="text-align : right;">Paris, le {{ tag.date|date("d/m/Y") }}</p>
 
-<h2 style="text-align : center">{% if tag.14=='Homme' %}M.{% elseif tag.14=='Femme' %}Mme{% endif %} {{ tag.3 }}  {{ tag.2 }} ({{ tag.8 }})</h2>
-
+<h2 style="text-align : center">{% if tag.14=='Homme' %}M.{% elseif tag.14=='Femme' %}Mme{% endif %} {{ tag.3 }}  {{ tag.2|default(tag.1) }} ({{ tag.8 }})</h2>
 <h2>Consultation du jour</h2>
-
-{% if tag.504 != '' %}
-  <h4>Diagnostic</h4>
-  <p>{{ tag.504 }}</p>
+{% if tag.examenDuJour != '' %}
+  <h3>Diagnostic et traitement</h3>
+  <p>{{ tag.examenDuJour }}</p>
 {% endif %}
 
-{% if tag.498 != '' %}
-  <h4>Evolution et symptômes</h4>
-  <p>{{ tag.498 }}</p>
+{% if tag.chiroDiagnostic != '' %}
+  <h3>Diagnostic</h3>
+  <p>{{ tag.chiroDiagnostic }}</p>
 {% endif %}
 
-{% set nomsOs1 = ["C0","C1","C2","C3","C4","C5","C6","C7","T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12","K1 Lt","K1 Rt","K2 Lt","K2 Rt","K3 Lt","K3 Rt","K4 Lt","K4 Rt","K5 Lt","K5 Rt","K6 Lt","K6 Rt","K7 Lt","K7 Rt","K8 Lt","K8 Rt","K9 Lt","K9 Rt","K10 Lt","K10 Rt","K11 Lt","K11 Rt","K12 Lt","K12 Rt","L1","L2","L3","L4","L5","Coccyx"] %}
-{% set nomsOs2 = ["Cunéïforme I Lt","Cunéïforme I Rt","Cunéïforme II Lt","Cunéïforme II Rt","Cunéïforme III Lt","Cunéïforme III Rt","Calcanéum Lt","Calcanéum Rt","Capitatum Lt","Capitatum Rt","Cuboïde Lt","Cuboïde Rt","Hamatum Lt","Hamatum Rt","Ilium Lt","Ilium Rt","Lunatum Lt","Lunatum Rt","Métacarpe I Lt","Métacarpe I Rt","Métacarpe II Lt","Métacarpe II Rt","Métacarpe III Lt","Métacarpe III Rt","Métacarpe IV Lt","Métacarpe IV Rt","Métacarpe V Lt","Métacarpe V Rt","Naviculaire Lt","Naviculaire Rt","P1 I Lt","P1 I Rt","P1 II Lt","P1 II Rt","P1 III Lt","P1 III Rt","P1 IV Lt","P1 IV Rt","P1 V Lt","P1 V Rt","P2 I Lt","P2 I Rt","P2 II Lt","P2 II Rt","P2 III Lt","P2 III Rt","P2 IV Lt","P2 IV Rt","P2 V Lt","P2 V Rt","P3 I Lt","P3 I Rt","P3 II Lt","P3 II Rt","P3 III Lt","P3 III Rt","P3 IV Lt","P3 IV Rt","P3 V Lt","P3 V Rt","p1 I Lt","p1 I Rt","p1 II Lt","p1 II Rt","p1 III Lt","p1 III Rt","p1 IV Lt","p1 IV Rt","p1 V Lt","p1 V Rt","p2 I Lt","p2 I Rt","p2 II Lt","p2 II Rt","p2 III Lt","p2 III Rt","p2 IV Lt","p2 IV Rt","p2 V Lt","p2 V Rt","Patella Lt","Patella Rt","Pisiforme Lt","Pisiforme Rt","Sacrum","Scaphoïde Lt","Scaphoïde Rt","Scapula Lt","Scapula Rt","Talus Lt","Talus Rt","Tibia Lt","Tibia Rt","Trapezium Lt","Trapezium Rt","Trapézoïde Lt","Trapézoïde Rt","Triquetrum Lt","Triquetrum Rt","Métatarse I Lt","Métatarse I Rt","Métatarse II Lt","Métatarse II Rt","Métatarse III Lt","Métatarse III Rt","Métatarse IV Lt","Métatarse IV Rt","Métatarse V Lt","Métatarse V Rt"] %}
-{% set nomsArticulations = ["Métatarso-phalangienne Lt","Métatarso-phalangienne Rt","Tibio-fibulaire distale Lt","Tibio-fibulaire distale Rt","ATM Lt","ATM Rt","Sterno-claviculaire Lt","Sterno-claviculaire Rt","Acromio-claviculaire Lt","Acromio-claviculaire Rt","Gléno-humérale Lt","Gléno-humérale Rt","Tête radiale Lt","Tête radiale Rt","Ulna proximal Lt","Ulna proximal Rt","Fémoro-acétabulaire Lt","Fémoro-acétabulaire Rt","Tibio-fibulaire prox Lt","Tibio-fibulaire prox Rt","Symphyse","Styloïde radiale Lt","Styloïde radiale Rt","Ulna distal Lt","Ulna distal Rt"] %}
+{% if tag.chiroEvolSym != '' %}
+  <h3>Evolution et symptômes</h3>
+  <p>{{ tag.chiroEvolSym }}</p>
+{% endif %}
 
-{% set Aj = [] %}
-{# pour compatibilité v1.0.0 #}
-{% for i in 0..7 %}
-  {% for j in 0..1 %}
-    {% if page['courrier'][507+2*i+j] == "true" %}
-      {% set Aj = Aj|merge(["C#{i} #{j==0?'Lt':'Rt'}"]) %}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
-{% for i in 0..11 %}
-  {% for j in 0..1 %}
-    {% if page['courrier'][523+2*i+j] == "true" %}
-      {% set Aj = Aj|merge(["T#{i+1} #{j==0?'Lt':'Rt'}"]) %}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
-{% for i in 0..4 %}
-  {% for j in 0..1 %}
-    {% if page['courrier'][547+2*i+j] == "true" %}
-      {% set Aj = Aj|merge(["L#{i+1} #{j==0?'Lt':'Rt'}"]) %}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
-{% for i in 0..1 %}
-  {% if page['courrier'][579+i] == "true" %}
-    {% set Aj = Aj|merge(["Sacral base #{j==0?'Ant':'Post'}"]) %}
-  {% endif %}
-{% endfor %}
-{% for i in 0..1 %}
-  {% if page['courrier'][581+i] == "true" %}
-    {% set Aj = Aj|merge(["Coccyx #{j==0?'Ant':'Post'}"]) %}
-  {% endif %}
-{% endfor %}
-{% for i in 0..1 %}
-  {% if page['courrier'][571+i] == "true" %}
-    {% set Aj = Aj|merge(["PI #{j==0?'Lt':'Rt'}"]) %}
-  {% endif %}
-{% endfor %}
-{% for i in 0..1 %}
-  {% if page['courrier'][575+i] == "true" %}
-    {% set Aj = Aj|merge(["AS #{j==0?'Lt':'Rt'}"]) %}
-  {% endif %}
-{% endfor %}
-{% for i in 0..1 %}
-  {% if page['courrier'][573+i] == "true" %}
-    {% set Aj = Aj|merge(["PI/ #{j==0?'Lt':'Rt'}"]) %}
-  {% endif %}
-{% endfor %}
-{% for i in 0..1 %}
-  {% if page['courrier'][577+i] == "true" %}
-    {% set Aj = Aj|merge(["AS/ #{j==0?'Lt':'Rt'}"]) %}
+{% set ajustements_v1={'chiroC0L': 'C0 Lt', 'chiroC0R': 'C0 Rt', 'chiroC1L': 'C1 Lt', 'chiroC1R': 'C1 Rt', 'chiroC2L': 'C2 Lt', 'chiroC2R': 'C2 Rt', 'chiroC3L': 'C3 Lt', 'chiroC3R': 'C3 Rt', 'chiroC4L': 'C4 Lt', 'chiroC4R': 'C4 Rt', 'chiroC5L': 'C5 Lt', 'chiroC5R': 'C5 Rt', 'chiroC6L': 'C6 Lt', 'chiroC6R': 'C6 Rt', 'chiroC7L': 'C7 Lt', 'chiroC7R': 'C7 Rt', 'chiroT1L': 'T1 Lt', 'chiroT1R': 'T1 Rt', 'chiroT2L': 'T2 Lt', 'chiroT2R': 'T2 Rt', 'chiroT3L': 'T3 Lt', 'chiroT3R': 'T3 Rt', 'chiroT4L': 'T4 Lt', 'chiroT4R': 'T4 Rt', 'chiroT5L': 'T5 Lt', 'chiroT5R': 'T5 Rt', 'chiroT6L': 'T6 Lt', 'chiroT6R': 'T6 Rt', 'chiroT7L': 'T7 Lt', 'chiroT7R': 'T7 Rt', 'chiroT8L': 'T8 Lt', 'chiroT8R': 'T8 Rt', 'chiroT9L': 'T9 Lt', 'chiroT9R': 'T9 Rt', 'chiroT10L': 'T10 Lt', 'chiroT10R': 'T10 Rt', 'chiroT11L': 'T11 Lt', 'chiroT11R': 'T11 Rt', 'chiroT12L': 'T12 Lt', 'chiroT12R': 'T12 Rt', 'chiroL1L': 'L1 Lt', 'chiroL1R': 'L1 Rt', 'chiroL2L': 'L2 Lt', 'chiroL2R': 'L2 Rt', 'chiroL3L': 'L3 Lt', 'chiroL3R': 'L3 Rt', 'chiroL4L': 'L4 Lt', 'chiroL4R': 'L4 Rt', 'chiroL5L': 'L5 Lt', 'chiroL5R': 'L5 Rt', 'chiroPIL': 'PI Lt', 'chiroPIR': 'PI Rt', 'chiroPI_L': 'PI/ Lt', 'chiroPI_R': 'PI/ Rt', 'chiroASL': 'AS Lt', 'chiroASR': 'AS Rt', 'chiroAS_L': 'AS/ Lt', 'chiroAS_R': 'AS/ Rt', 'chiroSacralAnt': 'Sacral Ant', 'chiroSacralPost': 'Sacral Post', 'chiroCoccyxAnt': 'Coccyx Ant', 'chiroCoccyxPost': 'Coccyx Post'} %}
+
+{% set ajustements_v2={'chiroC0': 'C0', 'chiroC1': 'C1', 'chiroC2': 'C2', 'chiroC3': 'C3', 'chiroC4': 'C4', 'chiroC5': 'C5', 'chiroC6': 'C6', 'chiroC7': 'C7', 'chiroCoccyx': 'Coccyx', 'chiroK1_Lt': 'K1 Lt', 'chiroK1_Rt': 'K1 Rt', 'chiroK10_Lt': 'K10 Lt', 'chiroK10_Rt': 'K10 Rt', 'chiroK11_Lt': 'K11 Lt', 'chiroK11_Rt': 'K11 Rt', 'chiroK12_Lt': 'K12 Lt', 'chiroK12_Rt': 'K12 Rt', 'chiroK2_Lt': 'K2 Lt', 'chiroK2_Rt': 'K2 Rt', 'chiroK3_Lt': 'K3 Lt', 'chiroK3_Rt': 'K3 Rt', 'chiroK4_Lt': 'K4 Lt', 'chiroK4_Rt': 'K4 Rt', 'chiroK5_Lt': 'K5 Lt', 'chiroK5_Rt': 'K5 Rt', 'chiroK6_Lt': 'K6 Lt', 'chiroK6_Rt': 'K6 Rt', 'chiroK7_Lt': 'K7 Lt', 'chiroK7_Rt': 'K7 Rt', 'chiroK8_Lt': 'K8 Lt', 'chiroK8_Rt': 'K8 Rt', 'chiroK9_Lt': 'K9 Lt', 'chiroK9_Rt': 'K9 Rt', 'chiroL1': 'L1', 'chiroL2': 'L2', 'chiroL3': 'L3', 'chiroL4': 'L4', 'chiroL5': 'L5', 'chiroIlium_Lt': 'Ilium Lt', 'chiroIlium_Rt': 'Ilium Rt', 'chiroIlium_Lt': 'Ilium Lt', 'chiroIlium_Rt': 'Ilium Rt', 'chiroPatella_Lt': 'Patella Lt', 'chiroPatella_Rt': 'Patella Rt', 'chiroSacrum': 'Sacrum', 'chiroScapula_Lt': 'Scapula Lt', 'chiroScapula_Rt': 'Scapula Rt', 'chiroT1': 'T1', 'chiroT10': 'T10', 'chiroT11': 'T11', 'chiroT12': 'T12', 'chiroT2': 'T2', 'chiroT3': 'T3', 'chiroT4': 'T4', 'chiroT5': 'T5', 'chiroT6': 'T6', 'chiroT7': 'T7', 'chiroT8': 'T8', 'chiroT9': 'T9', 'chiroTalus_Lt': 'Talus Lt', 'chiroTalus_Rt': 'Talus Rt', 'chiroTibia_Lt': 'Tibia Lt', 'chiroTibia_Rt': 'Tibia Rt'} %}
+
+{% set mains={'chiroCapitatum_Lt': 'Capitatum Lt', 'chiroCapitatum_Rt': 'Capitatum Rt', 'chiroHamatum_Lt': 'Hamatum Lt', 'chiroHamatum_Rt': 'Hamatum Rt', 'chiroLunatum_Lt': 'Lunatum Lt', 'chiroLunatum_Rt': 'Lunatum Rt', 'chiroMetacarpe_I_Lt': 'Métacarpe I Lt', 'chiroMetacarpe_I_Rt': 'Métacarpe I Rt', 'chiroMetacarpe_II_Lt': 'Métacarpe II Lt', 'chiroMetacarpe_II_Rt': 'Métacarpe II Rt', 'chiroMetacarpe_III_Lt': 'Métacarpe III Lt', 'chiroMetacarpe_III_Rt': 'Métacarpe III Rt', 'chiroMetacarpe_IV_Lt': 'Métacarpe IV Lt', 'chiroMetacarpe_IV_Rt': 'Métacarpe IV Rt', 'chiroMetacarpe_V_Lt': 'Métacarpe V Lt', 'chiroMetacarpe_V_Rt': 'Métacarpe V Rt', 'chiroP1_I_Lt': 'P1 I Lt', 'chiroP1_I_Rt': 'P1 I Rt', 'chiroP1_II_Lt': 'P1 II Lt', 'chiroP1_II_Rt': 'P1 II Rt', 'chiroP1_III_Lt': 'P1 III Lt', 'chiroP1_III_Rt': 'P1 III Rt',  'chiroCapitatum_Lt': 'Capitatum Lt', 'chiroCapitatum_Rt': 'Capitatum Rt', 'chiroHamatum_Lt': 'Hamatum Lt', 'chiroHamatum_Rt': 'Hamatum Rt', 'chiroLunatum_Lt': 'Lunatum Lt', 'chiroLunatum_Rt': 'Lunatum Rt', 'chiroMetacarpe_I_Lt': 'Métacarpe I Lt', 'chiroMetacarpe_I_Rt': 'Métacarpe I Rt', 'chiroMetacarpe_II_Lt': 'Métacarpe II Lt', 'chiroMetacarpe_II_Rt': 'Métacarpe II Rt', 'chiroMetacarpe_III_Lt': 'Métacarpe III Lt', 'chiroMetacarpe_III_Rt': 'Métacarpe III Rt', 'chiroMetacarpe_IV_Lt': 'Métacarpe IV Lt', 'chiroMetacarpe_IV_Rt': 'Métacarpe IV Rt', 'chiroMetacarpe_V_Lt': 'Métacarpe V Lt', 'chiroMetacarpe_V_Rt': 'Métacarpe V Rt', 'chiroP1_I_Lt': 'P1 I Lt', 'chiroP1_I_Rt': 'P1 I Rt', 'chiroP1_II_Lt': 'P1 II Lt', 'chiroP1_II_Rt': 'P1 II Rt', 'chiroP1_III_Lt': 'P1 III Lt', 'chiroP1_III_Rt': 'P1 III Rt', 'chiroP1_IV_Lt': 'P1 IV Lt', 'chiroP1_IV_Rt': 'P1 IV Rt', 'chiroP1_V_Lt': 'P1 V Lt', 'chiroP1_V_Rt': 'P1 V Rt', 'chiroP2_I_Lt': 'P2 I Lt', 'chiroP2_I_Rt': 'P2 I Rt', 'chiroP2_II_Lt': 'P2 II Lt', 'chiroP2_II_Rt': 'P2 II Rt', 'chiroP2_III_Lt': 'P2 III Lt', 'chiroP2_III_Rt': 'P2 III Rt', 'chiroP2_IV_Lt': 'P2 IV Lt', 'chiroP2_IV_Rt': 'P2 IV Rt', 'chiroP2_V_Lt': 'P2 V Lt', 'chiroP2_V_Rt': 'P2 V Rt', 'chiroP3_I_Lt': 'P3 I Lt', 'chiroP3_I_Rt': 'P3 I Rt', 'chiroP3_II_Lt': 'P3 II Lt', 'chiroP3_II_Rt': 'P3 II Rt', 'chiroP3_III_Lt': 'P3 III Lt', 'chiroP3_III_Rt': 'P3 III Rt', 'chiroP3_IV_Lt': 'P3 IV Lt', 'chiroP3_IV_Rt': 'P3 IV Rt', 'chiroP3_V_Lt': 'P3 V Lt', 'chiroP3_V_Rt': 'P3 V Rt', 'chiroPisiforme_Lt': 'Pisiforme Lt', 'chiroPisiforme_Rt': 'Pisiforme Rt', 'chiroScaphoide_Lt': 'Scaphoïde Lt', 'chiroScaphoide_Rt': 'Scaphoïde Rt', 'chiroTrapezium_Lt': 'Trapezium Lt', 'chiroTrapezium_Rt': 'Trapezium Rt', 'chiroTrapezoide_Lt': 'Trapézoïde Lt', 'chiroTrapezoide_Rt': 'Trapézoïde Rt', 'chiroTriquetrum_Lt': 'Triquetrum Lt', 'chiroTriquetrum_Rt': 'Triquetrum Rt', 'chiroP1_IV_Lt': 'P1 IV Lt', 'chiroP1_IV_Rt': 'P1 IV Rt', 'chiroP1_V_Lt': 'P1 V Lt', 'chiroP1_V_Rt': 'P1 V Rt', 'chiroP2_I_Lt': 'P2 I Lt', 'chiroP2_I_Rt': 'P2 I Rt', 'chiroP2_II_Lt': 'P2 II Lt', 'chiroP2_II_Rt': 'P2 II Rt', 'chiroP2_III_Lt': 'P2 III Lt', 'chiroP2_III_Rt': 'P2 III Rt', 'chiroP2_IV_Lt': 'P2 IV Lt', 'chiroP2_IV_Rt': 'P2 IV Rt', 'chiroP2_V_Lt': 'P2 V Lt', 'chiroP2_V_Rt': 'P2 V Rt', 'chiroP3_II_Lt': 'P3 II Lt', 'chiroP3_II_Rt': 'P3 II Rt', 'chiroP3_III_Lt': 'P3 III Lt', 'chiroP3_III_Rt': 'P3 III Rt', 'chiroP3_IV_Lt': 'P3 IV Lt', 'chiroP3_IV_Rt': 'P3 IV Rt', 'chiroP3_V_Lt': 'P3 V Lt', 'chiroP3_V_Rt': 'P3 V Rt', 'chiroPisiforme_Lt': 'Pisiforme Lt', 'chiroPisiforme_Rt': 'Pisiforme Rt', 'chiroScaphoide_Lt': 'Scaphoïde Lt', 'chiroScaphoide_Rt': 'Scaphoïde Rt', 'chiroTrapezium_Lt': 'Trapezium Lt', 'chiroTrapezium_Rt': 'Trapezium Rt', 'chiroTrapezoide_Lt': 'Trapézoïde Lt', 'chiroTrapezoide_Rt': 'Trapézoïde Rt', 'chiroTriquetrum_Lt': 'Triquetrum Lt', 'chiroTriquetrum_Rt': 'Triquetrum Rt'} %}
+
+{% set pieds={'chiro_p1_I_Lt': 'p1 I Lt', 'chiro_p1_I_Rt': 'p1 I Rt', 'chiro_p1_II_Lt': 'p1 II Lt', 'chiro_p1_II_Rt': 'p1 II Rt', 'chiro_p1_III_Lt': 'p1 III Lt', 'chiro_p1_III_Rt': 'p1 III Rt', 'chiro_p1_IV_Lt': 'p1 IV Lt', 'chiro_p1_IV_Rt': 'p1 IV Rt', 'chiro_p1_V_Lt': 'p1 V Lt', 'chiro_p1_V_Rt': 'p1 V Rt', 'chiro_p2_I_Lt': 'p2 I Lt', 'chiro_p2_I_Rt': 'p2 I Rt', 'chiro_p2_II_Lt': 'p2 II Lt', 'chiro_p2_II_Rt': 'p2 II Rt', 'chiro_p2_III_Lt': 'p2 III Lt', 'chiro_p2_III_Rt': 'p2 III Rt', 'chiro_p2_IV_Lt': 'p2 IV Lt', 'chiro_p2_IV_Rt': 'p2 IV Rt', 'chiro_p2_V_Lt': 'p2 V Lt', 'chiro_p2_V_Rt': 'p2 V Rt', 'chiroCalcaneum_Lt': 'Calcanéum Lt', 'chiroCalcaneum_Rt': 'Calcanéum Rt', 'chiroCuboide_Lt': 'Cuboïde Lt', 'chiroCuboide_Rt': 'Cuboïde Rt', 'chiroCuneiforme_I_Lt': 'Cunéïforme I Lt', 'chiroCuneiforme_I_Rt': 'Cunéïforme I Rt', 'chiroCuneiforme_II_Lt': 'Cunéïforme II Lt', 'chiroCuneiforme_II_Rt': 'Cunéïforme II Rt', 'chiroCuneiforme_III_Lt': 'Cunéïforme III Lt', 'chiroCuneiforme_III_Rt': 'Cunéïforme III Rt', 'chiroMetatarse_I_Lt': 'Métatarse I Lt', 'chiroMetatarse_I_Rt': 'Métatarse I Rt', 'chiroMetatarse_II_Lt': 'Métatarse II Lt', 'chiroMetatarse_II_Rt': 'Métatarse II Rt', 'chiroMetatarse_III_Lt': 'Métatarse III Lt', 'chiroMetatarse_III_Rt': 'Métatarse III Rt', 'chiroMetatarse_IV_Lt': 'Métatarse IV Lt', 'chiroMetatarse_IV_Rt': 'Métatarse IV Rt', 'chiroMetatarse_V_Lt': 'Métatarse V Lt', 'chiroMetatarse_V_Rt': 'Métatarse V Rt', 'chiroNaviculaire_Lt': 'Naviculaire Lt', 'chiroNaviculaire_Rt': 'Naviculaire Rt'} %}
+
+{% set articulations={'chiroAcromio_claviculaire_Lt': 'Acromio-claviculaire Lt', 'chiroAcromio_claviculaire_Rt': 'Acromio-claviculaire Rt', 'chiroATM_Lt': 'ATM Lt', 'chiroATM_Rt': 'ATM Rt', 'chiroFemoro_acetabulaire_Lt': 'Fémoro-acétabulaire Lt', 'chiroFemoro_acetabulaire_Rt': 'Fémoro-acétabulaire Rt', 'chiroGleno_humerale_Lt': 'Gléno-humérale Lt', 'chiroGleno_humerale_Rt': 'Gléno-humérale Rt', 'chiroMetatarso_phalangienne_Lt': 'Métatarso-phalangienne Lt', 'chiroMetatarso_phalangienne_Rt': 'Métatarso-phalangienne Rt', 'chiroSterno_claviculaire_Lt': 'Sterno-claviculaire Lt', 'chiroSterno_claviculaire_Rt': 'Sterno-claviculaire Rt', 'chiroStyloide_radiale_Lt': 'Styloïde radiale Lt', 'chiroStyloide_radiale_Rt': 'Styloïde radiale Rt', 'chiroSymphyse': 'Symphyse', 'chiroTete_radiale_Lt': 'Tête radiale Lt', 'chiroTete_radiale_Rt': 'Tête radiale Rt', 'chiroTibio_fibulaire_distale_Lt': 'Tibio-fibulaire distale Lt', 'chiroTibio_fibulaire_distale_Rt': 'Tibio-fibulaire distale Rt', 'chiroTibio_fibulaire_prox_Lt': 'Tibio-fibulaire prox Lt', 'chiroTibio_fibulaire_prox_Rt': 'Tibio-fibulaire prox Rt', 'chiroUlna_distal_Lt': 'Ulna distal Lt', 'chiroUlna_distal_Rt': 'Ulna distal Rt', 'chiroUlna_proximal_Lt': 'Ulna proximal Lt', 'chiroUlna_proximal_Rt': 'Ulna proximal Rt'} %}
+
+{% set techniques={'chiroMusculaire': 'Musculaire', 'chiroCranien': 'Cranien', 'chiroAK': 'AK', 'chiroTBM': 'TBM', 'chiroNET': 'NET', 'chiroWhitesonNot': 'Whiteson / NOT', 'chiroThompson': 'Thompson', 'chiroActivator': 'Activator', 'chiroTapeStrap': 'Tape / Strap', 'chiroHIO': 'HIO', 'chiroExtrem': 'Extrémités', 'chiroAutres': 'Autres'} %}
+
+{% set SOT={'chiroSOTCat1': 'Cat-I', 'chiroSOTCat2': 'Cat-II', 'chiroSOTCat3': 'Cat-III'} %}
+
+
+{% set sAjustements = [] %}
+{% set sMains = [] %}
+{% set sPieds = [] %}
+{% set sArticulations = [] %}
+{% set sTraitements = [] %}
+{% for k,v in tag %}
+  {% if k in ajustements_v1|keys and v == 'true' %}
+    {% set sAjustements = sAjustements|merge(["#{ajustements_v1[k]}"]) %}
+  {% elseif k in ajustements_v2|keys and v == 'true' %}
+    {% set sAjustements = sAjustements|merge(["#{ajustements_v2[k]}"]) %}
+  {% elseif k in ajustements_v2|keys and v != '' %}
+    {% set sAjustements = sAjustements|merge(["#{ajustements_v2[k]} : #{v}"]) %}
+  {% elseif k in mains|keys and v == 'true' %}
+    {% set sMains = sMains|merge(["#{mains[k]}"]) %}
+  {% elseif k in pieds|keys and v == 'true' %}
+    {% set sPieds = sPieds|merge(["#{pieds[k]}"]) %}
+  {% elseif k in articulations|keys and v == 'true' %}
+    {% set sArticulations = sArticulations|merge(["#{articulations[k]}"]) %}
+  {% elseif k in articulations|keys and v != '' %}
+    {% set sArticulations = sArticulations|merge(["#{articulations[k]}: #{v}"]) %}
+  {% elseif k in techniques|keys and v != '' %}
+    {% set sTraitements = sTraitements|merge(["<strong>#{techniques[k]}:</strong> #{v}<br>"]) %}
+  {% elseif k in SOT|keys and v == 'true' %}
+    {% set sTraitements = sTraitements|merge(["<strong>SOT:</strong>#{SOT[k]}<br>"]) %}
   {% endif %}
 {% endfor %}
 
-{#v2.0.0#}
-{% for i in 0..49 %}
-  {% if page['courrier'][i+719] == "true" %}
-    {% set Aj = Aj|merge(["#{nomsOs1[i]}"]) %}
-  {% elseif page['courrier'][i+719] != "" %}
-    {% set Aj = Aj|merge(["#{nomsOs1[i]}: #{page['courrier'][i+719]}"]) %}
-  {% endif %}
-{% endfor %}
-
-{% for i in 0..29 %}
-  {% if page['courrier'][i+584] == "true" %}
-    {% set Aj = Aj|merge(["#{nomsOs2[i]}"]) %}
-  {% elseif page['courrier'][i+584] != "" %}
-    {% set Aj = Aj|merge(["#{nomsOs2[i]}: #{page['courrier'][i+584]}"]) %}
-  {% endif %}
-{% endfor %}
-
-{% set sMains = ["Main(s):"] %}
-{% for i in 30..59 %}
-  {% if page['courrier'][i+584] == "true" %}
-    {% set sMains = sMains|merge(["&nbsp;&nbsp;#{nomsOs2[i]}"]) %}
-  {% endif %}
-{% endfor %}
-{% if sMains|length > 1 %}
-  {% set Aj = Aj|merge(sMains) %}
-{% endif %}
-
-{% set sPieds = ["Pied(s):"] %}
-{% for i in 60..79 %}
-  {% if page['courrier'][i+584] == "true" %}
-    {% set sPieds = sPieds|merge(["&nbsp;&nbsp;#{nomsOs2[i]}"]) %}
-  {% endif %}
-{% endfor %}
-{% if sMains|length > 1 %}
-  {% set Aj = Aj|merge(sPieds) %}
-{% endif %}
-
-{% for i in 80..108 %}
-  {% if page['courrier'][i+584] == "true" %}
-    {% set Aj = Aj|merge(["#{nomsOs2[i]}"]) %}
-  {% elseif page['courrier'][i+584] != "" %}
-    {% set Aj = Aj|merge(["#{nomsOs2[i]}: #{page['courrier'][i+584]}"]) %}
-  {% endif %}
-{% endfor %}
-
-{% for i in 0..24 %}
-  {% if page['courrier'][i+693] == "true" %}
-    {% set Aj = Aj|merge(["Articulation #{nomsArticulations[i]}"]) %}
-  {% elseif page['courrier'][i+693] != "" %}
-    {% set Aj = Aj|merge(["Articulation #{nomsArticulations[i]}: #{page['courrier'][i+693]}"]) %}
-  {% endif %}
-{% endfor %}
-
-{% if Aj|length > 0 %}
-<h4>Ajustements</h4>
-<p>
-  {% for i in Aj %}
-    {{ i }}<br>
-  {% endfor %}
-</p>
-{% endif %}
-
-{% if tag.557 != '' %}
-  <h4>Traitement musculaire</h4>
-  <p>{{ tag.557 }}</p>
-{% endif %}
-
-{% if tag.558 != '' %}
-  <h4>Traitement cranien</h4>
-  <p>{{ tag.558 }}</p>
-{% endif %}
-
-{% if tag.559 != '' %}
-  <h4>Traitement AK</h4>
-  <p>{{ tag.559 }}</p>
-{% endif %}
-
-{% if tag.560 != '' %}
-  <h4>Traitement TBM</h4>
-  <p>{{ tag.560 }}</p>
-{% endif %}
-
-{% if tag.561 != '' %}
-  <h4>Traitement NET</h4>
-  <p>{{ tag.561 }}</p>
-{% endif %}
-
-{% if tag.562 != '' %}
-  <h4>Traitement Whiteson / NOT</h4>
-  <p>{{ tag.562 }}</p>
-{% endif %}
-
-{% if tag.563 != '' %}
-  <h4>Traitement Thompson</h4>
-  <p>{{ tag.563 }}</p>
-{% endif %}
-
-{% if tag.564 != '' %}
-  <h4>Traitement activator</h4>
-  <p>{{ tag.564 }}</p>
-{% endif %}
-
-{% if tag.565 != '' %}
-  <h4>Traitement Tape / Strap</h4>
-  <p>{{ tag.565 }}</p>
-{% endif %}
-
-{% if tag.566 != '' %}
-  <h4>Traitement HIO</h4>
-  <p>{{ tag.566 }}</p>
-{% endif %}
-
-{% if tag.583 != '' %}
-  <h4>Traitement Extrémités</h4>
-  <p>{{ tag.583 }}</p>
-{% endif %}
-
-
-{% set tagArr = [tag.568, tag.569, tag.570] %}
-{% set SotArr = ["-I", "-II", "-III"] %}
-{% if "true" in tagArr %}
-  <h4>Traitement SOT</h4>
-  <p>
-    {% for i in 0..2 %}
-      {% if tagArr[i] == "true" %}
-        Cat{{ SotArr[i] }}<br>
-      {% endif %}
+{% if sAjustements|length > 0 or sMains|length > 0 or sPieds|length > 0 or sArticulations|length > 0 %}
+  <h4>Ajustements</h4>
+  {% if sAjustements|length > 0 %}
+    {% for v in sAjustements %}
+      {{ v }}<br>
     {% endfor %}
-  </p>
+  {% endif %}
+  {% if sMains|length > 0 %}
+    <strong>Mains:</strong><br>
+    {% for v in sMains %}
+      {{ v }}<br>
+    {% endfor %}
+  {% endif %}
+  {% if sPieds|length > 0 %}
+    <strong>Pieds:</strong><br>
+    {% for v in sPieds %}
+      {{ v }}<br>
+    {% endfor %}
+  {% endif %}
+  {% if sArticulations|length > 0 %}
+    <strong>Articulations:</strong><br>
+    {% for v in sArticulations %}
+      {{ v }}<br>
+    {% endfor %}
+  {% endif %}
 {% endif %}
 
-{% if tag.567 != '' %}
-  <h4>Autres traitements</h4>
-  <p>{{ tag.567 }}</p>
+{% if sTraitements|length > 0 %}
+  <h3>Traitements</h3>
+  {% for v in sTraitements %}
+    {{ v }}
+  {% endfor %}
 {% endif %}
 
-{% if tag.718 != '' %}
+
+{% if tag.chiroNotes != '' %}
   <h4>Notes de traitement</h4>
-  <p>{{ tag.718 }}</p>
+  <p>{{ tag.chiroNotes }}</p>
 {% endif %}
