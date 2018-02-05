@@ -29,28 +29,29 @@
 $(document).ready(function() {
 
   //calcul IMC
-  if ($('#p_43ID').length > 0) {
+  if ($('input[name=p_imc]').length > 0) {
 
-    imc = imcCalc($('#p_34ID').val(), $('#p_35ID').val());
+    imc = imcCalc($('input[name=p_poids]').val(), $('input[name=p_taillePatient]').val());
     if (imc > 0) {
-      $('#p_43ID').val(imc);
+      $('input[name=p_imc]').val(imc);
     }
 
-    $("input[data-typeid='34'] , input[data-typeid='35']").on("keyup", function() {
-      poids = $('#p_34ID').val();
-      taille = $('#p_35ID').val();
+    $("input[name=p_poids] , input[name=p_taillePatient]").on("keyup", function() {
+      poids = $('input[name=p_poids]').val();
+      taille = $('input[name=p_taillePatient]').val();
       imc = imcCalc(poids, taille);
-      $('#p_43ID').val(imc);
+      $('input[name=p_imc]').val(imc);
       patientID = $('#identitePatient').attr("data-patientID");
-      setPeopleData(imc, patientID, '43', '#p_43ID', '0');
+      setPeopleData(imc, patientID, '43', 'input[name=p_imc]', '0');
 
     });
   }
 
   //ajutement auto des textarea en hauteur
-  $("#formName_chiroATCD textarea").each(function(index) {
-    $(this).css("overflow", "hidden");
-    auto_grow(this);
+  $("#formName_chiroATCD textarea").each(function(index, element) {
+    $(element).css("overflow", "hidden");
+    if (element.offsetParent && element.value!='')
+        auto_grow(element);
   });
 
   $("#formName_chiroATCD textarea").on("keyup", function() {
