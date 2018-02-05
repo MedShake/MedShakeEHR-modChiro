@@ -20,6 +20,69 @@
  #
  # @author fr33z00 <https://github.com/fr33z00>
  #}
+<style> 
+  .chiroTArray input[type=checkbox] {box-shadow: none;} 
+  .chiroTArray :nth-child(3) p{
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 700}
+  .chiroTArray :nth-child(3) :nth-child(n+7) label{
+    width: 40%;
+    text-align: center;
+    font-weight: 500 !important;
+    font-size: 15px;
+  }
+  .chiroTArray  :nth-child(3) :nth-child(n+7) {
+    height: 16px;
+    margin: 0 0 5px;
+  }
+  .chiroTArray :nth-child(3) :nth-child(n+7) input {
+    height: 16px;
+    margin: -24px 0 0;
+  }
+
+  path.show {fill:#f88 !important;}
+  g.show:not(.special) path:nth-child(1){fill:#f88 !important;}
+  g.special.show path:nth-child(2){fill:#f88 !important;}
+  g.spe3.show path:nth-child(3){fill:#f88 !important;}
+  g.spe17.show path:nth-child(17){fill:#f88 !important;}
+
+  svg g,path,circle,rectangle{transition: fill .2s, fill-opacity .2s, stroke-opacity .2s;}
+
+  path.selected {fill:#e44 !important;}
+  g.selected:not(.special) path:nth-child(1){fill:#e44 !important;}
+  g.special.selected path:nth-child(2){fill:#e44 !important;}
+  g.spe3.selected path:nth-child(3){fill:#e44 !important;}
+  g.spe17.selected path:nth-child(17){fill:#e44 !important;}
+
+  .articulation {fill-opacity:.5;fill:#b82b2b;stroke-linecap:round;stroke-linejoin:round;stroke-width:.37795;stroke:#c82b25}
+  .nonvisible{fill-opacity:0 !important; stroke-opacity:0 !important}
+  .nonvisible:hover{fill-opacity:0.2 !important; stroke-opacity:0.3 !important}
+  .nonvisible.show{fill-opacity:0.4 !important; stroke-opacity:1 !important}
+
+  .btn {margin-bottom:5px}
+  .btn-fullw {width:100%}
+  .btn-fullw span{width:100%;text-align:center}
+  .helper {position:absolute; border:solid 1px #ddd; border-radius:5px; text-weight:700;background-color:#fff;padding:4px;z-index:1000;}
+  .hide {display: none}
+  #svgMenuSingle input[type=checkbox]{margin:0 10px 0 0;line-height:16px;vertical-align:text-top}
+  #svgMenuMulti input[type=checkbox]{margin:0 10px 0 0;line-height:16px;vertical-align:text-top}
+  #svgMenuSingle a{cursor:default}
+  #svgMenuMulti a{cursor:default}
+  .tools {transition: top 0.1s}
+</style>
+
+<div id="mousehelper" class="helper hide"></div>
+
+<ul id="svgMenuSingle" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
+    <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
+    <li class="divider"></li>
+</ul>
+<ul id="svgMenuMulti" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
+    <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
+    <li class="divider"></li>
+</ul>
+
 <ul id="navchiro" class="nav nav-tabs" role="tablist">
   <li class="active" role="presentation">
     <a href="#traitement" aria-controls="traitement" role="tab" data-toggle="tab">
@@ -2301,15 +2364,23 @@
 </div>
 </div>
 </div>
+
+
+<script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/panzoom/dist/jquery.panzoom.js"></script>
+<script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script>
 
-  
-  $("#navchiro").insertBefore(".chiroVArray");
+  $("#mousehelper").appendTo("body");
+  $("#svgMenuSingle").appendTo("body");
+  $("#svgMenuMulti").appendTo("body");
+
+  $("#navchiro").insertAfter(".chiroEvolSym");
   $("#tabchiro").insertAfter("#navchiro");
   $(".chiroVArray").appendTo("#traitement");
   $(".chiroTArray").appendTo("#techniques");
-  $("#formName_chiroConsult").children("div:nth-of-type(4)").appendTo("#techniques");
-  $("#formName_chiroConsult").children("div:nth-of-type(4)").appendTo("#notes");
+  $(".chiroAutres").appendTo("#techniques");
+  $(".chiroNotes").appendTo("#notes");
+  $(".newCS.hide").removeClass("hide");
 
   (function() {
 
@@ -2440,3 +2511,5 @@
   svgFit(false);
 
 </script>
+<script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/formsScripts/chiroConsult.js"></script>
+
