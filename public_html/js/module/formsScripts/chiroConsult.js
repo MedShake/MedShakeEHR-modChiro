@@ -56,62 +56,60 @@ $(document).ready(function() {
     svgFit(true);
   });
 
-  $(this).on("click", ".menuSingle", function (e) {
-    var $menu = $("#svgMenuSingle")
+  $("body").on("click", ".menuSingle", function (e) {
+    var $menu = $(".svgMenuSingle")
       .show()
       .css({left: Math.max(0, e.pageX-50), top: Math.max(0, e.pageY-50)})
       .off('click')
       .on("mouseleave", function(){
-        $menu.hide();
-        $menu.children("li:nth-child(n+3)").remove();
+        $(this).hide()
+        .children("li:nth-child(n+3)").remove();
       })
       .on('click', 'a', function (e) {
         e.stopImmediatePropagation();
-        var $selectedMenu = $(e.currentTarget);
-        var chk = $selectedMenu.children("input").prop("checked");
-        $selectedMenu.parent().parent().find("input").prop("checked", false);
-        $selectedMenu.children("input").prop("checked", chk ^ (e.currentTarget==e.target));
+        var chk = $(this).children("input").prop("checked");
+        $(this).parent().parent().find("input").prop("checked", false);
+        $(this).children("input").prop("checked", !chk);
         //on fixe la valeur de l'entrée de formulaire
-        var $entry = $("input[placeholder='"+$selectedMenu.attr('data-entry')+"']");
-        var value = $selectedMenu.attr('data-value');
-        if ($entry.attr("value") == value)
+        var $entry = $("input[placeholder='"+$(this).attr('data-entry')+"']");
+        var value = $(this).attr('data-value');
+        if (chk)
           $entry.attr("value", "");
         else
           $entry.attr("value", value);
-        setChiroSelected($selectedMenu.attr('data-entry'));
+        setChiroSelected($(this).attr('data-entry'));
       });
     var title = $(this).attr("value");
     var items = $(this).attr("menu").split(",");
     $menu.children().first().html(title);
     for (var i=0; i< items.length; i++)
-      $menu.append('<li><a tabindex="-1" data-entry="'+title
+      $menu.append('<li><a tabindex="-1" class="containerCheck" data-entry="'+title
       + '" data-value="' +items[i]+
-      '"><input type="checkbox"'+($("input[placeholder='"+title+"']").attr("value") == items[i] ? ' checked' : '')+
-      '>'+items[i]+'</input></a></li>');
+      '">'+items[i]+'<input type="radio"'+($("input[placeholder='"+title+"']").attr("value") == items[i] ? ' checked' : '')+
+      '></input><span class="checkmarkRadio"></span></a></li>');
     return false;
   });
 
-  $(this).on("click", ".menuMulti", function (e) {
-    var $menu = $("#svgMenuMulti")
+  $("body").on("click", ".menuMulti", function (e) {
+    var $menu = $(".svgMenuMulti")
       .show()
       .css({left: Math.max(0, e.pageX-50), top: Math.max(0, e.pageY-50)})
       .off('click')
       .on("mouseleave", function(){
-        $menu.hide();
-        $menu.children("li:nth-child(n+3)").remove();
+        $(this).hide()
+        .children("li:nth-child(n+3)").remove();
       })
-      .on('click', 'a,input', function (e) {
+      .on('click', 'a', function (e) {
         e.stopImmediatePropagation();
-        var $selectedMenu = $(e.target).get(0).tagName.toLowerCase() == "input" ? $(e.target).parent() : $(e.target);
-        var chk = $selectedMenu.children("input").attr("checked");
+        var chk = $(this).children("input").attr("checked");
         if (chk)
-          $selectedMenu.children("input").removeAttr("checked");
+          $(this).children("input").removeAttr("checked");
         else
-          $selectedMenu.children("input").attr("checked","");
+          $(this).children("input").attr("checked","");
         //on fixe la valeur de l'entrée de formulaire
-        var $entry = $("input[placeholder='"+$selectedMenu.attr('data-entry')+"']");
+        var $entry = $("input[placeholder='"+$(this).attr('data-entry')+"']");
         var value = $entry.attr("value");
-        var newValue = $selectedMenu.attr('data-value');
+        var newValue = $(this).attr('data-value');
         var idx;
         if (value && (idx=value.split(",").findIndex(function(v){return v==newValue})) >= 0)
           $entry.attr("value",value.split(",").filter(function(v,i){return i!=idx}).join());
@@ -119,22 +117,22 @@ $(document).ready(function() {
           $entry.attr("value", value + "," + newValue);
         else
           $entry.attr("value", newValue);
-        setChiroSelected($selectedMenu.attr('data-entry'));
+        setChiroSelected($(this).attr('data-entry'));
       });
     var title = $(this).attr("value");
     var items = $(this).attr("menu").split(",");
     var value = $("input[placeholder='"+title+"']").attr("value");
     $menu.children().first().html(title);
     for (var i=0; i< items.length; i++)
-      $menu.append('<li><a tabindex="-1" data-entry="'+title
+      $menu.append('<li><a tabindex="-1" class="containerCheck" data-entry="'+title
       + '" data-value="' +items[i]+
-      '"><input type="checkbox"'+ ((value && value.split(",").findIndex(function(v){return v==items[i]}) >= 0) ? ' checked' : '')+
-      '>'+items[i]+'</input></a></li>');
+      '">'+items[i]+'<input type="checkbox"'+ ((value && value.split(",").findIndex(function(v){return v==items[i]}) >= 0) ? ' checked' : '')+
+      '></input><span class="checkmarkCheck"></span></a></li>');
     return false;
   });
 
   $("body").on("click", function(){
-    $("#svgMenuSingle,#svgMenuMulti").hide().children("li:nth-child(n+3)").remove();
+    $(".svgMenuSingle,.svgMenuMulti").hide().children("li:nth-child(n+3)").remove();
   });
 
   $("body").on("click", ".noMenu", function(e){

@@ -65,23 +65,24 @@
   .btn-fullw span{width:100%;text-align:center}
   .helper {position:absolute; border:solid 1px #ddd; border-radius:5px; text-weight:700;background-color:#fff;padding:4px;z-index:1000;}
   .hide {display: none}
-  #svgMenuSingle input[type=checkbox]{margin:0 10px 0 0;line-height:16px;vertical-align:text-top}
-  #svgMenuMulti input[type=checkbox]{margin:0 10px 0 0;line-height:16px;vertical-align:text-top}
-  #svgMenuSingle a{cursor:default}
-  #svgMenuMulti a{cursor:default}
+  .svgMenuSingle a{cursor:default}
+  .svgMenuMulti a{cursor:default}
   .tools {transition: top 0.1s}
+
+.containerCheck {display: block;position: relative;padding-left: 35px !important;cursor: pointer !important;font-size: 16px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+.containerCheck input {position: absolute;opacity: 0;cursor: pointer;display:none}
+.checkmarkRadio {position: absolute;top: 5px !important;left: 5px;height: 16px;width: 16px;background-color: #eee;border-radius: 50%;}
+.checkmarkCheck {position: absolute;top: 5px !important;left: 5px;height: 16px;width: 16px;background-color: #eee;}
+.containerCheck:hover input ~ .checkmarkCheck {background-color: #ccc;}
+.containerCheck:hover input ~ .checkmarkRadio {background-color: #ccc;}
+.containerCheck input:checked ~ .checkmarkCheck {background-color: #286090 !important;}
+.containerCheck input:checked ~ .checkmarkRadio {background-color: #286090 !important;}
+.checkmarkRadio:after {content: "";position: absolute}
+.checkmarkCheck:after {content: "";position: absolute}
+.checkmarkCheck:after {top: 4px;left: 4px;width: 8px;height: 8px;background-color:white !important;}
+.checkmarkRadio:after {top: 5px;left: 5px;width: 6px;height: 6px;border-radius: 50%;background: white !important;}
+
 </style>
-
-<div id="mousehelper" class="helper hide"></div>
-
-<ul id="svgMenuSingle" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
-    <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
-    <li class="divider"></li>
-</ul>
-<ul id="svgMenuMulti" class="dropdown-menu" role="menu" style="display:none;position:absolute;" >
-    <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>
-    <li class="divider"></li>
-</ul>
 
 <ul id="navchiro" class="nav nav-tabs" role="tablist">
   <li class="active" role="presentation">
@@ -2370,9 +2371,22 @@
 <script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script>
 
-  $("#mousehelper").appendTo("body");
-  $("#svgMenuSingle").appendTo("body");
-  $("#svgMenuMulti").appendTo("body");
+  if (!$(".mousehelper").length)
+    $("body").append('<div class="helper hide mousehelper"></div>');
+
+  if (!$(".svgMenuSingle").length)
+    $("body").append('\
+      <ul class="dropdown-menu svgMenuSingle" role="menu" style="display:none;position:absolute;" >\
+          <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>\
+          <li class="divider"></li>\
+      </ul>');
+  if (!$(".svgMenuMulti").length)
+    $("body").append('\
+      <ul class="dropdown-menu svgMenuMulti" role="menu" style="display:none;position:absolute;" >\
+          <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>\
+          <li class="divider"></li>\
+      </ul>');
+
 
   $("#navchiro").insertAfter(".chiroEvolSym");
   $("#tabchiro").insertAfter("#navchiro");
