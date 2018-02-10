@@ -44,3 +44,4 @@ $typeCs_csChiro = new msData;
 $p['page']['typeCs_csChiro']=$typeCs_csChiro->getDataTypesFromCatName('csChiro', array('id','label', 'formValues'));
 
 $p['page']['formReglement']['chiroReglePorteur']=array('module'=>'chiro', 'form'=>'chiroReglement');
+$p['page']['formOrdo']['ordoPorteur']=array('module'=>'base', 'form'=>'');

@@ -30,10 +30,15 @@ $m=$match['params']['m'];
 
 $acceptedModes=array(
     'extractCsForm', // Extraire des données additionnelles de cs
+    'extractReglementForm',
 );
 
 // Extraire des données additionnelles de cs
 if ($m=='extractCsForm') {
     include('inc-ajax-extractCsForm.php');
+}
+if ($m=='extractReglementForm') {
+    $delegate=true;
+    include($p['config']['webDirectory'].'../controlers/patient/actions/inc-ajax-extractReglementForm.php');
 }
 
