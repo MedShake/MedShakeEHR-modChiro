@@ -39,6 +39,6 @@ if ($m=='extractCsForm') {
 }
 if ($m=='extractReglementForm') {
     $delegate=true;
-    include($p['config']['webDirectory'].'../controlers/patient/actions/inc-ajax-extractReglementForm.php');
+    include($p['config']['homeDirectory'].'controlers/patient/actions/inc-ajax-extractReglementForm.php');
 }
 

@@ -34,6 +34,7 @@ $acceptedModes=array(
 
 if ($m=='saveReglementForm') {
     $delegate=true;
-    include($p['config']['webDirectory'].'../controlers/patient/actions/inc-action-saveReglementForm.php');
+    $_POST['regleTarifCejour']=$_POST['chiroRegleTarifCejour'];
+    include($p['config']['homeDirectory'].'controlers/patient/actions/inc-action-saveReglementForm.php');
 }
 
