@@ -31,6 +31,7 @@ $m=$match['params']['m'];
 $acceptedModes=array(
     'extractCsForm', // Extraire des données additionnelles de cs
     'extractReglementForm',
+    'saveReglementForm', //enregistrer un règlement
 );
 
 // Extraire des données additionnelles de cs
@@ -40,5 +41,10 @@ if ($m=='extractCsForm') {
 if ($m=='extractReglementForm') {
     $delegate=true;
     include($p['config']['homeDirectory'].'controlers/patient/actions/inc-ajax-extractReglementForm.php');
+}
+elseif ($m=='saveReglementForm') {
+    $delegate=true;
+    $_POST['regleTarifCejour']=$_POST['chiroRegleTarifCejour'];
+    include($p['config']['homeDirectory'].'controlers/patient/actions/inc-ajax-saveReglementForm.php');
 }
 
