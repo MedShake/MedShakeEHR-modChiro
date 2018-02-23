@@ -43,7 +43,6 @@
     {{ parent() }}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/tinymce.min.js"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/jquery.tinymce.min.js"></script>
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/joequery/jquery-stupid-table/stupidtable.min.js"></script>
 
     {# JS général du dossier patient #}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/patient.js"></script>
@@ -151,32 +150,34 @@
             {# colonne principale #}
             <div class="col-md-9" style="padding-left : 35px">
 
-                {# historique du jour #}
-                {% if page.patient.today %}{% include 'patientHistoriqueToday.html.twig' %}{% endif %}
+              {# historique du jour #}
+              <div id="historiqueToday">
+                {% include 'patientHistoriqueToday.html.twig' %}
+              </div>
 
-                {# Synthèse patient #}
-                {% include 'patientSynthese.html.twig' %}
+              {# Synthèse patient #}
+              {% include 'patientSynthese.html.twig' %}
 
                 {# Div d'import de nouveau doc #}
-                <div id="newDoc" class="row">{% include 'importDocForm.html.twig' %}</div>
+                <div id="newDoc" class="row toclear">{% include 'importDocForm.html.twig' %}</div>
 
-                {# Div d'insertion de nouveau reglement #}
-                <div id="newReglement" class="row"></div>
+              {# Div d'insertion de nouveau reglement #}
+              <div id="newReglement" class="row toclear"></div>
 
-                {# Div d'insertion de nouveau courrier #}
-                <div id="newCourrier" class="row"></div>
+              {# Div d'insertion de nouveau courrier #}
+              <div id="newCourrier" class="row toclear"></div>
 
-                {# Div d'insertion de nouvelle ordonance #}
-                <div id="newOrdo" class="row"></div>
+              {# Div d'insertion de nouvelle consultation #}
+              <div id="nouvelleCs" class="row toclear checkboxFixValue"></div>
 
-                {# Div d'insertion de nouvelle consultation #}
-                <div id="nouvelleCs" class="row checkboxFixValue"></div>
+              {# Div d'insertion de nouveau mail  #}
+              <div id="newMail" class="row toclear"></div>
 
-                {# Div d'insertion de nouveau mail  #}
-                <div id="newMail" class="row"></div>
 
-                {# Historique complet #}
-                {% if page.patient.historique %}{% include 'patientHistoriqueMedical.html.twig' %}{% endif %}
+              {# Historique complet #}
+              <div id="historique">
+                {% include 'patientHistoriqueMedical.html.twig' %}
+              </div>
             </div>
           </div>
 
