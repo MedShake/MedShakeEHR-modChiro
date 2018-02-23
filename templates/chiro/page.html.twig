@@ -45,6 +45,13 @@
         <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel="stylesheet"/>
         <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/css/general.css" rel="stylesheet"/>
 
+        <style>
+          .submit-type {position:fixed;padding:2px;text-align:center;width:100%;z-index:1}
+          .submit-success {background-color:#8dfc9e;top:0}
+          .submit-warning {background-color:#fcde8d;top:0}
+          .submit-error {background-color:#ff6d6d;top:0}
+        </style>
+
         {# js #}
         <script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/jquery/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -55,6 +62,7 @@
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/dennyferra/TypeWatch/jquery.typewatch.js"></script>
         <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/danielm/uploader/dist/js/jquery.dm-uploader.min.js"></script>
         <script defer="defer" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/lrsjng/kjua/dist/kjua.min.js"></script>
+        <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/joequery/stupid-table-plugin/stupidtable.min.js"></script>
         <script>
           var urlBase = '{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}';
           var phoneCaptureUrlAcces = '{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/phonecapture/';
@@ -65,7 +73,17 @@
 
     <body {% block bodyTagAdd %} {% endblock %}>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="submit-type submit-success">
+          <span class="glyphicon glyphicon-info-sign"></span> Données enregistrées avec succès
+        </div>
+        <div class="submit-type submit-warning">
+          <span class="glyphicon glyphicon-warning-sign"></span> <span id="warningmessage"></span>
+        </div>
+        <div class="submit-type submit-error">
+          <span class="glyphicon glyphicon-warning-sign"></span> <span id="errormessage">Une erreur s'est produite lors de l'enregistrement des données</span>
+        </div>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:100">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-navbar">
