@@ -2,7 +2,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 INSERT IGNORE INTO `system` (`name`,`groupe`,`value`) VALUES
-('chiro', 'module', 'v3.0.0');
+('chiro', 'module', 'v3.1.0');
 
 INSERT IGNORE INTO `actes_base` (`code`, `label`, `type`, `tarifs1`, `tarifs2`, `fromID`, `creationDate`) VALUES
 ('ECHO', 'Echographie', 'NGAP', 30, 0, 1, '2018-01-01 00:00:00'),
