@@ -28,7 +28,7 @@
 {% import "macroForm.html.twig" as f %}
 <div class="row changeObserv" id="synthesePatient" style="">
 
-    <div class="jumbotron">
+    <div class="jumbotron col-md-12">
 
         {{ f.formbuilder(page.formData_baseSynthese , page.formName_baseSynthese ) }}
 
@@ -36,62 +36,59 @@
         <div class="row" style="margin: 20px 0 0 0">
 
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dossier
-                    <span class="caret"></span>
                 </button>
 
                 <ul class="dropdown-menu">
 
                   {% for v in page.typeCs_csChiro %}
                     <li>
-                      <a class="newCS" href="#" data-parentID='0' data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</a>
+                      <a class="dropdown-item newCS" href="#" data-parentID='0' data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</a>
                     </li>
                   {% endfor %}
 
-                  <li class="divider" role="separator"></li>
+                  <li class="divider" role="dropdown-separator"></li>
                   <li>
-                      <a id="linkAddNewDoc" href="#">Ajouter un document au dossier</a>
+                      <a class="dropdown-item" id="linkAddNewDoc" href="#">Ajouter un document au dossier</a>
                   </li>
                   {% if config.dicomHost=='' %}
                     <li>
-                        <a class="prepareReceptionDoc" href="#">Ajouter des documents au dossier via phonecapture</a>
+                        <a class="dropdown-item prepareReceptionDoc" href="#">Ajouter des documents au dossier via phonecapture</a>
                     </li>
                   {% endif %}
                 </ul>
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Courriers
-                    <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Certificats</li>
                     {% for v in page.modelesCertif %}
                         <li>
-                            <a class="newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
+                            <a class="dropdown-item newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
                         </li>
                     {% endfor %}
-                    <li role="separator" class="divider"></li>
+                    <li role="separator" class="dropdown-divider"></li>
                     <li class="dropdown-header">Courriers</li>
                     {% for v in page.modelesCourrier %}
                         <li>
-                            <a class="newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
+                            <a class="dropdown-item newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Règlement
-                    <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                   <li>
                     {% for k,v in page.formReglement %}
-                      <a id="linkAddNewReglement" data-porteur="{{ k }}" data-module="{{ v.module }}" data-reglementForm="{{ v.form }}" href="#">Nouveau règlement{% if page.formReglement|length > 1 %} (module {{ v.module }}){%endif %}</a>
+                      <a class="dropdown-item" id="linkAddNewReglement" data-porteur="{{ k }}" data-module="{{ v.module }}" data-reglementForm="{{ v.form }}" href="#">Nouveau règlement{% if page.formReglement|length > 1 %} (module {{ v.module }}){%endif %}</a>
                     {% endfor %}
                   </li>
                 </ul>
@@ -99,27 +96,26 @@
 
             {% if config.dicomHost!='' %}
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       DICOM
-                      <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu">
                     <li>
-                        <a href="#" class="catchLastDicomSrData">Récupérer dernières mesures</a>
+                        <a href="#" class="dropdown-item catchLastDicomSrData">Récupérer dernières mesures</a>
                     </li>
                     <li>
-                        <a href="#" class="catchOthersDicomSrData">Récupérer mesures antérieures</a>
+                        <a href="#" class="dropdown-item catchOthersDicomSrData">Récupérer mesures antérieures</a>
                     </li>
-                    <li role="separator" class="divider"></li>
+                    <li role="separator" class="dropdown-divider"></li>
                     <li>
-                        <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/dicom/{{ page.patient.id }}/" target="_blank">Voir tous les examens du patient</a>
+                        <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/dicom/{{ page.patient.id }}/" target="_blank">Voir tous les examens du patient</a>
                     </li>
-                    <li role="separator" class="divider"></li>
+                    <li role="separator" class="dropdown-divider"></li>
                     <li>
-                        <a href="#" class="prepareEcho">Envoyer patient à échographe</a>
+                        <a href="#" class="dropdown-item prepareEcho">Envoyer patient à échographe</a>
                     </li>
                     <li>
-                        <a href="#" class="prepareReceptionDoc dicom">Envoyer patient à phonecapture</a>
+                        <a href="#" class="dropdown-item prepareReceptionDoc dicom">Envoyer patient à phonecapture</a>
                     </li>
                   </ul>
               </div>

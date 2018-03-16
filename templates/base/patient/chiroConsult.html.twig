@@ -88,18 +88,18 @@
 <script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/thirdparty/jquery/jquery-mousewheel/jquery.mousewheel.js"></script>
 
 <ul id="navchiro" class="nav nav-tabs" role="tablist">
-  <li class="active" role="presentation">
-    <a href="#traitement" aria-controls="traitement" role="tab" data-toggle="tab">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" href="#traitement" aria-controls="traitement" role="tab" data-toggle="tab">
       <h3 style="margin-top:0;margin-bottom:0">Ajustements</h3>
     </a>
   </li>
-  <li role="presentation">
-    <a href="#techniques" aria-controls="techniques" role="tab" data-toggle="tab">
+  <li role="presentation" class="nav-item">
+    <a class="nav-link" href="#techniques" aria-controls="techniques" role="tab" data-toggle="tab">
       <h3 style="margin-top:0;margin-bottom:0">Techniques</h3>
     </a>
   </li>
-  <li role="presentation">
-    <a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">
+  <li role="presentation" class="nav-item">
+    <a class="nav-link" href="#notes" aria-controls="notes" role="tab" data-toggle="tab">
       <h3 style="margin-top:0;margin-bottom:0">Notes de traitement</h3>
     </a>
   </li>
@@ -116,10 +116,10 @@
 <div class="row">
   <div class="col-md-12">
     <div class="tools" style="position:absolute;z-index:1000;left:20px;top:0;width:40px">
-      <span class="btn glyphicon glyphicon-eye-open showAll" data-toggle="popover" data-trigger="hover" data-content="Montrer toutes les zones (appui long)"></span>
-      <span class="btn glyphicon glyphicon-fullscreen zoomFit" data-toggle="popover" data-trigger="hover" data-content="Maximiser l'affichage"></span>
-      <span class="btn glyphicon glyphicon-zoom-in zoomIn" data-toggle="popover" data-trigger="hover" data-content="Zoomer (Ctrl+molette)"></span>
-      <span class="btn glyphicon glyphicon-zoom-out zoomOut"" data-toggle="popover" data-trigger="hover" data-content="Dézoomer (Ctrl+molette)"></span>
+      <span class="btn fa fa-eye showAll" style="font-weight:900" data-toggle="popover" data-trigger="hover" data-content="Montrer toutes les zones (appui long)"></span>
+      <span class="btn fa fa-expand zoomFit" style="font-weight:900" data-toggle="popover" data-trigger="hover" data-content="Maximiser l'affichage"></span>
+      <span class="btn fa fa-search-plus zoomIn" style="font-weight:900" data-toggle="popover" data-trigger="hover" data-content="Zoomer (Ctrl+molette)"></span>
+      <span class="btn fa fa-search-minus zoomOut" style="font-weight:900" data-toggle="popover" data-trigger="hover" data-content="Dézoomer (Ctrl+molette)"></span>
     </div>
     <div id="svgparent" class="col-md-12" style="padding:10px;overflow:hidden;background-color:#f2f2f2">
 
@@ -2379,13 +2379,13 @@
     $("body").append('\
       <ul class="dropdown-menu svgMenuSingle" role="menu" style="display:none;position:absolute;" >\
           <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>\
-          <li class="divider"></li>\
+          <li class="dropdown-divider"></li>\
       </ul>');
   if (!$(".svgMenuMulti").length)
     $("body").append('\
       <ul class="dropdown-menu svgMenuMulti" role="menu" style="display:none;position:absolute;" >\
           <li id="title><span tabindex="-1" style="margin-left:20px;margin-right:10px;font-weight:700">Menu</span></li>\
-          <li class="divider"></li>\
+          <li class="dropdown-divider"></li>\
       </ul>');
 
 
