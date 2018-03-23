@@ -21,19 +21,9 @@
  */
 
 /**
- * Patient : les requête ajax
+ * Patient > ajax : obtenir le formulaire de règlement
  *
  * @author fr33z00 <https://github.com/fr33z00>
  */
 
-$m=$match['params']['m'];
-
-$acceptedModes=array(
-    'extractCsForm', // Extraire des données additionnelles de cs
-);
-
-// Extraire des données additionnelles de cs
-if ($m=='extractCsForm') {
-    include('inc-ajax-extractCsForm.php');
-}
-
+$delegate=true;
