@@ -81,18 +81,23 @@
                 </ul>
             </div>
 
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Règlement
+            {% if page.formReglement|length > 1 %}
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {% if config.administratifPeutAvoirRecettes != 'true' %}disabled{% endif %}>
+                    Règlements
                 </button>
                 <ul class="dropdown-menu">
                   <li>
-                    {% for k,v in page.formReglement %}
-                      <a class="dropdown-item" id="linkAddNewReglement" data-porteur="{{ k }}" data-module="{{ v.module }}" data-reglementForm="{{ v.form }}" href="#">Nouveau règlement{% if page.formReglement|length > 1 %} (module {{ v.module }}){%endif %}</a>
-                    {% endfor %}
-                  </li>
+                  {% for v in page.formReglement %}
+                    <li>
+                      <a class="dropdown-itemaddNewReglement" title="{{ v.description }}" data-porteur="{{ v.id }}" data-module="{{ v.module }}" data-reglementForm="{{ v.formValues }}" href="#">{{ v.label }}</a>
+                    </li>
+                  {% endfor %}
                 </ul>
-            </div>
+              </div>
+            {% else %}
+              <a class="addNewReglement btn btn-primary" type="button" {% if config.administratifPeutAvoirRecettes != 'true' %}disabled{% endif %} title="{{ page.formReglement[0]['description'] }}" data-porteur="{{ page.formReglement[0]['id'] }}" data-module="{{ page.formReglement[0]['module'] }}" data-reglementForm="{{ page.formReglement[0]['formValues'] }}" href="#">{{ page.formReglement[0]['label'] }}</a>
+            {% endif %}
 
             {% if config.dicomHost!='' %}
               <div class="btn-group">

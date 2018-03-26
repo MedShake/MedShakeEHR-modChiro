@@ -42,6 +42,7 @@
     {{ parent() }}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/tinymce.min.js"></script>
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/jquery.tinymce.min.js"></script>
+    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/mattbryson/TouchSwipe-Jquery-Plugin/jquery.touchSwipe.min.js"></script>
 
     {# JS général du dossier patient #}
     <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/patient.js"></script>
@@ -56,21 +57,14 @@
 
     <style>
 
-       @media screen and (orientation:portrait) {
-         #landscape{display: none;}
-        }
-       @media screen and (orientation:landscape) {
-         #portrait{display: none;}
-        }
-
         #newDoc{
           display: none;
         }
         .jumbotron{border-radius: 4px !important}
         .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;margin-left: 5px;margin-right:-10px !important;}
-        @media (max-width:1024px) {
-          .atcd {margin-left:16px !important;margin-right:16px !important; margin-bottom:10px}
-          .col-md-9 {padding-left:30px !important; padding-right: 30px !important} 
+        @media (max-width:992px) {
+          .atcd {padding-left:15px !important; padding-right: 15px !important;margin-bottom:10px;margin-left: 0;margin-right:0 !important;}
+          .dossier {padding-left:15px !important; padding-right: 15px !important} 
         }
 
         .btn {margin-bottom:5px}
@@ -86,101 +80,94 @@
 
 {% block body %}
 
-    <div id="portrait" class="container" style="padding-top: 40px;">
-      <div class="jumbotron col-md-12" role="alert"><p>Placez votre écran en mode paysage!</p></div>
-    </div>
+    <div class="container-fluid">
+      {% if page.patient.dossierType =="deleted" %}
+      <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
+      {% endif %}
+      <div id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientID="{{ page.patient.id }}">
 
-    <div id="landscape">
-     <div class="container-fluid">
-        {% if page.patient.dossierType =="deleted" %}
-        <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
-        {% endif %}
-        <div id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientID="{{ page.patient.id }}">
-
-            {% include('inc-ajax-patientAdminData.html.twig') %}
-
-        </div>
+          {% include('inc-ajax-patientAdminData.html.twig') %}
 
       </div>
 
-        <div class="row" style="margin-top : 20px;">
-            <div  class="col-md-3 atcd">
-              {# Formulaire dlatéral des ATCD #}
-              <div id="latForm" class=" changeObserv">
-                  {{ f.formbuilder(page.formData_chiroATCD , page.formName_chiroATCD , valFormLat ) }}
-              </div>
-              {# Liens familiaux #}
-              {% if page.liensFamiliaux %}
-              <div class="col-md-12 p-0">
-                <div class="card mb-3">
-                  <div class="card-header py-0 gras">Liens familiaux <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/">
-                    <button class="btn btn-default btn-sm float-right m-1" role="button" title="Édition des relations"><span class="fa fa-link" aria-hidden="true"></span></button></a>
-                  </div>
-
-                  <table class="table table-sm mb-0 table-striped table-condensed table-hover small mb-0">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>patient</th>
-                        <th>ddn</th>
-                        <th>relation</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for v in page.liensFamiliaux %}
-                        <tr>
-                          <td>
-                            <a target="_blank" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/{{ v.patientID }}/">
-                              <button class="btn btn-default btn-sm" role="button"><span class="fa fa-folder-open" aria-hidden="true"></span></button>
-                            </a>
-                          </td>
-                          <td class="gras">{{ v.nom }} {{v.prenom }}</td>
-                          <td>{{ v.ddn }}</td>
-                          <td>{{ v.typeRelation }}</td>
-                        </tr>
-                      {% endfor %}
-                    </tbody>
-
-                  </table>
+      <div class="row swipable" style="margin-top : 20px;">
+        <div class="col-md-3 atcd">
+          {# Formulaire dlatéral des ATCD #}
+          <div id="latForm" class=" changeObserv">
+              {{ f.formbuilder(page.formData_chiroATCD , page.formName_chiroATCD , valFormLat ) }}
+          </div>
+          {# Liens familiaux #}
+          {% if page.liensFamiliaux %}
+            <div class="col-md-12 p-0">
+              <div class="card mb-3">
+                <div class="card-header py-0 gras">Liens familiaux 
+                  <a class="btn btn-default btn-sm float-right m-1" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/" title="Édition des relations">
+                    <span class="fa fa-link" aria-hidden="true"></span>
+                  </a>
                 </div>
-              </div>
-              {% endif %}
-            </div>
 
-            {# colonne principale #}
-            <div class="col-md-9" style="padding-left : 35px">
+                <table class="table table-sm mb-0 table-striped table-condensed table-hover small mb-0">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>patient</th>
+                      <th>ddn</th>
+                      <th>relation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for v in page.liensFamiliaux %}
+                      <tr>
+                        <td>
+                          <a class="btn btn-default btn-sm" role="button" target="_blank" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/{{ v.patientID }}/">
+                            <span class="fa fa-folder-open" aria-hidden="true"></span>
+                          </a>
+                        </td>
+                        <td class="gras">{{ v.nom }} {{v.prenom }}</td>
+                        <td>{{ v.ddn }}</td>
+                        <td>{{ v.typeRelation }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
 
-              {# historique du jour #}
-              <div id="historiqueToday" class="row">
-                {% include 'patientHistoriqueToday.html.twig' %}
-              </div>
-
-              {# Synthèse patient #}
-              {% include 'patientSynthese.html.twig' %}
-
-                {# Div d'import de nouveau doc #}
-                <div id="newDoc" class="row toclear">{% include 'importDocForm.html.twig' %}</div>
-
-              {# Div d'insertion de nouveau reglement #}
-              <div id="newReglement" class="row toclear"></div>
-
-              {# Div d'insertion de nouveau courrier #}
-              <div id="newCourrier" class="row toclear"></div>
-
-              {# Div d'insertion de nouvelle consultation #}
-              <div id="nouvelleCs" class="row toclear checkboxFixValue"></div>
-
-              {# Div d'insertion de nouveau mail  #}
-              <div id="newMail" class="row toclear"></div>
-
-
-              {# Historique complet #}
-              <div id="historique" class="row">
-                {% include 'patientHistoriqueMedical.html.twig' %}
+                </table>
               </div>
             </div>
+          {% endif %}
+        </div>
+
+        {# colonne principale #}
+        <div class="col-md-9 dossier" style="padding-left : 35px">
+
+          {# historique du jour #}
+          <div id="historiqueToday" class="row">
+            {% include 'patientHistoriqueToday.html.twig' %}
           </div>
 
+          {# Synthèse patient #}
+          {% include 'patientSynthese.html.twig' %}
+
+          {# Div d'import de nouveau doc #}
+          <div id="newDoc" class="row toclear">{% include 'importDocForm.html.twig' %}</div>
+
+          {# Div d'insertion de nouveau reglement #}
+          <div id="newReglement" class="row toclear"></div>
+
+          {# Div d'insertion de nouveau courrier #}
+          <div id="newCourrier" class="row toclear"></div>
+
+          {# Div d'insertion de nouvelle consultation #}
+          <div id="nouvelleCs" class="row toclear checkboxFixValue"></div>
+
+          {# Div d'insertion de nouveau mail  #}
+          <div id="newMail" class="row toclear"></div>
+
+
+          {# Historique complet #}
+          <div id="historique" class="row">
+            {% include 'patientHistoriqueMedical.html.twig' %}
+          </div>
+        </div>
       </div>
     </div>
 

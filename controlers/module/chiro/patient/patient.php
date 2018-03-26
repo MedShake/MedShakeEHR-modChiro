@@ -43,5 +43,11 @@ $p['page']['formData_baseSynthese']=$form_baseSynthese->getForm();
 $typeCs_csChiro = new msData;
 $p['page']['typeCs_csChiro']=$typeCs_csChiro->getDataTypesFromCatName('csChiro', array('id','label', 'formValues'));
 
-$p['page']['formReglement']['chiroReglePorteur']=array('module'=>'chiro', 'form'=>'chiroReglement');
-$p['page']['formOrdo']['ordoPorteur']=array('module'=>'base', 'form'=>'');
+$data=new msData;
+$reglements=$data->getDataTypesFromCatName('porteursReglement', array('id', 'module', 'label', 'description', 'formValues'));
+foreach ($reglements as $v) {
+    if ($v['module']=='chiro') {
+        $p['page']['formReglement'][]=$v;
+    }
+}
+
