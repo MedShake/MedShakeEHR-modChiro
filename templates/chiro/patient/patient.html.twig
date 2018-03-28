@@ -61,11 +61,7 @@
           display: none;
         }
         .jumbotron{border-radius: 4px !important}
-        .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;margin-left: 5px;margin-right:-10px !important;}
-        @media (max-width:992px) {
-          .atcd {padding-left:15px !important; padding-right: 15px !important;margin-bottom:10px;margin-left: 0;margin-right:0 !important;}
-          .dossier {padding-left:15px !important; padding-right: 15px !important} 
-        }
+        .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;}
 
         .btn {margin-bottom:5px}
         .btn-fullw {width:100%}
@@ -91,7 +87,7 @@
       </div>
 
       <div class="row swipable" style="margin-top : 20px;">
-        <div class="col-lg-3 atcd">
+        <div class="col-md-5 col-xl-4 px-3 atcd">
           {# Formulaire dlatéral des ATCD #}
           <div id="latForm" class=" changeObserv">
               {{ f.formbuilder(page.formData_chiroATCD , page.formName_chiroATCD , valFormLat ) }}
@@ -100,8 +96,10 @@
           {% if page.liensFamiliaux %}
             <div class="col-md-12 p-0">
               <div class="card mb-3">
-                <div class="card-header py-0 gras">Liens familiaux 
-                  <a class="btn btn-default btn-sm float-right m-1" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/" title="Édition des relations">
+                <div class="card-header py-0 gras">
+                  Liens familiaux
+                  <a class="btn btn-default btn-sm float-right m-1" role="button" title="Édition des relations"
+                    href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/">
                     <span class="fa fa-link" aria-hidden="true"></span>
                   </a>
                 </div>
@@ -119,7 +117,7 @@
                     {% for v in page.liensFamiliaux %}
                       <tr>
                         <td>
-                          <a class="btn btn-default btn-sm" role="button" target="_blank" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/{{ v.patientID }}/">
+                          <a class="btn btn-default btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/{{ v.patientID }}/"  target="_blank">
                             <span class="fa fa-folder-open" aria-hidden="true"></span>
                           </a>
                         </td>
@@ -137,7 +135,7 @@
         </div>
 
         {# colonne principale #}
-        <div class="col-lg-9 dossier" style="padding-left : 35px">
+        <div class="col-md-7 col-xl-8 pl-md-4 dossier">
 
           {# historique du jour #}
           <div id="historiqueToday" class="row">

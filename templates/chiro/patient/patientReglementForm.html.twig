@@ -37,19 +37,18 @@
         <h3>Nouveau règlement</h3>
     {% endif %}
 
-    <div class="row" style="margin-bottom : 30px">
+    <div class="row mb-3">
         {% for k, v in page.menusActes %}
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="control-label" for="selectActe{{ loop.index }}">{{ k }}
                     </label>
-                    <select class="form-control selectActeStarter" id="selectActe{{ loop.index }}ID" name="selectActe{{ loop.index }}" autocomplete="off">
+                    <select class="form-control custom-select selectActeStarter" id="selectActe{{ loop.index }}ID" name="selectActe{{ loop.index }}" autocomplete="off">
                         <option value=''></option>
                         {% for val in v %}
                             <option value="{{ val.id }}"
                             {% if val.id == page.formActes.prevalue %} selected="selected" {% endif %}
                              style="padding-top : 6px; padding-bottom : 6px; border-top : 1px solid #DDD;
-                            {% if val.flagCmu %}background : #EEE; {% endif %}
                             {% if val.flagImportant %}font-weight : bold; {% endif %}
                             "
                           >{{ val.numIndexFSE }}. {{ val.label }} &harr; {{ (val.details|keys)|join(' + ') }}</option>
@@ -60,7 +59,7 @@
         {% endfor %}
     </div>
 
-    <div id="detFacturation" class="card col-md-12" style="display: none;">
+    <div id="detFacturation" class="card col-md-12 px-0 mb-3" style="display: none;">
       <div class="card-header py-0">Détails par acte dans le règlement sélectionné</div>
 
       <table class="table table-sm mb-0 table-condensed">

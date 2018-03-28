@@ -38,13 +38,13 @@
 {% block body %}
 
 <ol class="breadcrumb">
-  <li>
+  <li class="breadcrumb-item">
     <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/">Configuration</a>
   </li>
-  <li>
+  <li class="breadcrumb-item">
       <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/#cc">Paramètres courants</a>
   </li>
-  <li class="active">
+  <li class="breadcrumb-item active">
     Actes et tarifs
   </li>
 </ol>
@@ -77,7 +77,7 @@
 			Nouvelle catégorie
 			</button>
 
-			<table class="table table-sm mb-0 table-hover ">
+			<table class="table table-sm mb-0 table-hover">
 
 			<thead>
 			<tr>
@@ -96,14 +96,21 @@
                                 <td>{{ v.module }}</td>
 				<td>{{ v.displayOrder }}</td>
 				<td>{{ v.label }}</td>
-				<td>{% if v.enfants > 0 %}<button class="btn btn-default btn-sm" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actes/0/{{ k }}/"><span class="fa fa-search-plus" aria-hidden="true"></span></button> {{ v.enfants }}{% endif %}</td>
+				<td>
+                                  {% if v.enfants > 0 %}
+                                    <a class="btn btn-default btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/actes/0/{{ k }}/">
+                                      <span class="fa fa-search-plus" aria-hidden="true"></span>
+                                    </a>
+                                    {{ v.enfants }}
+                                  {% endif %}
+                                </td>
 				<td>{{ v.description }}</td>
 				<td>
 					<button type="button" class="btn btn-default btn-sm edit-by-prim-key" aria-label="Editer" data-id="{{ k }}" data-table="actes_cat" data-form="formModalNewCat" data-modal="modalNewCat">
 					<span class="fa fa-pencil-alt" aria-hidden="true"></span>
 					</button>
 
-					<button type="button" class="btn btn-default btn-sm delete-by-prim-key" aria-label="Supprimer" {% if v.enfants > 0 or v.module=="base" %}disabled="disabled"{% endif %} data-id="{{ k }}" data-table="actes_cat">
+					<button type="button" class="btn btn-default btn-sm delete-by-prim-key" aria-label="Supprimer" {% if v.enfants > 0 or v.module=="base" %}disabled{% endif %} data-id="{{ k }}" data-table="actes_cat">
 					<span class="fa fa-times" aria-hidden="true"></span>
 					</button>
 				</td>
@@ -124,8 +131,8 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Création / édition catégorie</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body">
 

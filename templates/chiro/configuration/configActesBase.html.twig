@@ -43,13 +43,13 @@
 {% block body %}
 
     <ol class="breadcrumb">
-      <li>
+      <li class="breadcrumb-item">
         <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/">Configuration</a>
       </li>
-      <li>
+      <li class="breadcrumb-item">
           <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/configuration/#cc">Paramètres courants</a>
       </li>
-      <li class="active">
+      <li class="breadcrumb-item active">
         Actes et tarifs
       </li>
     </ol>
@@ -109,7 +109,7 @@
                                                 <span class="fa fa-pencil-alt" aria-hidden="true"></span>
                                             </button>
 
-                                            <button type="button" {% if w.nbUtilisation > 0 %} disabled="disabled"{% endif %} class="btn btn-default btn-sm delete-by-prim-key" aria-label="Supprimer" {% if w.enfants > 0 or w.module=="base" %} disabled="disabled" {% endif %} data-id="{{ w.id }}" data-table="actes_base">
+                                            <button type="button" {% if w.nbUtilisation > 0 %} disabled{% endif %} class="btn btn-default btn-sm delete-by-prim-key" aria-label="Supprimer" {% if w.enfants > 0 or w.module=="base" %} disabled {% endif %} data-id="{{ w.id }}" data-table="actes_base">
                                                 <span class="fa fa-times" aria-hidden="true"></span>
                                             </button>
                                         </td>
@@ -129,10 +129,10 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Création / édition</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Création / édition</h4>
                     </div>
                     <div class="modal-body">
 
