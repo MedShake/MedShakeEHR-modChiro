@@ -1,0 +1,53 @@
+{#
+ # This file is part of MedShakeEHR.
+ #
+ # Copyright (c) 2017
+ # Bertrand Boutillier <b.boutillier@gmail.com>
+ # http://www.medshake.net
+ #
+ # MedShakeEHR is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation, either version 3 of the License, or
+ # any later version.
+ #
+ # MedShakeEHR is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ #/
+/##
+ # Template > patient : historique medical du jour      
+ #
+ # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ # @contrib fr33z00 <https://github.com/fr33z00>
+ #}
+{% import "macroForm.html.twig" as f %}
+
+    <div class="card col-md-12 px-0 mb-4 historiqueToday"{% if page.patient.today %} style="display:none"{% endif %}>
+        <div class="card-header py-0 gras">Aujourd'hui</div>
+
+        <div class="mx-1">
+            <table class="table table-sm mb-0 table-hover " data-zone="historiqueToday">
+                <thead>
+                    <tr class="histoHead">
+                        <th>Heure</th>
+                        <th>Actions</th>
+                        <th>Acte</th>
+                        <th>Auteur</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for cs in page.patient.today %}
+                      {% if cs.groupe != 'ordo' %}
+                        {% include 'pht-ligne-'~ cs.groupe ~'.html.twig' %}
+                      {% endif %}
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
