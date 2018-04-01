@@ -4,9 +4,12 @@ SET time_zone = "+00:00";
 INSERT IGNORE INTO `system` (`name`,`groupe`,`value`) VALUES
 ('chiro', 'module', 'v3.1.0');
 
+INSERT IGNORE INTO `configuration` (`name`, `level`, `module`, `value`) VALUES
+('administratifSecteurHonoraires', 'module', 'chiro', '');
+
 INSERT IGNORE INTO `actes_base` (`code`, `label`, `type`, `tarifs1`, `tarifs2`, `fromID`, `creationDate`) VALUES
-('ECHO', 'Echographie', 'NGAP', 30, 0, 1, '2018-01-01 00:00:00'),
-('chiroCS', 'Consultation chiro', 'NGAP', 50, 50, 1, '2018-01-01 00:00:00');
+('ECHO', 'Echographie', 'Libre', 0, 30, 1, '2018-01-01 00:00:00'),
+('chiroCS', 'Consultation chiro', 'Libre', 0, 50, 1, '2018-01-01 00:00:00');
 
 INSERT IGNORE INTO `actes_cat` (`name`, `label`, `description`, `module`, `fromID`, `creationDate`, `displayOrder`) VALUES
 ('chiroCatExam', 'Examens  module chiro', '', 'chiro', 1, '2018-01-01 00:00:00', 2),
@@ -14,8 +17,8 @@ INSERT IGNORE INTO `actes_cat` (`name`, `label`, `description`, `module`, `fromI
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatConsult');
 INSERT IGNORE INTO `actes` (`cat`, `label`, `shortLabel`, `details`, `flagImportant`, `flagCmu`, `fromID`, `toID`, `creationDate`) VALUES
-(@catID, 'Consultation chiropratique', 'Cs', 'chiroCS:\n  pourcents: 100\n  depassement: 0', 1, 0, 1, 0, '2018-01-01 00:00:00'),
-(@catID, 'Consultation + échographie', 'CS+ECHO', 'chiroCS:\n  pourcents: 100\n  depassement: 0\nECHO:\n  pourcents: 100\n  depassement: 0', 0, 0, 1, 0, '2018-01-01 00:00:00');
+(@catID, 'Consultation chiropratique', 'Cs', 'chiroCS:', 1, 0, 1, 0, '2018-01-01 00:00:00'),
+(@catID, 'Consultation + échographie', 'CS+ECHO', 'chiroCS:\nECHO:', 0, 0, 1, 0, '2018-01-01 00:00:00');
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatExam');
 INSERT IGNORE INTO `actes` (`cat`, `label`, `shortLabel`, `details`, `flagImportant`, `flagCmu`, `fromID`, `toID`, `creationDate`) VALUES
@@ -31,7 +34,7 @@ INSERT IGNORE INTO `data_types` (`groupe`, `name`, `placeholder`, `label`, `desc
 
 SET @catID = (SELECT data_cat.id FROM data_cat WHERE data_cat.name='porteursReglement');
 INSERT IGNORE INTO `data_types` (`groupe`, `name`, `placeholder`, `label`, `description`, `validationRules`, `validationErrorMsg`, `formType`, `formValues`, `module`, `cat`, `fromID`, `creationDate`, `durationLife`, `displayOrder`) VALUES
-('reglement', 'chiroReglePorteur', '', 'Règlement', 'Règlement honoraires libres', '', '', '', 'chiroReglement', 'chiro', @catID, 1, '2018-01-01 00:00:00', 1576800000, 1);
+('reglement', 'chiroReglePorteur', '', 'Règlement', 'Règlement honoraires libres', '', '', '', 'baseReglementLibre', 'chiro', @catID, 1, '2018-01-01 00:00:00', 1576800000, 1);
 
 SET @catID = (SELECT data_cat.id FROM data_cat WHERE data_cat.name='reglementItems');
 INSERT IGNORE INTO `data_types` (`groupe`, `name`, `placeholder`, `label`, `description`, `validationRules`, `validationErrorMsg`, `formType`, `formValues`, `module`, `cat`, `fromID`, `creationDate`, `durationLife`, `displayOrder`) VALUES
