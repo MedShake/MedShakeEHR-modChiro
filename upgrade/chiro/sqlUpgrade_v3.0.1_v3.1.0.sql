@@ -2,12 +2,17 @@
 
 UPDATE `system` SET `value`='v3.1.0' WHERE `name`='chiro';
 
-UPDATE `actes_base` SET `type`='Libre', `tarifS1`='0' WHERE `code` in ('ECHO', 'chiroCS');
-UPDATE `actes_base` SET `tarifS2`='50' WHERE `code`='chiroCS';
+UPDATE `actes_base` SET `code`='Echo', `type`='Libre', `tarifS1`='0' WHERE `code`='ECHO';
+UPDATE `actes_base` SET `code`='CsChiro' `type`='Libre', `tarifS1`='0' WHERE `code`='chiroCS';
+UPDATE `actes_base` SET `tarifS2`='30' WHERE `code`='Echo';
+UPDATE `actes_base` SET `tarifS2`='50' WHERE `code`='CsChiro';
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatConsult');
-UPDATE `actes` SET `details`='chiroCS:' WHERE `cat`=@catID and `label`='Consultation chiropratique';
-UPDATE `actes` SET `details`='chiroCS: \nECHO: ' WHERE `cat`=@catID and `label`='Consultation + échographie';
+UPDATE `actes` SET `details`='CsChiro:' WHERE `cat`=@catID and `label`='Consultation chiropratique';
+UPDATE `actes` SET `details`='CsChiro: \nEcho:' WHERE `cat`=@catID and `label`='Consultation + échographie';
+
+SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatExam');
+UPDATE `actes` SET `details`='Echo:' WHERE `cat`=@catID and `label`='Echographie';
 
 UPDATE `data_types` SET `formValues`='baseReglementLibre' WHERE `name`='chiroReglePorteur';
 
