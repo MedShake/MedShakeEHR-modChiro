@@ -8,8 +8,8 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `module`, `value`) VALUES
 ('administratifSecteurHonoraires', 'module', 'chiro', '');
 
 INSERT IGNORE INTO `actes_base` (`code`, `label`, `type`, `tarifs1`, `tarifs2`, `fromID`, `creationDate`) VALUES
-('ECHO', 'Echographie', 'Libre', 0, 30, 1, '2018-01-01 00:00:00'),
-('chiroCS', 'Consultation chiro', 'Libre', 0, 50, 1, '2018-01-01 00:00:00');
+('Echo', 'Echographie', 'Libre', 0, 30, 1, '2018-01-01 00:00:00'),
+('CsChiro', 'Consultation chiro', 'Libre', 0, 50, 1, '2018-01-01 00:00:00');
 
 INSERT IGNORE INTO `actes_cat` (`name`, `label`, `description`, `module`, `fromID`, `creationDate`, `displayOrder`) VALUES
 ('chiroCatExam', 'Examens  module chiro', '', 'chiro', 1, '2018-01-01 00:00:00', 2),
@@ -17,12 +17,12 @@ INSERT IGNORE INTO `actes_cat` (`name`, `label`, `description`, `module`, `fromI
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatConsult');
 INSERT IGNORE INTO `actes` (`cat`, `label`, `shortLabel`, `details`, `flagImportant`, `flagCmu`, `fromID`, `toID`, `creationDate`) VALUES
-(@catID, 'Consultation chiropratique', 'Cs', 'chiroCS:', 1, 0, 1, 0, '2018-01-01 00:00:00'),
-(@catID, 'Consultation + échographie', 'CS+ECHO', 'chiroCS:\nECHO:', 0, 0, 1, 0, '2018-01-01 00:00:00');
+(@catID, 'Consultation chiropratique', 'Cs', 'CsChiro:', 1, 0, 1, 0, '2018-01-01 00:00:00'),
+(@catID, 'Consultation + échographie', 'Cs + Echo', 'CsChiro:\nEcho:', 0, 0, 1, 0, '2018-01-01 00:00:00');
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatExam');
 INSERT IGNORE INTO `actes` (`cat`, `label`, `shortLabel`, `details`, `flagImportant`, `flagCmu`, `fromID`, `toID`, `creationDate`) VALUES
-(@catID, 'Echographie', 'Echo', 'ECHO:\n   pourcents: 100\n  depassement: 0', 0, 0, 1, 0, '2018-01-01 00:00:00');
+(@catID, 'Echographie', 'Echo', 'Echo:', 0, 0, 1, 0, '2018-01-01 00:00:00');
 
 INSERT IGNORE INTO `data_cat` (`groupe`, `name`, `label`, `description`, `type`, `fromID`, `creationDate`) VALUES
 ('typecs', 'csChiro', 'Consultations chiro', 'consultations possibles', 'user', 1, '2018-01-01 00:00:00'),

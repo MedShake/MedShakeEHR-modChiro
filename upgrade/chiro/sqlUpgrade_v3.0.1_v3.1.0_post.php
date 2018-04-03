@@ -9,11 +9,19 @@ $file_list=[
     $p['config']['templatesFolder'].'chiro/configuration/configActesCat.html.twig',
     $p['config']['templatesFolder'].'chiro/compta/compta.html.twig',
     $p['config']['templatesFolder'].'chiro/compta/comptaToday.html.twig',
-    $p['config']['templatesFolder'].'chiro/compta/comptaMemoTarifs.html.twig'
+    $p['config']['templatesFolder'].'chiro/compta/comptaMemoTarifs.html.twig',
+];
+$dir_list=[
+    $p['config']['templatesFolder'].'chiro/configuration',
+    $p['config']['templatesFolder'].'chiro/compta'
 ];
 
 foreach ($file_list as $file) {
   if (is_file($file))
     unlink($file);
+}
+foreach ($dir_list as $dir) {
+  if (is_dir($dir))
+    rmdir($dir);
 }
 
