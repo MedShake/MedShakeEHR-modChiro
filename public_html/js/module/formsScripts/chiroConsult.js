@@ -24,7 +24,8 @@
 $(document).ready(function() {
 
   $(document).scroll(function(e){
-    $(".tools").css("top", Math.min($("#svgparent").height()-$(".tools").height()+20, Math.max(0, e.pageY+60-$("#svgparent").offset().top)));
+    if ($("#svgparent").length)
+      $(".tools").css("top", Math.min($("#svgparent").height()-$(".tools").height()+20, Math.max(0, e.pageY+60-$("#svgparent").offset().top)));
   });
 
   $("body").on("touchstart", "#skeleton", function(e){
@@ -83,7 +84,7 @@ $(document).ready(function() {
     var items = $(this).attr("menu").split(",");
     $menu.children().first().html(title);
     for (var i=0; i< items.length; i++)
-      $menu.append('<li><a tabindex="-1" class="containerCheck" data-entry="'+title
+      $menu.append('<li><a tabindex="-1" style="text-decoration:none;color:#484848" class="containerCheck" data-entry="'+title
       + '" data-value="' +items[i]+
       '">'+items[i]+'<input type="radio"'+($("input[placeholder='"+title+"']").attr("value") == items[i] ? ' checked' : '')+
       '></input><span class="checkmarkRadio"></span></a></li>');
@@ -124,7 +125,7 @@ $(document).ready(function() {
     var value = $("input[placeholder='"+title+"']").attr("value");
     $menu.children().first().html(title);
     for (var i=0; i< items.length; i++)
-      $menu.append('<li><a tabindex="-1" class="containerCheck" data-entry="'+title
+      $menu.append('<li><a tabindex="-1" style="text-decoration:none;color:#484848" class="containerCheck" data-entry="'+title
       + '" data-value="' +items[i]+
       '">'+items[i]+'<input type="checkbox"'+ ((value && value.split(",").findIndex(function(v){return v==items[i]}) >= 0) ? ' checked' : '')+
       '></input><span class="checkmarkCheck"></span></a></li>');
