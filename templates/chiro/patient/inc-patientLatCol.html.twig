@@ -28,14 +28,19 @@
 
 {% import "macroForm.html.twig" as f %}
 
-{# Formulaire latéral des ATCD #}
-<div id="latForm" class=" changeObserv">
-    {{ f.formbuilder(page.formData_chiroATCD , page.formName_chiroATCD , valFormLat ) }}
+<div class="nav nav-tabs nav-justified" role="tablist">
+  <a id="navAtcd" class="nav-item nav-link active" title="Antécédents" href="#tabAtcd" aria-controls="tabAtcd" aria-selected="false" data-toggle="tab"><span class="fa fa-list"></a>
+  <a class="nav-item nav-link" href="#tabLiens" title="Liens familiaux" aria-controls="tabLiens" aria-selected="true" data-toggle="tab"><span class="fa fa-link"></span></a>
 </div>
 
-{# Liens familiaux #}
-{% if page.liensFamiliaux %}
-  <div class="col-md-12 p-0">
+<div class="tab-content pt-3">
+  {# Formulaire latéral des ATCD #}
+  <div id="tabAtcd" class="tab-pane active changeObserv" role="tabpanel">
+      {{ f.formbuilder(page.formData_chiroATCD , page.formName_chiroATCD , valFormLat ) }}
+  </div>
+
+  {# Liens familiaux #}
+  <div id="tabLiens" class="tab-pane col-md-12 p-0" role="tabpanel">
     <div class="card mb-3">
       <div class="card-header py-0 gras">
         Liens familiaux
@@ -51,7 +56,7 @@
             <th></th>
             <th>patient</th>
             <th>ddn</th>
-            <th>relation</th>
+            <th>lien</th>
           </tr>
         </thead>
         <tbody>
@@ -72,5 +77,4 @@
       </table>
     </div>
   </div>
-{% endif %}
-
+</div>

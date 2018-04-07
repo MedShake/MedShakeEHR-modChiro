@@ -69,11 +69,6 @@
         {% endif %}
 
         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editAdmin" title="Édition des données administratives"><span class="fa fa-pencil-alt" aria-hidden="true"></span></button>
-        {% if page.correspondants is empty %}
-          <a class="btn btn-default btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/" title="Édition des relations">
-            <span class="fa fa-link" aria-hidden="true"></span>
-          </a>
-        {% endif %}
 
         {# email #}
         {% if page.patient.administrativeDatas.personalEmail.value %}
