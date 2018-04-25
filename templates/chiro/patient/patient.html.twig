@@ -36,7 +36,7 @@
 {% block head %}
     <script>
       {# provoquer envoie asynchrone du patient dans le DICOM si config ok #}
-      var dicomAutoSendPatient2Echo = {{ config.dicomAutoSendPatient2Echo }};
+      var dicomAutoSendPatient2Echo = {{ config.dicomAutoSendPatient }};
     </script>
 
     {{ parent() }}
@@ -82,19 +82,48 @@
 
 {% block body %}
 
-    <div class="container-fluid">
-      {% if page.patient.dossierType =="deleted" %}
-      <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
-      {% endif %}
-      <div id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientID="{{ page.patient.id }}">
+    {% if page.patient.dossierType =="deleted" %}
+    <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
+    {% endif %}
+    <div id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientID="{{ page.patient.id }}">
 
-          {% include('inc-ajax-patientAdminData.html.twig') %}
+        {% include('inc-ajax-patientAdminData.html.twig') %}
 
-      </div>
-
-      {% include 'inc-patientTabDossierMedical.html.twig' %}
     </div>
 
+    {# Onglets #}
+    <ul class="nav nav-tabs gras" role="tablist" style="margin-top : 15px;">
+      <li class="nav-item">
+        <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-toggle="tab">Dossier médical</a>
+      </li>
+      {% if config.dicomHost != '' %}
+        <li class="nav-item">
+          <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-toggle="tab">Imagerie</a>
+        </li>
+      {% endif %}
+      <li class="nav-item">
+        <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-toggle="tab">Relations</a>
+      </li>
+    </ul>
+
+    {# tabs  #}
+    <div class="tab-content container-fluid" style="padding-top :15px; padding-bottom: 15px;">
+
+      {# tab dossier médical #}
+      <div id="tabDossierMedical" class="tab-pane active" role="tabpanel">
+        {% include('inc-patientTabDossierMedical.html.twig') %}
+      </div>
+
+      {# tab dicom #}
+      <div id="tabDicom" class="tab-pane" role="tabpanel" data-rootUrl="/patient/{{ page.patient.id }}/tab/tabDicomStudiesList/"></div>
+
+      {# tab liens patient #}
+      <div id="tabLiensPatient" class="tab-pane" role="tabpanel" data-rootUrl="/patient/{{ page.patient.id }}/tab/tabLiensPatient/"></div>
+    </div>
+
+{% endblock %}
+
+{% block modals %}
     {# modal changer nom consultation ou doc #}
     {% include 'inc-patientModal-changerTitre.html.twig' %}
 

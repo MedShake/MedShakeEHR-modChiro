@@ -10,6 +10,7 @@ $file_list=[
     $p['config']['templatesFolder'].'chiro/compta/compta.html.twig',
     $p['config']['templatesFolder'].'chiro/compta/comptaToday.html.twig',
     $p['config']['templatesFolder'].'chiro/compta/comptaMemoTarifs.html.twig',
+    $p['config']['templatesFolder'].'chiro/page.html.twig',
 ];
 $dir_list=[
     $p['config']['templatesFolder'].'chiro/configuration',

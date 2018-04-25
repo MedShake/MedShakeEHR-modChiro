@@ -9,7 +9,9 @@ UPDATE `actes_base` SET `tarifS2`='50' WHERE `code`='CsChiro';
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatConsult');
 UPDATE `actes` SET `details`='CsChiro:' WHERE `cat`=@catID and `label`='Consultation chiropratique';
+UPDATE `actes` SET `details`=REPLACE(`details`,'CsChiro:','chiroCS:') WHERE `details` like 'chiroCS:%';
 UPDATE `actes` SET `details`='CsChiro: \nEcho:' WHERE `cat`=@catID and `label`='Consultation + échographie';
+UPDATE `actes` SET `details`=REPLACE(`details`,'ECHO:','Echo:') WHERE `details` like '%ECHO:%';
 
 SET @catID = (SELECT actes_cat.id FROM actes_cat WHERE actes_cat.name='chiroCatExam');
 UPDATE `actes` SET `details`='Echo:' WHERE `cat`=@catID and `label`='Echographie';
