@@ -21,8 +21,8 @@
  # @author fr33z00 <https://github.com/fr33z00>
  #}
 
-<style> 
-  .chiroTArray input[type=checkbox] {box-shadow: none;} 
+<style>
+  .chiroTArray input[type=checkbox] {box-shadow: none;}
   .chiroTArray :nth-child(3) p{
     margin: 0 0 8px;
     font-size: 14px;
@@ -84,8 +84,8 @@
 .checkmarkRadio:after {top: 5px;left: 5px;width: 6px;height: 6px;border-radius: 50%;background: white !important;}
 
 </style>
-<script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/thirdparty/fr33z00/panzoom/dist/jquery.panzoom.js"></script>
-<script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/thirdparty/jquery/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/thirdparty/fr33z00/panzoom/dist/jquery.panzoom.js?{{ modules.base }}"></script>
+<script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/thirdparty/jquery/jquery-mousewheel/jquery.mousewheel.js?{{ modules.base }}"></script>
 
 <ul id="navchiro" class="nav nav-tabs" role="tablist">
   <li class="nav-item" role="presentation">
@@ -2526,5 +2526,4 @@
   svgFit(false);
 
 </script>
-<script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/js/module/formsScripts/chiroConsult.js"></script>
-
+<script type="text/javascript" src="{{ t.config.protocol }}{{ t.config.host }}{{ t.config.urlHostSuffixe }}/js/module/formsScripts/chiroConsult.js?{{ modules.chiro }}"></script>
