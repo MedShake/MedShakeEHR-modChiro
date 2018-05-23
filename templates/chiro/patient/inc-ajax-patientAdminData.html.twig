@@ -25,6 +25,34 @@
  # @author fr33z00 <https://github.com/fr33z00>
  #}
 
+{% set detail = [] %}
+{# genre #}
+{% if page['patient']['administrativeDatas']['administrativeGenderCode']['value'] == 'F' %}
+  {% set detail = detail|merge(['&#9792;']) %}
+{% elseif page['patient']['administrativeDatas']['administrativeGenderCode']['value'] == 'M' %}
+  {% set detail = detail|merge(['&#9794;']) %}
+{% endif %}
+{# age #}
+{% set detail = detail|merge([page.patient.administrativeDatas.birthdate.value|e]) %}
+{# birthdate #}
+{% if page.patient.administrativeDatas.birthdate.age %}
+  {% set detail = detail|merge([page.patient.administrativeDatas.birthdate.age|e]) %}
+{% endif %}
+{# tel #}
+{% if page.patient.administrativeDatas.homePhone.value and page.patient.administrativeDatas.mobilePhone.value %}
+  {% set detail = detail|merge([page.patient.administrativeDatas.mobilePhone.value|e ~ ' / ' ~ page.patient.administrativeDatas.homePhone.value|e]) %}
+{% elseif page.patient.administrativeDatas.mobilePhone.value %}
+  {% set detail = detail|merge([page.patient.administrativeDatas.mobilePhone.value|e]) %}
+{% elseif page.patient.administrativeDatas.homePhone.value %}
+  {% set detail = detail|merge([page.patient.administrativeDatas.homePhone.value|e]) %}
+{% endif %}
+{# adresse #}
+{% set add = page.patient.administrativeDatas.streetNumber.value|e ~ ' ' ~ page.patient.administrativeDatas.street.value|e ~ ' ' ~
+             page.patient.administrativeDatas.postalCodePerso.value|e ~ ' ' ~ page.patient.administrativeDatas.city.value|e %}
+{% if (add|trim) != '' %}
+  {% set detail = detail|merge([add]) %}
+{% endif %}
+
 <h1>{# firstname #}
     {{ page.patient.administrativeDatas.firstname.value|e }}
     {# lastname & birthname #}
@@ -38,26 +66,7 @@
   {{ page.patient.administrativeDatas.lastname.value|e }}
     {% endif %}
     <small>
-        {{ page.patient.administrativeDatas.birthdate.value|e }}
-
-        {# birthdate #}
-        {% if page.patient.administrativeDatas.birthdate.age %}
-        -
-          {{ page.patient.administrativeDatas.birthdate.age|e }}
-        {% endif %}
-        {# age #}
-        -
-        {# tel #}
-        {{ page.patient.administrativeDatas.homePhone.value|e }}
-        {% if page.patient.administrativeDatas.homePhone.value and page.patient.administrativeDatas.mobilePhone.value %} / {% endif %}
-        {{ page.patient.administrativeDatas.mobilePhone.value|e }}
-
-        {# adresse #}
-        {{ page.patient.administrativeDatas.streetNumber.value|e }}
-        {{ page.patient.administrativeDatas.street.value|e }}
-        {{ page.patient.administrativeDatas.postalCodePerso.value|e }}
-        {{ page.patient.administrativeDatas.city.value|e }}
-
+      {{ detail|join(' - ') }}
     </small>
 </h1>
 
@@ -88,12 +97,9 @@
         {% endif %}
 
         {% if page.correspondants %}
-        <a class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/patient/relations/{{ page.patient.id }}/" title="Édition des relations">
-          <span class="fa fa-link" aria-hidden="true"></span>
-        </a>
-        {% for v in page.correspondants %}
-          <a class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/{{ v.pratID }}/" title="">{% if v.titre %}{{ v.titre }} {% endif %}{{ v.prenom }} {{ v.nom }}</a>
-        {% endfor %}
+          {% for v in page.correspondants %}
+            <a class="btn btn-light btn-sm" role="button" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/pro/{{ v.pratID }}/" title="">{% if v.titre %}{{ v.titre }} {% endif %}{{ v.prenom }} {{ v.nom }}</a>
+          {% endfor %}
         {% endif %}
 </div>
 <div id="notesPatient" class="card p-1" style="margin-top:20px;margin-bottom:10px;display: none;">
