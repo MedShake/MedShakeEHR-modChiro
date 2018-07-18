@@ -1,6 +1,6 @@
--- Modifications des données de la bdd de v3.0.0. à v3.1.0
+-- Modifications des données de la bdd de v3.0.1 à v4.0.0
 
-UPDATE `system` SET `value`='v3.1.0' WHERE `name`='chiro';
+UPDATE `system` SET `value`='v4.0.0' WHERE `name`='chiro';
 
 UPDATE `actes_base` SET `code`='Echo', `type`='Libre', `tarifS1`='0' WHERE `code`='ECHO';
 UPDATE `actes_base` SET `code`='CsChiro' `type`='Libre', `tarifS1`='0' WHERE `code`='chiroCS';
