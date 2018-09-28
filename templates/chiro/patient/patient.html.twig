@@ -52,6 +52,11 @@
 
     {# JS spécifiques des formulaires présents à l'affichage initial de la page #}
     {% for i in page.listeForms %}
+      <script defer="defer" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/formsScripts/{{ i }}.js?{{ modules.gynobs }}"></script>
+    {% endfor %}
+
+    {# JS spécifiques des formulaires présents à l'affichage initial de la page #}
+    {% for i in page.listeForms %}
       <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/formsScripts/{{ i }}.js?{{ modules.chiro }}"></script>
     {% endfor %}
 
@@ -95,10 +100,21 @@
     {% if page.patient.dossierType =="deleted" %}
     <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
     {% endif %}
-    <div id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientID="{{ page.patient.id }}">
 
-        {% include('inc-ajax-patientAdminData.html.twig') %}
-
+    {# identité patient #}
+    <div class="row" id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientid="{{ page.patient.id }}"
+    data-patientIdentite="{{ page['patient']['administrativeDatas']['firstname']['value']|e }} {# lastname & birthname #}
+    {% if page['patient']['administrativeDatas']['birthname']['value'] and page['patient']['administrativeDatas']['lastname']['value'] %}
+      {{ page['patient']['administrativeDatas']['lastname']['value']|e }}
+      ({{ page['patient']['administrativeDatas']['birthname']['value']|e }})
+      {# birthname only #}
+    {% elseif page['patient']['administrativeDatas']['birthname']['value'] %}
+      {{ page['patient']['administrativeDatas']['birthname']['value']|e }}
+      {# lastname only #}
+    {% elseif page['patient']['administrativeDatas']['lastname']['value'] %}
+      {{ page['patient']['administrativeDatas']['lastname']['value']|e }}
+    {% endif %}">
+      {% include('inc-ajax-patientAdminData.html.twig') %}
     </div>
 
     {# Onglets #}
@@ -148,5 +164,13 @@
 
     {# modal phonecapture #}
     {% include 'inc-patientModal-phonecapture.html.twig' %}
+
+    {# modals spécifiques Transmissions #}
+    {% if config.transmissionsPeutCreer == 'true' %}
+      {# modal nouvelle transmission #}
+      {% include 'inc-transmissionsNouvelleModal.html.twig' %}
+    {% endif %}
+
+    {% endblock %}
 
 {% endblock %}
