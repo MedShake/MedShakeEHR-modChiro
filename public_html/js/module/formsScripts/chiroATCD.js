@@ -36,7 +36,7 @@ $(document).ready(function() {
       $('input[name=p_imc]').val(imc);
     }
 
-    $("input[name=p_poids] , input[name=p_taillePatient]").on("keyup", function() {
+    $("#patientLatCol").on("keyup", "input[name=p_poids] , input[name=p_taillePatient]", function() {
       poids = $('input[name=p_poids]').val();
       taille = $('input[name=p_taillePatient]').val();
       imc = imcCalc(poids, taille);
@@ -54,7 +54,7 @@ $(document).ready(function() {
         auto_grow(element);
   });
 
-  $("#formName_chiroATCD textarea").on("keyup", function() {
+  $("#patientLatCol").on("keyup", "#formName_chiroATCD textarea", function() {
     $(this).css("overflow", "hidden");
     auto_grow(this);
   });
