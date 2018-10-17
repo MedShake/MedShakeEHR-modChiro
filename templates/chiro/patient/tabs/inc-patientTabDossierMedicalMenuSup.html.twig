@@ -41,7 +41,7 @@
             </li>
           {% endfor %}
 
-          <li class="divider" role="dropdown-separator"></li>
+          <li class="dropdown-divider" role="dropdown-separator"></li>
           <li>
               <a class="dropdown-item" id="linkAddNewDoc" href="#">Ajouter un document au dossier</a>
           </li>
@@ -71,6 +71,15 @@
                     <a class="dropdown-item newCourrier" data-modeleID="{{ v.id }}" href="#">{{ v.label }}</a>
                 </li>
             {% endfor %}
+            {% if page.modelesDocASigner|length > 0 %}
+              <li role="separator" class="dropdown-divider"></li>
+              <li class="dropdown-header">Documents à signer</li>
+              {% for v in page.modelesDocASigner %}
+                  <li>
+                      <a class="dropdown-item newCourrier" data-modele="{{ v.name }}" href="#">{{ v.label }}</a>
+                  </li>
+              {% endfor %}
+            {% endif %}
         </ul>
     </div>
 
@@ -120,4 +129,3 @@
     {% endif %}
 
 </div>
-
