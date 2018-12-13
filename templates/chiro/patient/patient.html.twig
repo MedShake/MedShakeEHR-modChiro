@@ -26,149 +26,66 @@
  # @contrib fr33z00 <https://github.com/fr33z00>
  #}
 
-{% extends "page.html.twig" %}
-{% import "macroForm.html.twig" as f %}
-{% block title %}{{ page.patient.administrativeDatas.firstname.value|e }}
-    {{ (page.patient.administrativeDatas.lastname.value|default(page.patient.administrativeDatas.birthname.value))|e }}
-    : dossier patient - MedShakeEHR
+{% extends "patientBase.html.twig" %}
+
+{% block jsFiles %}
+  {{ parent() }}
+  {# JS commun au formulaire de consultation du module #}
+  <script defer="defer" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/commonBase.js?{{ modules.base }}"></script>
+{% endblock %}
+
+{% block cssEmbed %}
+  {{ parent() }}
+  .jumbotron{border-radius: 4px !important}
+  .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;}
+
+  .btn {margin-bottom:5px}
+  .btn-fullw {width:100%}
+  .btn-fullw span{width:100%;text-align:center}
+  .jumbotron .btn-group:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+   }
 {% endblock %}
 
 {% block head %}
-    <script>
-      {# provoquer envoie asynchrone du patient dans le DICOM si config ok #}
-      var dicomAutoSendPatient2Echo = {{ config.dicomAutoSendPatient }};
-    </script>
-
-    {{ parent() }}
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/tinymce.min.js?{{ modules.base }}"></script>
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/tinymce/tinymce/jquery.tinymce.min.js?{{ modules.base }}"></script>
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/mattbryson/TouchSwipe-Jquery-Plugin/jquery.touchSwipe.min.js?{{ modules.base }}"></script>
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/dimsemenov/magnific-popup/dist/jquery.magnific-popup.min.js?{{ modules.base }}"></script>
-    {# JS général du dossier patient #}
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/patient.js?{{ modules.base }}"></script>
-
-    {# JS commun au formulaire de consultation du module #}
-    <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/commonBase.js?{{ modules.base }}"></script>
-
-    {# JS spécifiques des formulaires présents à l'affichage initial de la page #}
-    {% for i in page.listeForms %}
-      <script defer="defer" src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/formsScripts/{{ i }}.js?{{ modules.gynobs }}"></script>
-    {% endfor %}
-
-    {# JS spécifiques des formulaires présents à l'affichage initial de la page #}
-    {% for i in page.listeForms %}
-      <script defer src="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/js/module/formsScripts/{{ i }}.js?{{ modules.chiro }}"></script>
-    {% endfor %}
-
-    <link type="text/css" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/thirdparty/dimsemenov/magnific-popup/dist/magnific-popup.css" rel="stylesheet"/>
-    <style>
-
-        tr.collapsing {
-            transition:none;
-            -webkit-transition: none;
-            display:table-row;
-        }
-
-        #newDoc{
-          display: none;
-        }
-        .jumbotron{border-radius: 4px !important}
-        .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;}
-
-        .btn {margin-bottom:5px}
-        .btn-fullw {width:100%}
-        .btn-fullw span{width:100%;text-align:center}
-        .jumbotron .btn-group:hover .dropdown-menu {
-            display: block;
-            margin-top: 0;
-         }
-
-        .imageDc img {
-            max-width: 330px;
-            max-height: 330px;
-        }
-
-        .voirframes {
-          cursor: pointer;
-        }
-    </style>
-
+  {{ parent() }}
 {% endblock %}
 
 {% block body %}
+  {{ parent() }}
 
-    {% if page.patient.dossierType =="deleted" %}
-    <div class="row alert alert-danger" role="alert">Ce dossier est marqué comme supprimé !</div>
+  {# Onglets #}
+  <ul class="nav nav-tabs gras" role="tablist" style="margin-top : 15px;">
+    <li class="nav-item">
+      <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-toggle="tab">Dossier médical</a>
+    </li>
+    {% if config.dicomHost != '' %}
+      <li class="nav-item">
+        <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-toggle="tab">Imagerie</a>
+      </li>
     {% endif %}
+    <li class="nav-item">
+      <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-toggle="tab">Relations</a>
+    </li>
+  </ul>
 
-    {# identité patient #}
-    <div class="row" id="identitePatient" data-genre="{{ page.patient.administrativeDatas.administrativeGenderCode.value }}" data-patientid="{{ page.patient.id }}"
-    data-patientIdentite="{{ page['patient']['administrativeDatas']['firstname']['value']|e }} {# lastname & birthname #}
-    {% if page['patient']['administrativeDatas']['birthname']['value'] and page['patient']['administrativeDatas']['lastname']['value'] %}
-      {{ page['patient']['administrativeDatas']['lastname']['value']|e }}
-      ({{ page['patient']['administrativeDatas']['birthname']['value']|e }})
-      {# birthname only #}
-    {% elseif page['patient']['administrativeDatas']['birthname']['value'] %}
-      {{ page['patient']['administrativeDatas']['birthname']['value']|e }}
-      {# lastname only #}
-    {% elseif page['patient']['administrativeDatas']['lastname']['value'] %}
-      {{ page['patient']['administrativeDatas']['lastname']['value']|e }}
-    {% endif %}">
-      {% include('inc-ajax-patientAdminData.html.twig') %}
+  {# tabs  #}
+  <div class="tab-content container-fluid" style="padding-top :15px; padding-bottom: 15px;">
+
+    {# tab dossier médical #}
+    <div id="tabDossierMedical" class="tab-pane active" role="tabpanel">
+      {% include('inc-patientTabDossierMedical.html.twig') %}
     </div>
 
-    {# Onglets #}
-    <ul class="nav nav-tabs gras" role="tablist" style="margin-top : 15px;">
-      <li class="nav-item">
-        <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-toggle="tab">Dossier médical</a>
-      </li>
-      {% if config.dicomHost != '' %}
-        <li class="nav-item">
-          <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-toggle="tab">Imagerie</a>
-        </li>
-      {% endif %}
-      <li class="nav-item">
-        <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-toggle="tab">Relations</a>
-      </li>
-    </ul>
+    {# tab dicom #}
+    <div id="tabDicom" class="tab-pane" role="tabpanel" data-rooturl="/patient/{{ page.patient.id }}/tab/tabDicomStudiesList/"></div>
 
-    {# tabs  #}
-    <div class="tab-content container-fluid" style="padding-top :15px; padding-bottom: 15px;">
-
-      {# tab dossier médical #}
-      <div id="tabDossierMedical" class="tab-pane active" role="tabpanel">
-        {% include('inc-patientTabDossierMedical.html.twig') %}
-      </div>
-
-      {# tab dicom #}
-      <div id="tabDicom" class="tab-pane" role="tabpanel" data-rootUrl="/patient/{{ page.patient.id }}/tab/tabDicomStudiesList/"></div>
-
-      {# tab liens patient #}
-      <div id="tabLiensPatient" class="tab-pane" role="tabpanel" data-rootUrl="/patient/{{ page.patient.id }}/tab/tabLiensPatient/"></div>
-    </div>
-
+    {# tab liens patient #}
+    <div id="tabLiensPatient" class="tab-pane" role="tabpanel" data-rooturl="/patient/{{ page.patient.id }}/tab/tabLiensPatient/"></div>
+  </div>
 {% endblock %}
 
 {% block modals %}
-    {# modal changer nom consultation ou doc #}
-    {% include 'inc-patientModal-changerTitre.html.twig' %}
-
-    {# modal rapatrier mesures examen particulier #}
-    {% include 'inc-patientModal-getSpecificDicomData.html.twig' %}
-
-    {# modal éditer infos adminsitratives du patient #}
-    {% include 'inc-patientModal-editAdminData.html.twig' %}
-
-    {# modal changer la date d'une ligne d'historique #}
-    {% include 'inc-patientModal-changerDateEffet.html.twig' %}
-
-    {# modal phonecapture #}
-    {% include 'inc-patientModal-phonecapture.html.twig' %}
-
-    {# modals spécifiques Transmissions #}
-    {% if config.transmissionsPeutCreer == 'true' %}
-      {# modal nouvelle transmission #}
-      {% include 'inc-transmissionsNouvelleModal.html.twig' %}
-    {% endif %}
-    
+  {{ parent() }}
 {% endblock %}
