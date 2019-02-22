@@ -7,9 +7,9 @@ INSERT IGNORE INTO `system` (`name`,`groupe`,`value`) VALUES
 INSERT IGNORE INTO `configuration` (`name`, `level`, `module`, `value`) VALUES
 ('administratifSecteurHonoraires', 'module', 'chiro', '');
 
-INSERT IGNORE INTO `actes_base` (`code`, `label`, `type`, `tarifs1`, `tarifs2`, `fromID`, `creationDate`) VALUES
-('Echo', 'Echographie', 'Libre', 0, 30, 1, '2018-01-01 00:00:00'),
-('CsChiro', 'Consultation chiro', 'Libre', 0, 50, 1, '2018-01-01 00:00:00');
+INSERT IGNORE INTO `actes_base` (`code`, `activite`, `phase`, `label`, `type`, `dataYaml`, `tarifUnit`, `fromID`, `creationDate`) VALUES
+('CsChiro', '1', '0', 'Consulte chiro', 'Libre', 'tarifBase: 50', 'euro', 1, '2019-01-01 00:00:00'),
+('Echo', '1', '0', 'Echo chiro', 'Libre', 'tarifBase: 20', 'euro', 1, '2019-01-01 00:00:00');
 
 INSERT IGNORE INTO `actes_cat` (`name`, `label`, `description`, `module`, `fromID`, `creationDate`, `displayOrder`) VALUES
 ('chiroCatExam', 'Examens  module chiro', '', 'chiro', 1, '2018-01-01 00:00:00', 2),
