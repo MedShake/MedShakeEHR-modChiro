@@ -2,8 +2,8 @@
 /*
  * This file is part of MedShakeEHR.
  *
- * Copyright (c) 2017
- * fr33z00 <https://github.com/fr33z00>
+ * Copyright (c) 2019
+ * Bertrand Boutillier <b.boutillier@gmail.com>
  * http://www.medshake.net
  *
  * MedShakeEHR is free software: you can redistribute it and/or modify
@@ -21,20 +21,14 @@
  */
 
 /**
- * Patient : les requête ajax
+ * Patient > ajax : générer la colonne atcd
  *
- * @author fr33z00 <https://github.com/fr33z00>
- * @contrib Bertrand Boutillier <b.boutillier@gmail.com>
+ * @author Bertrand Boutillier <b.boutillier@gmail.com>
  */
 
-$m=$match['params']['m'];
 
-$acceptedModes=array(
-    'extractCsForm', // Extraire des données additionnelles de cs
-    'refreshLatColPatientAtcdData', //rafraichir la colonne atcd
-);
-
-//inclusion
-if(is_file($p['homepath'].'controlers/module/chiro/patient/actions/inc-ajax-'.$m.'.php')) {
-   include('inc-ajax-'.$m.'.php');
-}
+// le formulaire latéral ATCD
+$form_chiroATCD = new msForm();
+$form_chiroATCD->setFormIDbyName($p['page']['formName_chiroATCD']='chiroATCD');
+$form_chiroATCD->getPrevaluesForPatient($p['page']['patient']['id']);
+$p['page']['formData_chiroATCD']=$form_chiroATCD->getForm();
