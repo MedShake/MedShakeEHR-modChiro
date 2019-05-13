@@ -32,3 +32,4 @@ $form_chiroATCD = new msForm();
 $form_chiroATCD->setFormIDbyName($p['page']['formName_chiroATCD']='chiroATCD');
 $form_chiroATCD->getPrevaluesForPatient($p['page']['patient']['id']);
 $p['page']['formData_chiroATCD']=$form_chiroATCD->getForm();
+$p['page']['formJavascript']['chiroATCD']=$form_chiroATCD->getFormJavascript();

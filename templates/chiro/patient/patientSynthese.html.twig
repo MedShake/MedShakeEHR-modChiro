@@ -32,8 +32,13 @@
 
       {{ f.formbuilder(page.formData_baseSynthese , page.formName_baseSynthese ) }}
 
-      {% include 'inc-patientTabDossierMedicalMenuSup.html.twig' %}   
+      {% include 'inc-patientTabDossierMedicalMenuSup.html.twig' %}
 
+      {% if page.formJavascript.baseSynthese is not empty %}
+        <script>
+          {{ page.formJavascript.baseSynthese }}
+        </script>
+      {% endif %}
     </div>
 
 </div>

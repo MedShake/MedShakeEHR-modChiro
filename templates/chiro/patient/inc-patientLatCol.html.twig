@@ -31,4 +31,10 @@
 {# Formulaire latéral des ATCD #}
 <div id="latForm" class="changeObserv">
   {{ f.formbuilder(page.formData_chiroATCD , page.formName_chiroATCD , valFormLat ) }}
+
+  {% if page.formJavascript.chiroATCD is not empty %}
+    <script>
+      {{ page.formJavascript.chiroATCD }}
+    </script>
+  {% endif %}
 </div>

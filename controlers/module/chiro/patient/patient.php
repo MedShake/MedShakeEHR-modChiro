@@ -27,18 +27,17 @@
  * @contrib fr33z00 <https://www.github.com/fr33z00>
  */
 
-// liste des formulaires fixes au 1er affichage dossier patient pour JS
-$p['page']['listeForms']=array('chiroATCD','baseSynthese');
-
 $form_chiroATCD = new msForm();
 $form_chiroATCD->setFormIDbyName($p['page']['formName_chiroATCD']='chiroATCD');
 $form_chiroATCD->getPrevaluesForPatient($p['page']['patient']['id']);
 $p['page']['formData_chiroATCD']=$form_chiroATCD->getForm();
+$p['page']['formJavascript']['chiroATCD']=$form_chiroATCD->getFormJavascript();
 
 $form_baseSynthese = new msForm();
 $form_baseSynthese->setFormIDbyName($p['page']['formName_baseSynthese']='baseSynthese');
 $form_baseSynthese->getPrevaluesForPatient($p['page']['patient']['id']);
 $p['page']['formData_baseSynthese']=$form_baseSynthese->getForm();
+$p['page']['formJavascript']['baseSynthese']=$form_baseSynthese->getFormJavascript();
 
 $typeCs_csChiro = new msData;
 $p['page']['typeCs_csChiro']=$typeCs_csChiro->getDataTypesFromCatName('csChiro', array('id','label', 'formValues'));
