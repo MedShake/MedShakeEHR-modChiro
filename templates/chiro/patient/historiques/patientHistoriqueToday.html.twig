@@ -26,29 +26,31 @@
  #}
 {% import "macroForm.html.twig" as f %}
 
-    <div class="card col-md-12 px-0 mb-4 historiqueToday"{% if page.patient.today|length == 0 %} style="display:none"{% endif %}>
-        <div class="card-header font-weight-bold">Aujourd'hui</div>
+<div class="card col-md-12 px-0 mb-4 historiqueToday" {% if page.patient.today|length == 0 %} style="display:none" {% endif %}>
+  <div class="card-header font-weight-bold">
+    <i class="far fa-fw fa-clock"></i>
+    Aujourd'hui</div>
 
-        <div class="mx-1">
-            <table class="table table-sm mb-0 table-hover " data-zone="historiqueToday">
-                <thead>
-                    <tr class="histoHead">
-                        <th></th>
-                        <th>Heure</th>
-                        <th>Actions</th>
-                        <th>Acte</th>
-                        <th>Auteur</th>
-                    </tr>
-                </thead>
-                <tbody>
+  <div class="mx-1">
+    <table class="table table-sm mb-0 table-hover " data-zone="historiqueToday">
+      <thead>
+        <tr class="histoHead">
+          <th style="width: 60px;"></th>
+          <th style="width: 130px;">Heure</th>
+          <th>Actions</th>
+          <th>Acte</th>
+          <th>Auteur</th>
+        </tr>
+      </thead>
+      <tbody>
 
-                    {% for cs in page.patient.today %}
-                      {% if cs.groupe != 'ordo' %}
-                        {% include 'pht-ligne-'~ cs.groupe ~'.html.twig' %}
-                      {% endif %}
-                    {% endfor %}
+        {% for cs in page.patient.today %}
+          {% if cs.groupe != 'ordo' %}
+            {% include 'pht-ligne-'~ cs.groupe ~'.html.twig' %}
+          {% endif %}
+        {% endfor %}
 
-                </tbody>
-            </table>
-        </div>
-    </div>
+      </tbody>
+    </table>
+  </div>
+</div>

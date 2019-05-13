@@ -36,16 +36,6 @@
 
 {% block cssEmbed %}
   {{ parent() }}
-  .jumbotron{border-radius: 4px !important}
-  .atcd {border: solid #ddd 1px;border-radius: 4px;padding-top: 10px;}
-
-  .btn {margin-bottom:5px}
-  .btn-fullw {width:100%}
-  .btn-fullw span{width:100%;text-align:center}
-  .jumbotron .btn-group:hover .dropdown-menu {
-      display: block;
-      margin-top: 0;
-   }
 {% endblock %}
 
 {% block head %}
@@ -56,22 +46,22 @@
   {{ parent() }}
 
   {# Onglets #}
-  <ul class="nav nav-tabs font-weight-bold" role="tablist" style="margin-top : 15px;">
+  <ul class="nav nav-tabs gras my-3 text-uppercase font-weight-bold">
     <li class="nav-item">
-      <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}">Dossier médical</a>
+      <a id="ongletDossierMedical" class="nav-link active" href="#tabDossierMedical" aria-controls="tabDossierMedical" aria-selected="true" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-notes-medical fa-lg mr-2"></i>Dossier médical</a>
     </li>
     {% if config.dicomHost != '' %}
       <li class="nav-item">
-        <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}">Imagerie</a>
+        <a id="ongletDicom" class="nav-link" href="#tabDicom" aria-controls="tabDicom" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="far fa-images fa-lg mr-2"></i>Imagerie</a>
       </li>
     {% endif %}
     <li class="nav-item">
-      <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}">Relations</a>
+      <a id="ongletLiensPatient" class="nav-link" href="#tabLiensPatient" aria-controls="tabLiensPatient" aria-selected="false" role="tab" data-toggle="tab" accesskey="{% set ak = ak + 1 %}{{ ak }}"><i class="fas fa-link fa-lg mr-2"></i>Liens du patient</a>
     </li>
   </ul>
 
   {# tabs  #}
-  <div class="tab-content container-fluid" style="padding-top :15px; padding-bottom: 15px;">
+  <div class="tab-content container-fluid">
 
     {# tab dossier médical #}
     <div id="tabDossierMedical" class="tab-pane active" role="tabpanel">

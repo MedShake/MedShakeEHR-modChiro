@@ -26,9 +26,9 @@
  #}
 {% import "macroForm.html.twig" as f %}
 
-  <div class="col-md-12 px-0 historiqueMedicalComplet"{% if page.patient.historique|length == 0 %} style="display: none"{% endif %}>
-    <div class="card">
-      <div class="card-header font-weight-bold">Historique complet</div>
+<div class="col-md-12 px-0 historiqueMedicalComplet"{% if page.patient.historique|length == 0 %} style="display: none"{% endif %}>
+  <div class="card">
+    <div class="card-header font-weight-bold"><i class="far fa-fw fa-calendar-alt"></i> Historique complet</div>
 
 
       <div id="historiqueTypeSelect" style="margin : 10px 5px">
@@ -62,16 +62,16 @@
         <table class="table table-sm mb-0 table-hover " data-zone="historiqueMedicalComplet">
             <thead>
                 <tr class="histoHead">
-                    <th></th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                    <th>Acte</th>
-                    <th>Auteur</th>
+                  <th style="width: 60px;"></th>
+                  <th style="width: 130px;">Date</th>
+                  <th>Actions</th>
+                  <th>Acte</th>
+                  <th>Auteur</th>
                 </tr>
             </thead>
             <tbody>
               {% for k,c in page.patient.historique %}
-                <tr class="bg-primary anneeHistorique" data-toggle="collapse" data-target=".historiqueMedicalComplet .trLigneExamen[data-annee='{{ k }}']" aria-expanded="{% if "now"|date('Y') == k %}true{% else %}false{% endif %}" aria-controls="annee{{ k }}">
+                <tr class="table-primary anneeHistorique" data-toggle="collapse" data-target=".historiqueMedicalComplet .trLigneExamen[data-annee='{{ k }}']" aria-expanded="{% if "now"|date('Y') == k %}true{% else %}false{% endif %}" aria-controls="annee{{ k }}">
                   <td class="pl-3">
                     <span class="far fa-minus-square"{% if "now"|date('Y') != k %} style="display:none"{% endif %}></span>
                     <span class="far fa-plus-square"{% if "now"|date('Y') == k %} style="display:none"{% endif %}></span>
