@@ -36,13 +36,13 @@ $(document).ready(function() {
       $('input[name=p_imc]').val(imc);
     }
 
-    $("#patientLatCol").on("keyup", "input[name=p_poids] , input[name=p_taillePatient]", function() {
-      poids = $('input[name=p_poids]').val();
-      taille = $('input[name=p_taillePatient]').val();
+    $("#patientLatCol").on("keyup", "#id_poids_id , #id_taillePatient_id", function() {
+      poids = $('#id_poids_id').val();
+      taille = $('#id_taillePatient_id').val();
       imc = imcCalc(poids, taille);
-      $('input[name=p_imc]').val(imc);
+      $('#id_imc_id').val(imc);
       patientID = $('#identitePatient').attr("data-patientID");
-      setPeopleData(imc, patientID, '43', 'input[name=p_imc]', '0');
+      setPeopleDataByTypeName(imc, patientID, 'imc', '#id_imc_id', '0');
 
     });
   }
