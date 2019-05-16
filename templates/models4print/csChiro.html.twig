@@ -20,16 +20,17 @@
  #/
 
 /##
- # Template > models4print : compte-rendu de consultation 
+ # Template > models4print : compte-rendu de consultation
  #
  # @author fr33z00 <https://github.com/fr33z00>
+ # @contrib Bertrand Boutillier <b.boutillier@gmail.com>
  #}
 
 {% set tag = page.courrier %}
 
 <p style="text-align : right;">Paris, le {{ tag.date|date("d/m/Y") }}</p>
 
-<h2 style="text-align : center">{% if tag.14=='Homme' %}M.{% elseif tag.14=='Femme' %}Mme{% endif %} {{ tag.3 }}  {{ tag.2|default(tag.1) }} ({{ tag.8 }})</h2>
+<h2 style="text-align : center">{{ tag.identiteCompleteTitreLongDdn  }}</h2>
 <h2>Consultation du jour</h2>
 {% if tag.examenDuJour != '' %}
   <h3>Diagnostic et traitement</h3>
