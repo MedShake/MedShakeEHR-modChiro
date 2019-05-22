@@ -1,0 +1,7 @@
+nom: 'Chiropraxie'
+auteurs:
+  'fr33z00': 'https://github.com/fr33z00'
+licence: 'GPL v3'
+description: 'Module MedShakeEHR pour la pratique de la chiropraxie'
+documentation: 'https://www.logiciel-cabinet-medical.fr/discipline/chiropraxie/'
+sources: 'https://github.com/MedShake/MedShakeEHR-modChiro'
