@@ -275,7 +275,8 @@ INSERT IGNORE INTO `data_types` (`groupe`, `name`, `placeholder`, `label`, `desc
 
 -- configuration
 INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `type`, `description`, `value`) VALUES
-('administratifSecteurHonoraires', 'module', '0', 'chiro', NULL, NULL, NULL, NULL);
+('administratifSecteurHonoraires', 'module', '0', 'chiro', NULL, NULL, NULL, NULL),
+('administratifReglementFormulaires', 'module', '0', 'chiro', 'Règlements', 'liste', NULL, 'chiroReglePorteur');
 
 -- forms_cat
 INSERT IGNORE INTO `forms_cat` (`name`, `label`, `description`, `type`, `fromID`, `creationDate`) VALUES
