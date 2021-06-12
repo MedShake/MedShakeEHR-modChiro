@@ -45,7 +45,7 @@
           <li>
               <a class="dropdown-item linkAddNewDoc" href="#">Ajouter un document au dossier</a>
           </li>
-          {% if config.dicomHost=='' %}
+          {% if config.optionGeActiverPhonecapture == 'true' %}
             <li>
                 <a class="dropdown-item prepareReceptionDoc" href="#">Ajouter des documents au dossier via phonecapture</a>
             </li>
@@ -121,9 +121,11 @@
             <li>
                 <a href="#" class="dropdown-item prepareEcho">Envoyer patient à échographe</a>
             </li>
-            <li>
-                <a href="#" class="dropdown-item prepareReceptionDoc dicom">Envoyer patient à phonecapture</a>
-            </li>
+            {% if config.optionGeActiverPhonecapture == 'true' %}
+              <li>
+                  <a href="#" class="dropdown-item prepareReceptionDoc dicom">Envoyer patient à phonecapture</a>
+              </li>
+            {% endif %}
           </ul>
       </div>
     {% endif %}
